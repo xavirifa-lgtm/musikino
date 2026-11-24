@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Musikino · Host</title>
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<script src="bingo-core.js"></script>
+<style>
+  :root { --bg:#14111f; --panel:#1f1a30; --line:#342c4f; --txt:#f1eefb; --mut:#a59fc0; --acc:#ffcf3f; --ok:#3fd18b; --bad:#ff5d6c; --hard:#b48cff; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; background:var(--bg); color:var(--txt); }
+  header { display:flex; align-items:center; justify-content:space-between; padding:14px 24px; border-bottom:1px solid var(--line); }
+  h1 { font-size:22px; margin:0; letter-spacing:.5px; } h1 span { color:var(--acc); }
+  .code { font-size:20px; color:var(--mut); } .code b { color:var(--acc); font-size:34px; letter-spacing:6px; margin-left:8px; }
+  main { display:grid; grid-template-columns: 1fr 340px; gap:20px; padding:20px 24px; }
+  .panel { background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:18px; }
+  .stage { min-height:420px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:14px; }
+  .big { font-size:44px; font-weight:800; } .mid { font-size:24px; } .mut { color:var(--mut); }
+  .timer { width:100%; max-width:640px; height:14px; background:#0d0b16; border-radius:8px; overflow:hidden; }
+  .timer > div { height:100%; background:var(--acc); width:100%; transition:width .2s linear; }
+  .reveal img { width:180px; height:180px; border-radius:12px; box-shadow:0 8px 30px #0008; }
+  .chips { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; }
+  .chip { background:#2c2545; border:1px solid var(--line); padding:6px 12px; border-radius:20px; font-size:16px; }
+  .chip.hard { border-color:var(--hard); color:var(--hard); }
+  .awards { list-style:none; padding:0; margin:0; font-size:20px; } .awards li { margin:6px 0; }
+  button { background:var(--acc); color:#1b1500; border:0; border-radius:12px; padding:12px 20px; font-size:17px; font-weight:700; cursor:pointer; }
+  button.sec { background:#2c2545; color:var(--txt); border:1px solid var(--line); }
+  button:disabled { opacity:.4; cursor:default; }
+  .row { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+  table { width:100%; border-collapse:collapse; font-size:17px; } td { padding:6px 4px; border-bottom:1px solid var(--line); }
+  td.n { text-align:right; font-weight:700; } .off { opacity:.45; }
+  .pots { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:16px; }
+  .pot { background:#2c2545; border-radius:10px; padding:8px 10px; } .pot b { color:var(--acc); float:right; } .pot.won { opacity:.4; text-decoration:line-through; }
+  label { display:flex; justify-content:space-between; align-items:center; gap:10px; margin:8px 0; color:var(--mut); }
+  input[type=number] { width:80px; background:#0d0b16; color:var(--txt); border:1px solid var(--line); border-radius:8px; padding:6px; font-size:16px; }
+  .err { color:var(--bad); } .small { font-size:13px; } a { color:var(--mut); }
+  .marked { color:var(--ok); }
+</style>
+</head>
+<body>
+<header>
+  <h1>🎵 Musi<span>kino</span></h1>
+  <div class="code" id="codeBox">Conectando…</div>
+</header>
+<main>
+  <section class="panel stage" id="stage"></section>
+  <aside>
+    <div class="panel">
+      <div class="pots" id="pots"></div>
+      <table id="board"></table>
+    </div>
+    <div class="panel" style="margin-top:16px" id="settings">
+      <b>Ajustes</b>
+      <label>Segundos de fragmento <input type="number" id="cfgClip" value="15" min="8" max="30"></label>
+      <label>Segundos extra para marcar <input type="number" id="cfgExtra" value="3" min="0" max="10"></label>
+      <label>Avance automático (s, 0 = manual) <input type="number" id="cfgAuto" value="10" min="0" max="60"></label>
+      <label>Máximo de canciones <input type="number" id="cfgMax" value="30" min="10" max="60"></label>
+      <label>Fichas iniciales <input type="number" id="cfgFichas" value="20" min="6" max="100"></label>
+      <div class="small mut" id="dbInfo"></div>
+      <input type="file" id="fileIn" accept=".json" style="display:none">
+    </div>
+  </aside>
+</main>
+<audio id="audio" preload="auto"></audio>
+
+<script>
+'use strict';
+const C = window.BingoCore;
+const $ = id => document.getElementById(id);
+const audio = $('audio');
+const PREFIX = 'bingomusical-';
+const HIST_KEY = 'bingomusical_historial';
+const HIST_MAX = 400;
+
+// ---------------- Estado ----------------
+const S = {
+  phase: 'lobby',            // lobby | clip | reveal | over
+  code: null, peer: null,
+  songs: [], combos: null, pools: null,
+  players: new Map(),        // pid -> {pid,name,conn,online,fichas,cats,cells,streak,hard,mark,inGame}
+  pots: Object.fromEntries(C.POTS.map(p => [p, 0])),
+  gameWon: {}, turn: 0, song: null, meta: null,
+  played: new Set(), failed: new Set(),
+  deadline: 0, clipEnd: 0, timerId: null, autoId: null,
+  reveal: null, history: loadHistory(),
+};
+const cfg = () => ({
+  clip: +$('cfgClip').value, extra: +$('cfgExtra').value, auto: +$('cfgAuto').value,
+  max: +$('cfgMax').value, fichas: +$('cfgFichas').value,
+});
+
+function loadHistory() { try { return JSON.parse(localStorage.getItem(HIST_KEY) || '[]'); } catch { return []; } }
+function saveHistory() { try { localStorage.setItem(HIST_KEY, JSON.stringify(S.history.slice(-HIST_MAX))); } catch {} }
+
+// ---------------- Canciones ----------------
+async function loadSongs() {
+  try {
+    const r = await fetch('canciones.json', { cache: 'no-store' });
+    if (!r.ok) throw new Error(r.status);
+    setSongs(await r.json());
+  } catch (e) {
+    $('dbInfo').innerHTML = 'No se pudo cargar canciones.json automáticamente. <a href="#" id="pick">Elegir archivo</a>';
+    $('pick').onclick = ev => { ev.preventDefault(); $('fileIn').click(); };
+    $('fileIn').onchange = async () => setSongs(JSON.parse(await $('fileIn').files[0].text()));
+  }
+}
+function setSongs(list) {
+  S.songs = list.filter(s => s.itunesEstado !== 'no_encontrada' && s.itunesEstado !== 'sin_preview');
+  S.combos = C.eligibleCombos(S.songs); S.pools = C.simplePools(S.songs);
+  const conId = S.songs.filter(s => s.itunesId).length;
+  $('dbInfo').textContent = `${S.songs.length} canciones (${conId} con itunesId) · ${S.combos.length} combinadas · historial: ${S.history.length}`;
+  render();
+}
+
+// ---------------- iTunes (JSONP) ----------------
+function jsonp(url, ms = 8000) {
+  return new Promise((resolve, reject) => {
+    const cb = 'itcb_' + Date.now() + '_' + Math.floor(Math.random() * 1e6);
+    const sc = document.createElement('script');
+    const t = setTimeout(() => { done(); reject(new Error('timeout')); }, ms);
+    function done() { clearTimeout(t); delete window[cb]; sc.remove(); }
+    window[cb] = d => { done(); resolve(d); };
+    sc.onerror = () => { done(); reject(new Error('red')); };
+    sc.src = url + (url.includes('?') ? '&' : '?') + 'callback=' + cb;
+    document.head.appendChild(sc);
+  });
+}
+const norm = s => (s || '').toLowerCase().replace(/\(.*?\)|\[.*?\]/g, ' ').replace(/\s(feat\.?|ft\.?|featuring)\s.*$/, ' ')
+  .normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
+const mainArtist = a => norm(a.split(/\s+(?:feat\.?|ft\.?|&|x|y|and|con)\s+|,/)[0]);
+const metaCache = new Map();
+
+async function resolveSong(song) {
+  if (metaCache.has(song.id)) return metaCache.get(song.id);
+  let best = null;
+  if (song.itunesId) {
+    const d = await jsonp(`https://itunes.apple.com/lookup?id=${song.itunesId}&country=es&entity=song`);
+    best = d.results && d.results.find(r => r.previewUrl);
+  } else {
+    const term = encodeURIComponent(song.artista.split(/\s+(?:feat\.?|ft\.?)\s+/)[0] + ' ' + song.titulo.replace(/\(.*?\)/g, ''));
+    const d = await jsonp(`https://itunes.apple.com/search?term=${term}&entity=song&limit=15&country=es`);
+    let bestScore = -1;
+    const t = norm(song.titulo), a = mainArtist(song.artista);
+    for (const r of (d.results || [])) {
+      if (!r.previewUrl) continue;
+      const rt = norm(r.trackName), ra = norm(r.artistName);
+      let sc = (rt === t ? 60 : (rt.includes(t) || t.includes(rt)) ? 35 : 0) + (ra.includes(a) ? 40 : 0);
+      if (/live|en vivo|directo|karaoke|instrumental|cover|tribute/i.test(r.trackName)) sc -= 30;
+      if (/karaoke|tribute|made famous|in the style of/i.test(r.collectionName || '')) sc -= 40;
+      if (sc > bestScore) { bestScore = sc; best = r; }
+    }
+    if (bestScore < 75) best = null;
+  }
+  if (!best) throw new Error('sin fragmento');
+  const meta = { preview: best.previewUrl, art: (best.artworkUrl100 || '').replace('100x100', '300x300'), url: best.trackViewUrl };
+  metaCache.set(song.id, meta);
+  return meta;
+}
+
+// ---------------- Red (PeerJS) ----------------
+function newCode() { const A = 'ABCDEFGHJKLMNPQRSTUVWXYZ'; return Array.from({ length: 4 }, () => A[Math.floor(Math.random() * A.length)]).join(''); }
+function startPeer() {
+  S.code = newCode();
+  const peer = new Peer(PREFIX + S.code);
+  S.peer = peer;
+  peer.on('open', () => { $('codeBox').innerHTML = `Código <b>${S.code}</b>`; render(); });
+  peer.on('error', e => {
+    if (e.type === 'unavailable-id') { peer.destroy(); startPeer(); return; }
+    console.warn('peer error', e);
+    $('codeBox').innerHTML = `<span class="err">Error de conexión (${e.type})</span> · Código <b>${S.code}</b>`;
+  });
+  peer.on('disconnected', () => { try { peer.reconnect(); } catch {} });
+  peer.on('connection', conn => {
+    conn.on('data', msg => onMsg(conn, msg));
+    conn.on('close', () => {
+      for (const p of S.players.values()) if (p.conn === conn) { p.online = false; p.conn = null; }
+      render();
+    });
+  });
+}
+
+function onMsg(conn, msg) {
+  if (!msg || typeof msg !== 'object') return;
+  if (msg.t === 'join') {
+    const pid = String(msg.pid || '').slice(0, 40);
+    const name = String(msg.name || 'Jugador').trim().slice(0, 16) || 'Jugador';
+    if (!pid) return;
+    let p = S.players.get(pid);
+    if (!p) {
+      p = { pid, name, fichas: cfg().fichas, cats: null, cells: null, streak: 0, hard: 0, mark: null, inGame: false };
+      S.players.set(pid, p);
+      if (S.phase !== 'lobby') dealCard(p);   // se une a mitad: cartón nuevo, sin apuesta
+    }
+    if (p.conn && p.conn !== conn) { try { p.conn.close(); } catch {} }
+    p.conn = conn; p.online = true; p.name = name;
+    sendState(p); render();
+    return;
+  }
+  const p = [...S.players.values()].find(x => x.conn === conn);
+  if (!p) return;
+  if (msg.t === 'mark') {
+    if (S.phase !== 'clip' || Date.now() > S.deadline || !p.inGame) return;
+    const idx = msg.idx;
+    if (idx === null) p.mark = null;
+    else if (Number.isInteger(idx) && idx >= 0 && idx < 16 && p.cells[idx] === 'free') p.mark = { idx, t: performance.now() };
+    sendState(p); render();
+  }
+}
+
+// ---------------- Estado para cada jugador (sin filtrar nada de la canción antes de revelar) ----------------
+function publicBoard() {
+  return [...S.players.values()].sort((a, b) => b.fichas - a.fichas)
+    .map(p => ({ name: p.name, fichas: p.fichas, online: !!p.online, lines: p.cells ? C.countLines(p.cells) : 0 }));
+}
+function sendState(p) {
+  if (!p.conn || !p.conn.open) return;
+  const showReveal = (S.phase === 'reveal' || S.phase === 'over') && S.reveal;
+  const msg = {
+    t: 'state', phase: S.phase, code: S.code, name: p.name, turn: S.turn, maxTurns: cfg().max,
+    remainingMs: S.phase === 'clip' ? Math.max(0, S.deadline - Date.now()) : 0,
+    totalMs: (cfg().clip + cfg().extra) * 1000,
+    inGame: p.inGame,
+    card: p.cats ? p.cats.map(c => ({ label: c.label, hard: !!c.dificil })) : null,
+    cells: p.cells, mark: p.mark ? p.mark.idx : null, fichas: p.fichas, streak: p.streak, hard: p.hard,
+    pots: S.pots, won: S.gameWon, board: publicBoard(),
+    reveal: showReveal ? { ...S.reveal.pub, me: S.reveal.results[p.pid] || { res: 'none' } } : null,
+  };
+  try { p.conn.send(msg); } catch {}
+}
+const broadcast = () => { for (const p of S.players.values()) sendState(p); };
+
+// ---------------- Partida ----------------
+function dealCard(p) {
+  p.cats = C.makeCard(S.songs, Math.random, S.combos, S.pools);
+  p.cells = Array(16).fill('free'); p.streak = 0; p.hard = 0; p.mark = null; p.inGame = true;
+}
+function startGame() {
+  if (!S.songs.length || !S.players.size) return;
+  audio.play().catch(() => {}); audio.pause();          // desbloquea audio con el clic
+  S.gameWon = {}; S.turn = 0; S.played = new Set(S.history); S.reveal = null;
+  for (const p of S.players.values()) {
+    dealCard(p);
+    for (const pot of C.POTS) if (p.fichas > 0) { p.fichas--; S.pots[pot]++; }
+  }
+  nextTurn();
+}
+
+async function nextTurn() {
+  clearTimeout(S.autoId); clearInterval(S.timerId);
+  const c = cfg();
+  if (S.turn >= c.max) return endGame('Se alcanzó el máximo de canciones');
+  const cards = [...S.players.values()].filter(p => p.inGame).map(p => ({ cats: p.cats, cells: p.cells }));
+  let song = null, meta = null;
+  for (let tries = 0; tries < 8 && !meta; tries++) {
+    song = C.pickSong(S.songs, new Set([...S.played, ...S.failed]), cards);
+    if (!song) { // historial agotado: lo vaciamos
+      S.history = []; saveHistory(); S.played = new Set(); continue;
+    }
+    try { meta = await resolveSong(song); } catch (e) { console.warn('Sin fragmento:', song.artista, song.titulo, e.message); S.failed.add(song.id); }
+  }
+  if (!meta) { stageMsg('No se pudo cargar ninguna canción. ¿Hay conexión con iTunes?'); return; }
+
+  S.turn++; S.song = song; S.meta = meta; S.played.add(song.id);
+  S.history.push(song.id); saveHistory();
+  for (const p of S.players.values()) p.mark = null;
+
+  audio.src = meta.preview;
+  try { await new Promise((res, rej) => { audio.oncanplay = res; audio.onerror = rej; audio.load(); }); }
+  catch { S.failed.add(song.id); S.turn--; return nextTurn(); }
+  audio.currentTime = 0;
+  audio.play().catch(e => console.warn('autoplay', e));
+
+  S.phase = 'clip';
+  S.clipEnd = Date.now() + c.clip * 1000;
+  S.deadline = S.clipEnd + c.extra * 1000;
+  S.timerId = setInterval(tick, 200);
+  broadcast(); render();
+}
+
+function tick() {
+  if (S.phase !== 'clip') return;
+  const now = Date.now();
+  if (now >= S.clipEnd && !audio.paused && S.phase === 'clip') audio.pause();
+  if (now >= S.deadline) { clearInterval(S.timerId); doReveal(); return; }
+  const bar = document.querySelector('.timer > div');
+  if (bar) bar.style.width = (100 * (S.deadline - now) / ((cfg().clip + cfg().extra) * 1000)) + '%';
+}
+
+function doReveal() {
+  if (S.phase !== 'clip') return;
+  S.phase = 'revealing';
+  const inGame = [...S.players.values()].filter(p => p.inGame).map(p => Object.assign(p, { id: p.pid }));
+  const r = C.evaluateTurn(inGame, S.song, S.gameWon);
+  const nameOf = id => S.players.get(id).name;
+  const awards = [];
+  if (r.speedWinner) { S.players.get(r.speedWinner).fichas += 1; awards.push({ txt: `⚡ ${nameOf(r.speedWinner)} fue el más rápido (+1)` }); }
+  for (const pot of C.POTS) {
+    const ids = r.awards[pot]; if (!ids) continue;
+    const { each, rest } = C.splitPot(S.pots[pot], ids.length);
+    ids.forEach(id => S.players.get(id).fichas += each);
+    S.pots[pot] = rest; S.gameWon[pot] = true;
+    awards.push({ txt: `🏆 ${C.POT_LABEL[pot]}: ${ids.map(nameOf).join(', ')} (+${each})` });
+  }
+  const s = S.song;
+  S.reveal = {
+    results: r.results,
+    pub: {
+      titulo: s.titulo, artista: s.artista, anio: s.anio,
+      tags: [
+        C.makeCat('decada', s.decada).label, C.makeCat('genero', s.genero).label,
+        s.idioma === 'ca' ? 'En catalán' : C.makeCat('idioma', s.idioma).label,
+        ...(s.especial || []).map(e => C.makeCat('especial', e).label),
+      ],
+      art: S.meta.art, url: S.meta.url, awards: awards.map(a => a.txt),
+      hits: Object.values(r.results).filter(x => x.res === 'hit').length,
+      misses: Object.values(r.results).filter(x => x.res === 'miss').length,
+    },
+  };
+  audio.play().catch(() => {});                 // que siga sonando mientras se revela
+  if (r.gameOver) return endGame(null);
+  S.phase = 'reveal';
+  if (S.turn >= cfg().max) return endGame('Se alcanzó el máximo de canciones');
+  if (cfg().auto > 0) S.autoId = setTimeout(nextTurn, cfg().auto * 1000);
+  broadcast(); render();
+}
+
+function endGame(reason) {
+  clearTimeout(S.autoId); clearInterval(S.timerId);
+  S.phase = 'over'; S.overReason = reason;
+  broadcast(); render();
+}
+
+// ---------------- UI ----------------
+function stageMsg(html) { $('stage').innerHTML = `<div class="mid">${html}</div>`; }
+function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+
+function render() {
+  const st = $('stage');
+  const players = [...S.players.values()];
+  const playerUrl = location.href.replace(/host_bingo\.html.*$/, 'player_bingo.html') + (S.code ? '?code=' + S.code : '');
+  if (S.phase === 'lobby') {
+    st.innerHTML = `
+      <div class="mut mid">Entrad desde el móvil en</div>
+      <div class="mid"><b>${esc(playerUrl)}</b></div>
+      <div class="big">${players.length} jugador${players.length === 1 ? '' : 'es'}</div>
+      <div class="chips">${players.map(p => `<span class="chip ${p.online ? '' : 'off'}">${esc(p.name)}</span>`).join('')}</div>
+      <button id="btnStart" ${players.length && S.songs.length ? '' : 'disabled'}>Empezar partida</button>`;
+    $('btnStart').onclick = startGame;
+  } else if (S.phase === 'clip') {
+    const ing = players.filter(p => p.inGame);
+    st.innerHTML = `
+      <div class="mut mid">Canción ${S.turn} de ${cfg().max}</div>
+      <div class="big">🎧 ¿Qué suena?</div>
+      <div class="timer"><div></div></div>
+      <div class="mid"><span class="marked">${ing.filter(p => p.mark).length}</span> / ${ing.length} han marcado</div>
+      <div class="row"><button class="sec" id="btnSkip">Saltar canción</button></div>`;
+    $('btnSkip').onclick = () => { S.failed.add(S.song.id); S.turn--; audio.pause(); nextTurn(); };
+    tick();
+  } else if (S.phase === 'reveal' || S.phase === 'over') {
+    const R = S.reveal ? S.reveal.pub : null;
+    const ranking = players.slice().sort((a, b) => b.fichas - a.fichas);
+    st.innerHTML = (R ? `
+      <div class="reveal">${R.art ? `<img src="${esc(R.art)}" alt="">` : ''}</div>
+      <div class="big">${esc(R.titulo)}</div>
+      <div class="mid">${esc(R.artista)} · ${R.anio}</div>
+      <div class="chips">${R.tags.map((t, i) => `<span class="chip ${i > 2 ? 'hard' : ''}">${esc(t)}</span>`).join('')}</div>
+      <div class="mut">✅ ${R.hits} aciertos · ❌ ${R.misses} fallos</div>
+      <ul class="awards">${R.awards.map(a => `<li>${esc(a)}</li>`).join('')}</ul>
+      ${R.url ? `<a class="small" href="${esc(R.url)}" target="_blank" rel="noopener">Escuchar en Apple Music</a>` : ''}` : '') +
+      (S.phase === 'over' ? `
+      <div class="big" style="margin-top:10px">🏁 Fin de la partida</div>
+      ${S.overReason ? `<div class="mut">${esc(S.overReason)} · el bote de Doble línea pasa a la siguiente</div>` : ''}
+      <table style="max-width:420px">${ranking.map((p, i) => `<tr><td>${i + 1}. ${esc(p.name)}</td><td class="n">${p.fichas}</td></tr>`).join('')}</table>
+      <div class="row"><button id="btnNew">Nueva partida</button><button class="sec" id="btnLobby">Volver a la sala</button></div>` : `
+      <div class="row"><button id="btnNext">Siguiente canción${cfg().auto > 0 ? ` (auto ${cfg().auto}s)` : ''}</button><button class="sec" id="btnEnd">Terminar</button></div>`);
+    if ($('btnNext')) $('btnNext').onclick = nextTurn;
+    if ($('btnEnd')) $('btnEnd').onclick = () => endGame('Partida terminada por el host');
+    if ($('btnNew')) $('btnNew').onclick = startGame;
+    if ($('btnLobby')) $('btnLobby').onclick = () => { audio.pause(); S.phase = 'lobby'; S.reveal = null; for (const p of S.players.values()) p.inGame = false; broadcast(); render(); };
+  }
+  // Botes y marcador
+  $('pots').innerHTML = C.POTS.map(p => `<div class="pot ${S.gameWon[p] && S.phase !== 'lobby' ? 'won' : ''}">${C.POT_LABEL[p]} <b>${S.pots[p]}</b></div>`).join('');
+  $('board').innerHTML = publicBoard().map(b => `<tr class="${b.online ? '' : 'off'}"><td>${esc(b.name)}${b.lines ? ` <span class="mut small">· ${b.lines} lín.</span>` : ''}</td><td class="n">${b.fichas}</td></tr>`).join('')
+    || '<tr><td class="mut">Sin jugadores todavía</td></tr>';
+  $('settings').style.display = S.phase === 'lobby' || S.phase === 'over' ? '' : 'none';
+}
+
+loadSongs();
+startPeer();
+render();
+</script>
+</body>
+</html>

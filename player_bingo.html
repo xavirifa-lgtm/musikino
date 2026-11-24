@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#14111f">
+<title>Musikino</title>
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<style>
+  :root { --bg:#14111f; --panel:#1f1a30; --line:#342c4f; --txt:#f1eefb; --mut:#a59fc0; --acc:#ffcf3f; --ok:#3fd18b; --bad:#ff5d6c; --hard:#b48cff; }
+  * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body { margin:0; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; background:var(--bg); color:var(--txt); min-height:100vh; }
+  .wrap { max-width:520px; margin:0 auto; padding:12px; }
+  .top { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; font-size:15px; }
+  .top b { color:var(--acc); font-size:20px; }
+  .status { text-align:center; font-size:18px; min-height:26px; margin:6px 0; }
+  .timer { height:8px; background:#0d0b16; border-radius:6px; overflow:hidden; margin-bottom:10px; }
+  .timer > div { height:100%; width:0; background:var(--acc); }
+  .grid { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; }
+  .cell { aspect-ratio:1/1; border-radius:10px; border:2px solid var(--line); background:var(--panel); color:var(--txt);
+          display:flex; align-items:center; justify-content:center; text-align:center; font-size:12.5px; line-height:1.15; padding:4px;
+          font-weight:600; user-select:none; position:relative; }
+  .cell.hard { border-color:#5b4691; color:#e0d2ff; }
+  .cell.sel { border-color:var(--acc); background:#3a3214; box-shadow:0 0 0 2px var(--acc) inset; }
+  .cell.hit { background:#174a34; border-color:var(--ok); }
+  .cell.hit::after { content:'✓'; position:absolute; top:2px; right:5px; color:var(--ok); font-size:14px; }
+  .cell.blocked { background:#3d1a20; border-color:#7a2a35; color:#9a7b80; text-decoration:line-through; }
+  .cell.blocked::after { content:'✕'; position:absolute; top:2px; right:5px; color:var(--bad); font-size:14px; }
+  .cell.flash-hit { animation:fh .9s; } .cell.flash-miss { animation:fm .9s; }
+  @keyframes fh { 0%{transform:scale(1.15)} 100%{transform:scale(1)} }
+  @keyframes fm { 0%,50%{transform:translateX(-4px)} 25%,75%{transform:translateX(4px)} 100%{transform:none} }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:12px; margin-top:12px; }
+  .reveal { text-align:center; } .reveal .t { font-size:20px; font-weight:800; } .reveal .a { color:var(--mut); margin:2px 0 8px; }
+  .chips { display:flex; gap:6px; flex-wrap:wrap; justify-content:center; margin:6px 0; }
+  .chip { background:#2c2545; border:1px solid var(--line); padding:4px 10px; border-radius:16px; font-size:13px; }
+  .res { font-size:18px; font-weight:700; margin:6px 0; } .res.hit { color:var(--ok); } .res.miss { color:var(--bad); }
+  .awards { list-style:none; padding:0; margin:6px 0 0; font-size:14px; }
+  .pots { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; font-size:12.5px; }
+  .pot { background:#2c2545; border-radius:8px; padding:5px 7px; } .pot b { color:var(--acc); float:right; } .pot.won { opacity:.4; text-decoration:line-through; }
+  table { width:100%; border-collapse:collapse; font-size:14px; } td { padding:4px; border-bottom:1px solid var(--line); } td.n { text-align:right; font-weight:700; }
+  .off { opacity:.45; }
+  input { width:100%; padding:14px; font-size:18px; border-radius:12px; border:1px solid var(--line); background:#0d0b16; color:var(--txt); margin:6px 0; }
+  input.code { text-transform:uppercase; letter-spacing:6px; text-align:center; font-weight:800; }
+  button { width:100%; background:var(--acc); color:#1b1500; border:0; border-radius:12px; padding:14px; font-size:18px; font-weight:800; margin-top:8px; }
+  h1 { text-align:center; } h1 span { color:var(--acc); }
+  .mut { color:var(--mut); } .small { font-size:13px; } .center { text-align:center; }
+  .banner { background:#3d1a20; color:#ffd0d5; padding:8px; border-radius:10px; text-align:center; margin-bottom:8px; display:none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="join">
+    <h1>🎵 Musi<span>kino</span></h1>
+    <input id="inCode" class="code" maxlength="4" placeholder="CÓDIGO" autocomplete="off">
+    <input id="inName" maxlength="16" placeholder="Tu nombre" autocomplete="off">
+    <button id="btnJoin">Entrar</button>
+    <p class="mut small center" id="joinMsg"></p>
+  </div>
+  <div id="game" style="display:none">
+    <div class="banner" id="banner">Reconectando…</div>
+    <div class="top"><span id="who"></span><span>Fichas <b id="fichas">0</b></span></div>
+    <div class="timer"><div id="bar"></div></div>
+    <div class="status" id="status"></div>
+    <div class="grid" id="grid"></div>
+    <div class="card reveal" id="reveal" style="display:none"></div>
+    <div class="card"><div class="pots" id="pots"></div></div>
+    <div class="card"><table id="board"></table></div>
+    <p class="mut small center">Marca una casilla por canción. Si fallas, se bloquea.</p>
+  </div>
+</div>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+const PREFIX = 'bingomusical-';
+const POT_LABEL = { linea: 'Línea', esquinas: 'Esquinas', cuadrado: 'Cuadrado', racha: 'Racha', experto: 'Experto', final: 'Doble línea' };
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+let pid = localStorage.getItem('bm_pid');
+if (!pid) { pid = (crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2)); localStorage.setItem('bm_pid', pid); }
+const params = new URLSearchParams(location.search);
+$('inCode').value = (params.get('code') || localStorage.getItem('bm_code') || '').toUpperCase();
+$('inName').value = localStorage.getItem('bm_name') || '';
+
+let peer = null, conn = null, code = null, name = null, st = null, wakeLock = null;
+let localMark = null, deadlineAt = 0, totalMs = 1, lastTurnRendered = -1, retryTimer = null, wantConnected = false;
+
+$('btnJoin').onclick = () => {
+  code = $('inCode').value.trim().toUpperCase(); name = $('inName').value.trim();
+  if (code.length !== 4 || !name) { $('joinMsg').textContent = 'Pon el código de 4 letras y tu nombre.'; return; }
+  localStorage.setItem('bm_code', code); localStorage.setItem('bm_name', name);
+  wantConnected = true; $('joinMsg').textContent = 'Conectando…';
+  connect(); requestWakeLock();
+};
+
+function connect() {
+  clearTimeout(retryTimer);
+  if (!peer || peer.destroyed) {
+    peer = new Peer();
+    peer.on('open', openConn);
+    peer.on('error', e => { console.warn(e.type); if (e.type === 'peer-unavailable') $('joinMsg').textContent = 'No encuentro esa sala. ¿Código correcto?'; scheduleRetry(); });
+    peer.on('disconnected', () => { try { peer.reconnect(); } catch {} });
+  } else if (peer.open) openConn();
+}
+function openConn() {
+  if (conn && conn.open) return;
+  conn = peer.connect(PREFIX + code, { reliable: true });
+  conn.on('open', () => { $('banner').style.display = 'none'; conn.send({ t: 'join', pid, name }); });
+  conn.on('data', onState);
+  conn.on('close', () => { $('banner').style.display = 'block'; scheduleRetry(); });
+  conn.on('error', scheduleRetry);
+}
+function scheduleRetry() { if (!wantConnected) return; clearTimeout(retryTimer); retryTimer = setTimeout(connect, 3000); }
+
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState !== 'visible' || !wantConnected) return;
+  requestWakeLock();
+  if (!conn || !conn.open) { if (peer && peer.destroyed) peer = null; connect(); }
+});
+async function requestWakeLock() { try { if ('wakeLock' in navigator) wakeLock = await navigator.wakeLock.request('screen'); } catch {} }
+
+function send(msg) { if (conn && conn.open) conn.send(msg); }
+
+function onState(m) {
+  if (!m || m.t !== 'state') return;
+  st = m;
+  $('join').style.display = 'none'; $('game').style.display = '';
+  if (m.phase === 'clip') { deadlineAt = Date.now() + m.remainingMs; totalMs = m.totalMs; localMark = m.mark; }
+  else localMark = null;
+  render();
+}
+
+function render() {
+  const m = st; if (!m) return;
+  $('who').textContent = `${m.name} · ${m.phase === 'lobby' ? 'sala ' + m.code : 'canción ' + m.turn + '/' + m.maxTurns}`;
+  $('fichas').textContent = m.fichas;
+  const status = $('status');
+  if (m.phase === 'lobby') status.textContent = 'Esperando a que el host empiece…';
+  else if (!m.inGame) status.textContent = 'Entrarás en la próxima partida';
+  else if (m.phase === 'clip') status.textContent = localMark == null ? '🎧 Escucha y marca una casilla' : '👍 Marcada (puedes cambiarla)';
+  else if (m.phase === 'over') status.textContent = '🏁 Fin de la partida';
+  else status.textContent = 'Siguiente canción en breve…';
+
+  // cartón
+  const grid = $('grid');
+  if (m.card) {
+    const newTurnReveal = m.reveal && m.turn !== lastTurnRendered;
+    grid.innerHTML = m.card.map((c, i) => {
+      const cls = ['cell', c.hard ? 'hard' : '', m.cells[i] === 'hit' ? 'hit' : '', m.cells[i] === 'blocked' ? 'blocked' : '',
+        m.phase === 'clip' && localMark === i ? 'sel' : '',
+        newTurnReveal && m.reveal.me.idx === i ? (m.reveal.me.res === 'hit' ? 'flash-hit' : 'flash-miss') : ''].join(' ');
+      return `<div class="${cls}" data-i="${i}">${esc(c.label)}</div>`;
+    }).join('');
+    if (m.reveal) lastTurnRendered = m.turn;
+    grid.querySelectorAll('.cell').forEach(el => el.onclick = () => tap(+el.dataset.i));
+  } else grid.innerHTML = '';
+
+  // revelado
+  const rv = $('reveal');
+  if (m.reveal) {
+    const r = m.reveal, me = r.me;
+    const resTxt = me.res === 'hit' ? '✅ ¡Acierto!' : me.res === 'miss' ? '❌ Fallo: casilla bloqueada' : '— No marcaste';
+    rv.style.display = '';
+    rv.innerHTML = `<div class="t">${esc(r.titulo)}</div><div class="a">${esc(r.artista)} · ${r.anio}</div>
+      <div class="chips">${r.tags.map(t => `<span class="chip">${esc(t)}</span>`).join('')}</div>
+      <div class="res ${me.res}">${resTxt}</div>
+      <ul class="awards">${r.awards.map(a => `<li>${esc(a)}</li>`).join('')}</ul>`;
+  } else rv.style.display = 'none';
+
+  $('pots').innerHTML = Object.keys(POT_LABEL).map(p => `<div class="pot ${m.won && m.won[p] && m.phase !== 'lobby' ? 'won' : ''}">${POT_LABEL[p]} <b>${m.pots[p]}</b></div>`).join('');
+  $('board').innerHTML = m.board.map(b => `<tr class="${b.online ? '' : 'off'}"><td>${esc(b.name)}${b.lines ? ` <span class="mut small">· ${b.lines} lín.</span>` : ''}</td><td class="n">${b.fichas}</td></tr>`).join('');
+}
+
+function tap(i) {
+  if (!st || st.phase !== 'clip' || !st.inGame || Date.now() > deadlineAt) return;
+  if (st.cells[i] !== 'free') return;
+  localMark = localMark === i ? null : i;
+  send({ t: 'mark', idx: localMark });
+  if (navigator.vibrate) navigator.vibrate(15);
+  render();
+}
+
+setInterval(() => {
+  const bar = $('bar');
+  if (st && st.phase === 'clip') bar.style.width = Math.max(0, 100 * (deadlineAt - Date.now()) / totalMs) + '%';
+  else bar.style.width = '0';
+}, 150);
+
+if ($('inCode').value && $('inName').value && params.get('code')) $('btnJoin').click();
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Musikino · Imprimir cartones</title>
+<script src="bingo-core.js"></script>
+<style>
+  @page { size: A4 portrait; margin: 0; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Helvetica Neue", Arial, sans-serif; color: #000; background: #ddd; }
+  .controls { padding: 14px; background: #fff; border-bottom: 1px solid #bbb; display: flex; gap: 14px; align-items: center; flex-wrap: wrap; font-size: 15px; }
+  .controls input { width: 80px; padding: 6px; font-size: 15px; }
+  .controls button { padding: 8px 16px; font-size: 15px; font-weight: 700; cursor: pointer; }
+  .controls .info { color: #555; font-size: 13px; }
+  .sheet { width: 210mm; height: 297mm; margin: 10mm auto; background: #fff; display: grid;
+           grid-template-columns: 105mm 105mm; grid-template-rows: 148.5mm 148.5mm; page-break-after: always; break-after: page; position: relative; }
+  .sheet::before, .sheet::after { content: ''; position: absolute; border: 0 dashed #999; }
+  .sheet::before { left: 105mm; top: 0; bottom: 0; border-left-width: 0.2mm; }
+  .sheet::after { top: 148.5mm; left: 0; right: 0; border-top-width: 0.2mm; }
+  .card { padding: 6mm 6mm 5mm; display: flex; flex-direction: column; }
+  .head { display: flex; justify-content: space-between; align-items: baseline; height: 8mm; }
+  .head .t { font-size: 13pt; font-weight: 700; letter-spacing: .2mm; }
+  .head .n { font-size: 11pt; font-weight: 700; }
+  .head .n small { font-weight: 400; font-size: 7pt; color: #444; margin-left: 1.5mm; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(4, 28mm); gap: 1mm; margin-top: 1mm; }
+  .cell { border: 0.35mm solid #000; border-radius: 1.2mm; position: relative; padding: 1.4mm 1mm 0; text-align: center; overflow: hidden; }
+  .cell .l { font-size: 8.5pt; line-height: 1.12; font-weight: 600; }
+  .cell .l2 { font-weight: 400; }
+  .cell.hard::after { content: ''; position: absolute; right: 0; bottom: 0; width: 0; height: 0;
+                      border-left: 4.5mm solid transparent; border-bottom: 4.5mm solid #000; }
+  .foot { margin-top: auto; font-size: 7.5pt; line-height: 1.35; display: flex; justify-content: space-between; align-items: flex-end; }
+  .tri { display: inline-block; width: 0; height: 0; border-left: 2.6mm solid transparent; border-bottom: 2.6mm solid #000; margin-right: 1mm; vertical-align: -0.3mm; }
+  @media print {
+    body { background: #fff; }
+    .controls { display: none; }
+    .sheet { margin: 0; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div class="controls">
+  <label>Primer nº <input type="number" id="desde" value="1" min="1" max="9999"></label>
+  <label>Hojas <input type="number" id="hojas" value="3" min="1" max="50"></label>
+  <button id="gen">Generar</button>
+  <button id="print">Imprimir</button>
+  <span class="info" id="info">Cargando canciones…</span>
+  <input type="file" id="fileIn" accept=".json" style="display:none">
+</div>
+<div id="out"></div>
+<script>
+'use strict';
+const C = window.BingoCore;
+const GAME_NAME = C.GAME_NAME;
+const $ = id => document.getElementById(id);
+let songs = null, combos = null, pools = null;
+
+async function load() {
+  try {
+    const r = await fetch('canciones.json', { cache: 'no-store' });
+    if (!r.ok) throw new Error(r.status);
+    setSongs(await r.json());
+  } catch {
+    $('info').innerHTML = 'No se pudo cargar canciones.json. <a href="#" id="pick">Elegir archivo</a>';
+    $('pick').onclick = e => { e.preventDefault(); $('fileIn').click(); };
+    $('fileIn').onchange = async () => setSongs(JSON.parse(await $('fileIn').files[0].text()));
+  }
+}
+function setSongs(list) {
+  songs = list.filter(s => s.itunesEstado !== 'no_encontrada' && s.itunesEstado !== 'sin_preview');
+  combos = C.eligibleCombos(); pools = C.simplePools();
+  const cov = C.coverage(songs);
+  $('info').textContent = `${songs.length} canciones` + (cov.length ? ` · Aviso: pocas canciones en ${cov.map(x => x.cat.label + ' (' + x.n + ')').join(', ')}` : ' · todas las categorías tienen canciones suficientes');
+  render();
+}
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+function cardHtml(n) {
+  const cats = C.cardFromNumber(songs, n, combos, pools);
+  const cells = cats.map(c => {
+    const [a, b] = C.printLines(c);
+    return `<div class="cell ${c.dificil ? 'hard' : ''}"><div class="l">${esc(a)}</div>${b ? `<div class="l l2">${esc(b)}</div>` : ''}</div>`;
+  }).join('');
+  return `<div class="card">
+    <div class="head"><span class="t">${GAME_NAME}</span><span class="n">Nº ${String(n).padStart(4, '0')}</span></div>
+    <div class="grid">${cells}</div>
+    <div class="foot"><span>Escribe el nº de canción en la casilla<br>Acierto: rodéalo · Fallo: táchalo</span><span><span class="tri"></span>Difícil</span></div>
+  </div>`;
+}
+function render() {
+  if (!songs) return;
+  const desde = Math.max(1, +$('desde').value || 1), hojas = Math.min(50, Math.max(1, +$('hojas').value || 1));
+  let html = '';
+  for (let h = 0; h < hojas; h++) {
+    html += '<div class="sheet">';
+    for (let k = 0; k < 4; k++) html += cardHtml(desde + h * 4 + k);
+    html += '</div>';
+  }
+  $('out').innerHTML = html;
+  $('desde').value = desde;
+}
+$('gen').onclick = render;
+$('print').onclick = () => window.print();
+load();
+</script>
+</body>
+</html>

@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>Musikino · Mesa</title>
+<script src="bingo-core.js"></script>
+<style>
+  :root { --bg:#14111f; --panel:#1f1a30; --line:#342c4f; --txt:#f1eefb; --mut:#a59fc0; --acc:#ffcf3f; --ok:#3fd18b; --bad:#ff5d6c; }
+  * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body { margin:0; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; background:var(--bg); color:var(--txt); min-height:100vh; }
+  header { display:flex; align-items:center; justify-content:space-between; padding:12px 20px; border-bottom:1px solid var(--line); }
+  h1 { font-size:24px; margin:0; } h1 span { color:var(--acc); }
+  main { display:grid; grid-template-columns:1fr 300px; gap:18px; padding:18px 20px; }
+  @media (max-width: 900px) { main { grid-template-columns:1fr; } }
+  .panel { background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:18px; }
+  .stage { min-height:460px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:14px; }
+  .num { font-size:120px; font-weight:900; line-height:1; color:var(--acc); }
+  .big { font-size:40px; font-weight:800; } .mid { font-size:22px; } .mut { color:var(--mut); }
+  .pens { font-size:64px; font-weight:900; color:var(--bad); animation:pulse .5s infinite alternate; }
+  @keyframes pulse { from { transform:scale(1); } to { transform:scale(1.06); } }
+  .timer { width:100%; max-width:640px; height:16px; background:#0d0b16; border-radius:8px; overflow:hidden; }
+  .timer > div { height:100%; background:var(--acc); width:100%; }
+  .art { width:170px; height:170px; border-radius:12px; }
+  .chips { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; max-width:760px; }
+  .chip { background:#2c2545; border:1px solid var(--line); padding:7px 12px; border-radius:20px; font-size:16px; }
+  .chip.hard { border-color:var(--acc); }
+  button { background:var(--acc); color:#1b1500; border:0; border-radius:12px; padding:14px 22px; font-size:18px; font-weight:800; cursor:pointer; }
+  button.sec { background:#2c2545; color:var(--txt); border:1px solid var(--line); }
+  button.bad { background:var(--bad); color:#fff; }
+  .buzz { background:var(--bad); color:#fff; font-size:26px; padding:20px 36px; border-radius:50px; box-shadow:0 6px 0 #a3283a; }
+  .buzz:active { transform:translateY(4px); box-shadow:0 2px 0 #a3283a; }
+  .count { font-size:20px; color:var(--mut); } .count b { color:var(--acc); font-size:26px; }
+  button:disabled { opacity:.35; cursor:default; }
+  .row { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+  .pot { display:flex; justify-content:space-between; padding:9px 4px; border-bottom:1px solid var(--line); font-size:17px; }
+  .pot .st { color:var(--mut); font-size:14px; } .pot.won .st { color:var(--ok); }
+  label { display:flex; justify-content:space-between; align-items:center; gap:10px; margin:9px 0; color:var(--mut); }
+  input[type=number] { width:84px; background:#0d0b16; color:var(--txt); border:1px solid var(--line); border-radius:8px; padding:7px; font-size:17px; }
+  .warn { color:#ffb36b; font-size:14px; } .small { font-size:13px; } a { color:var(--mut); }
+  /* Modal */
+  .modal { position:fixed; inset:0; background:#000b; display:flex; align-items:center; justify-content:center; z-index:10; }
+  .box { background:var(--panel); border:1px solid var(--line); border-radius:18px; padding:20px; width:min(760px,96vw); max-height:94vh; overflow:auto; }
+  .box h2 { margin:0 0 12px; font-size:22px; }
+  .keypad { display:grid; grid-template-columns:repeat(3, 90px); gap:10px; justify-content:center; margin:14px 0; }
+  .keypad button { font-size:28px; padding:16px 0; }
+  .display { font-size:48px; font-weight:900; letter-spacing:10px; text-align:center; color:var(--acc); min-height:58px; }
+  .prizes { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .prizes button { padding:20px 8px; } .prizes button.guess { outline:4px solid #fff; }
+  .card { display:grid; grid-template-columns:repeat(4, 1fr); gap:6px; max-width:480px; margin:10px auto; }
+  .cell { position:relative; aspect-ratio: 22/28; border:2px solid var(--line); border-radius:8px; background:#2a2440; padding:6px 4px; text-align:center; font-size:13px; line-height:1.15; cursor:pointer; }
+  .cell b { display:block; font-size:30px; margin-top:8px; color:var(--acc); }
+  .cell.hard::after { content:''; position:absolute; right:0; bottom:0; border-left:14px solid transparent; border-bottom:14px solid var(--txt); border-bottom-right-radius:6px; }
+  .cell.sel { border-color:var(--acc); background:#3a3214; }
+  .cell.ok { border-color:var(--ok); background:#174a34; } .cell.ko { border-color:var(--bad); background:#4a1c24; }
+  .picker { display:grid; grid-template-columns:repeat(auto-fill, minmax(58px,1fr)); gap:8px; margin:12px 0; }
+  .picker button { padding:14px 0; font-size:20px; }
+  .result { font-size:20px; margin:10px 0; } .result.ok { color:var(--ok); } .result.ko { color:var(--bad); }
+  .result ul { font-size:16px; text-align:left; }
+  table { width:100%; border-collapse:collapse; font-size:15px; } td { padding:6px 4px; border-bottom:1px solid var(--line); vertical-align:top; }
+</style>
+</head>
+<body>
+<header><h1 id="title"></h1><div class="mut" id="headInfo"></div></header>
+<main>
+  <section class="panel stage" id="stage"></section>
+  <aside>
+    <div class="panel"><b>Botes de esta partida</b><div id="pots" style="margin-top:6px"></div></div>
+    <div class="panel" style="margin-top:16px" id="settings">
+      <b>Ajustes</b>
+      <label>Segundos de canción <input type="number" id="cfgClip" value="20" min="8" max="30"></label>
+      <label>Segundos extra para escribir <input type="number" id="cfgExtra" value="5" min="0" max="15"></label>
+      <label>Segundos para cantar premio (0 = manual) <input type="number" id="cfgAuto" value="12" min="0" max="60"></label>
+      <label>Máximo de canciones <input type="number" id="cfgMax" value="30" min="10" max="60"></label>
+      <label>Cartones en juego: del nº <input type="number" id="cfgDesde" value="" placeholder="opc."></label>
+      <label>al nº <input type="number" id="cfgHasta" value="" placeholder="opc."></label>
+      <div style="border-top:1px solid var(--line); margin-top:10px; padding-top:10px">
+        <b>Cantar premio</b>
+        <label>Detectar <select id="claimMode" style="background:#0d0b16;color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:6px;font-size:15px">
+          <option value="ambos">Timbre y voz</option><option value="timbre">Solo timbre</option><option value="voz">Solo voz</option><option value="nada">Ninguno (botón Validar)</option></select></label>
+        <div class="small mut" id="voiceStatus">Voz: gritad "¡Línea!", "¡Esquinas!", "¡Cuadrado!", "¡Racha!", "¡Experto!", "¡Doble línea!" (o "¡Bingo!").</div>
+        <div class="row" style="justify-content:flex-start"><button class="sec" id="bCalib" style="padding:10px 14px;font-size:15px">Calibrar timbre</button></div>
+        <label>Sensibilidad <input type="range" id="micSens" min="1" max="10" value="5" style="width:140px"></label>
+        <label>Escuchar también con la canción sonando <input type="checkbox" id="micAlways" style="width:22px;height:22px"></label>
+        <div style="height:10px;background:#0d0b16;border-radius:6px;overflow:hidden;margin:6px 0"><div id="micMeter" style="height:100%;width:0;background:var(--ok)"></div></div>
+        <div class="small mut" id="micStatus">Sin calibrar.</div>
+        <div class="small mut">También vale cualquier tecla de un mando Bluetooth (espacio, Enter, flechas, AvPág).</div>
+      </div>
+      <div class="small mut">Si indicas los cartones, la tablet elegirá más canciones que encajan en ellos.</div>
+      <div class="small mut" id="dbInfo" style="margin-top:8px"></div>
+      <input type="file" id="fileIn" accept=".json" style="display:none">
+    </div>
+  </aside>
+</main>
+<div id="modal"></div>
+<audio id="audio" preload="auto"></audio>
+
+<script>
+'use strict';
+const C = window.BingoCore;
+const $ = id => document.getElementById(id);
+const audio = $('audio');
+const HIST_KEY = 'musikino_historial', HIST_MAX = 400;
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+document.title = C.GAME_NAME + ' · Mesa';
+$('title').innerHTML = '🎵 ' + esc(C.GAME_NAME.slice(0, 4)) + '<span>' + esc(C.GAME_NAME.slice(4)) + '</span>';
+
+const S = {
+  phase: 'setup',              // setup | listen | write | pens | reveal | over
+  songs: [], history: [],      // history: canciones de ESTA partida, en orden (history[0] = canción 1)
+  played: new Set(), failed: new Set(), recent: loadRecent(),
+  gameWon: {},                 // pot -> nº de canción en que se ganó
+  song: null, meta: null, t0: 0, tClip: 0, tEnd: 0, timer: null, overReason: '',
+  paused: false, prevPhase: null, rem: null, autoAt: 0, autoTimer: null, lastBuzz: 0,
+};
+const cfg = () => ({ clip: +$('cfgClip').value || 20, extra: +$('cfgExtra').value || 0, max: +$('cfgMax').value || 30, auto: Math.max(0, +$('cfgAuto').value || 0),
+  desde: parseInt($('cfgDesde').value), hasta: parseInt($('cfgHasta').value) });
+function loadRecent() { try { return JSON.parse(localStorage.getItem(HIST_KEY) || '[]'); } catch { return []; } }
+function saveRecent() { try { localStorage.setItem(HIST_KEY, JSON.stringify(S.recent.slice(-HIST_MAX))); } catch {} }
+
+// ---------- canciones ----------
+async function loadSongs() {
+  try { const r = await fetch('canciones.json', { cache: 'no-store' }); if (!r.ok) throw 0; setSongs(await r.json()); }
+  catch {
+    $('dbInfo').innerHTML = 'No se pudo cargar canciones.json. <a href="#" id="pick">Elegir archivo</a>';
+    $('pick').onclick = e => { e.preventDefault(); $('fileIn').click(); };
+    $('fileIn').onchange = async () => setSongs(JSON.parse(await $('fileIn').files[0].text()));
+  }
+}
+function setSongs(list) {
+  S.songs = list.filter(s => s.itunesEstado !== 'no_encontrada' && s.itunesEstado !== 'sin_preview');
+  const cov = C.coverage(S.songs);
+  $('dbInfo').innerHTML = `${S.songs.length} canciones · ${S.songs.filter(s => s.itunesId).length} con itunesId` +
+    (cov.length ? `<div class="warn">Pocas canciones en: ${cov.map(x => esc(x.cat.label) + ' (' + x.n + ')').join(', ')}. Esas casillas saldrán poco.</div>` : '');
+  render();
+}
+
+// ---------- iTunes ----------
+function jsonp(url, ms = 8000) {
+  return new Promise((resolve, reject) => {
+    const cb = 'itcb_' + Date.now() + '_' + Math.floor(Math.random() * 1e6), sc = document.createElement('script');
+    const t = setTimeout(() => { done(); reject(new Error('timeout')); }, ms);
+    function done() { clearTimeout(t); delete window[cb]; sc.remove(); }
+    window[cb] = d => { done(); resolve(d); };
+    sc.onerror = () => { done(); reject(new Error('red')); };
+    sc.src = url + (url.includes('?') ? '&' : '?') + 'callback=' + cb;
+    document.head.appendChild(sc);
+  });
+}
+const norm = s => (s || '').toLowerCase().replace(/\(.*?\)|\[.*?\]/g, ' ').replace(/\s(feat\.?|ft\.?|featuring)\s.*$/, ' ')
+  .normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
+const mainArtist = a => norm(a.split(/\s+(?:feat\.?|ft\.?|&|x|y|and|con)\s+|,/)[0]);
+const metaCache = new Map();
+async function resolveSong(song) {
+  if (metaCache.has(song.id)) return metaCache.get(song.id);
+  let best = null;
+  if (song.itunesId) {
+    const d = await jsonp(`https://itunes.apple.com/lookup?id=${song.itunesId}&country=es&entity=song`);
+    best = d.results && d.results.find(r => r.previewUrl);
+  } else {
+    const term = encodeURIComponent(song.artista.split(/\s+(?:feat\.?|ft\.?)\s+/)[0] + ' ' + song.titulo.replace(/\(.*?\)/g, ''));
+    const d = await jsonp(`https://itunes.apple.com/search?term=${term}&entity=song&limit=15&country=es`);
+    let bs = -1; const t = norm(song.titulo), a = mainArtist(song.artista);
+    for (const r of (d.results || [])) {
+      if (!r.previewUrl) continue;
+      const rt = norm(r.trackName), ra = norm(r.artistName);
+      let sc = (rt === t ? 60 : (rt.includes(t) || t.includes(rt)) ? 35 : 0) + (ra.includes(a) ? 40 : 0);
+      if (/live|en vivo|directo|karaoke|instrumental|cover|tribute/i.test(r.trackName)) sc -= 30;
+      if (/karaoke|tribute|made famous|in the style of/i.test(r.collectionName || '')) sc -= 40;
+      if (sc > bs) { bs = sc; best = r; }
+    }
+    if (bs < 75) best = null;
+  }
+  if (!best) throw new Error('sin fragmento');
+  const meta = { preview: best.previewUrl, art: (best.artworkUrl100 || '').replace('100x100', '300x300'), url: best.trackViewUrl };
+  metaCache.set(song.id, meta); return meta;
+}
+
+// ---------- pitido ----------
+let actx = null;
+function beep() {
+  try {
+    actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+    [0, 0.25].forEach(off => {
+      const o = actx.createOscillator(), g = actx.createGain();
+      o.frequency.value = 880; o.connect(g); g.connect(actx.destination);
+      g.gain.setValueAtTime(0.4, actx.currentTime + off); g.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + off + 0.2);
+      o.start(actx.currentTime + off); o.stop(actx.currentTime + off + 0.22);
+    });
+  } catch {}
+}
+
+function buzzSound() {
+  try {
+    actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+    const t = actx.currentTime, g = actx.createGain();
+    g.connect(actx.destination);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.35, t + 0.02);
+    g.gain.setValueAtTime(0.35, t + 0.55); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.7);
+    [140, 147, 280].forEach(f => { const o = actx.createOscillator(); o.type = 'square'; o.frequency.value = f; o.connect(g); o.start(t); o.stop(t + 0.72); });
+  } catch {}
+}
+
+// ---------- timbre / pausa / avance automático ----------
+function startAuto() {
+  stopAuto();
+  const a = cfg().auto;
+  if (!a || S.phase !== 'reveal') return;
+  S.autoAt = Date.now() + a * 1000;
+  S.autoTimer = setInterval(() => {
+    if (S.paused || S.phase !== 'reveal') return stopAuto();
+    const left = Math.ceil((S.autoAt - Date.now()) / 1000);
+    const el = $('autoLeft'); if (el) el.textContent = Math.max(0, left);
+    if (left <= 0) { stopAuto(); nextSong(); }
+  }, 250);
+}
+function stopAuto() { clearInterval(S.autoTimer); S.autoTimer = null; }
+function pauseGame(withSound) {
+  if (withSound) buzzSound();
+  if (S.paused) return;
+  if (S.phase === 'listen' || S.phase === 'write') {
+    clearInterval(S.timer); audio.pause();
+    S.rem = { clip: S.tClip - Date.now(), end: S.tEnd - Date.now(), total: S.tEnd - S.t0 };
+    S.prevPhase = S.phase; S.paused = true; render(); return;
+  }
+  if (S.phase === 'reveal') { stopAuto(); S.paused = true; render(); }
+}
+function resumeGame() {
+  if (!S.paused) return;
+  S.paused = false;
+  if (S.rem) {
+    const now = Date.now();
+    S.tClip = now + S.rem.clip; S.tEnd = now + S.rem.end; S.t0 = S.tEnd - S.rem.total; S.rem = null;
+    if (S.prevPhase === 'listen') audio.play().catch(() => {});
+    S.timer = setInterval(tick, 150); render(); return;
+  }
+  render(); startAuto();
+}
+function buzzer() {
+  const now = Date.now(); if (now - S.lastBuzz < 700) return; S.lastBuzz = now;
+  if ($('modal').innerHTML) return;                     // con el validador abierto, el timbre no hace nada
+  if (S.paused) { buzzSound(); return; }
+  if (['listen', 'write', 'reveal'].includes(S.phase)) pauseGame(true);
+}
+document.addEventListener('keydown', e => {
+  const k = e.key;
+  if ([' ', 'Enter', 'PageDown', 'PageUp', 'ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'b', 'B', 'AudioVolumeUp', 'AudioVolumeDown', 'MediaPlayPause'].includes(k)) {
+    if (e.target && e.target.tagName === 'INPUT') return;
+    e.preventDefault(); buzzer();
+  }
+});
+
+// ---------- timbre por micrófono ----------
+const MIC_KEY = 'musikino_timbre';
+const M = {
+  stream: null, an: null, buf: null, binHz: 0, loop: null, hits: 0, lastFire: 0, calibFrames: null,
+  calib: (() => { try { return JSON.parse(localStorage.getItem(MIC_KEY) || 'null'); } catch { return null; } })(),
+  on: () => ['timbre', 'ambos'].includes($('claimMode').value),
+  active: () => M.on() && !!M.calib && !!M.an,
+};
+try { $('claimMode').value = localStorage.getItem('musikino_modo_canto') || 'ambos'; $('micSens').value = localStorage.getItem(MIC_KEY + '_sens') || 5; } catch {}
+function micStatus(t) { $('micStatus').textContent = t; }
+function showCalib() { micStatus(M.calib ? `Timbre calibrado (${(M.calib.hz / 1000).toFixed(1)} kHz).` + (M.an ? ' Escuchando.' : ' Se activará al empezar la partida.') : 'Sin calibrar: pulsa "Calibrar timbre".'); }
+async function startMic() {
+  if (M.an) return true;
+  try {
+    actx = actx || new (window.AudioContext || window.webkitAudioContext)(); await actx.resume();
+    M.stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: false, autoGainControl: false } });
+    const src = actx.createMediaStreamSource(M.stream);
+    M.an = actx.createAnalyser(); M.an.fftSize = 2048; M.an.smoothingTimeConstant = 0;
+    src.connect(M.an);
+    M.buf = new Float32Array(M.an.frequencyBinCount); M.binHz = actx.sampleRate / M.an.fftSize;
+    M.loop = setInterval(micTick, 25);
+    return true;
+  } catch (e) { console.warn(e); micStatus('No se pudo usar el micrófono (' + e.name + '). ¿Permiso denegado o página sin https?'); return false; }
+}
+function micListening() {
+  if (!M.active() || $('modal').innerHTML) return false;
+  if (S.paused) return false;
+  if (S.phase === 'reveal') return true;
+  if ((S.phase === 'listen' || S.phase === 'write') && $('micAlways').checked) return true;
+  return S.phase === 'setup' || S.phase === 'over';      // modo prueba
+}
+function micTick() {
+  M.an.getFloatFrequencyData(M.buf);
+  if (M.calibFrames) { M.calibFrames.push(Float32Array.from(M.buf)); return; }
+  if (!M.calib) return;
+  const r = C.bellDetect(M.buf, M.calib, +$('micSens').value, M.binHz);
+  const meter = $('micMeter'); if (meter) { meter.style.width = Math.max(0, Math.min(100, r.prom * 2.5)) + '%'; meter.style.background = r.ok ? 'var(--acc)' : 'var(--ok)'; }
+  // volumen de la canción más bajo mientras se escucha el timbre en el revelado
+  if (!micListening()) { M.hits = 0; return; }
+  M.hits = r.ok ? M.hits + 1 : 0;
+  if (M.hits >= 3 && Date.now() - M.lastFire > 1500) {
+    M.hits = 0; M.lastFire = Date.now();
+    if (S.phase === 'setup' || S.phase === 'over') { micStatus('🔔 ¡Timbre detectado! (prueba)'); setTimeout(showCalib, 1500); }
+    else buzzer();
+  }
+}
+async function calibrate() {
+  if (!(await startMic())) return;
+  M.calibFrames = []; let left = 5;
+  micStatus(`Toca el timbre 3 veces… ${left}`);
+  const iv = setInterval(() => { left--; if (left > 0) micStatus(`Toca el timbre 3 veces… ${left}`); }, 1000);
+  setTimeout(() => {
+    clearInterval(iv);
+    const res = C.bellCalibrate(M.calibFrames, M.binHz); M.calibFrames = null;
+    if (!res) { micStatus('No he oído el timbre con claridad. Acércalo a la tablet y repite.'); return; }
+    M.calib = res; try { localStorage.setItem(MIC_KEY, JSON.stringify(res)); } catch {}
+    if ($('claimMode').value === 'voz' || $('claimMode').value === 'nada') $('claimMode').value = 'ambos'; saveMicPrefs(); showCalib();
+  }, 5000);
+}
+function saveMicPrefs() { try { localStorage.setItem('musikino_modo_canto', $('claimMode').value); localStorage.setItem(MIC_KEY + '_sens', $('micSens').value); } catch {} }
+$('bCalib').onclick = calibrate;
+$('claimMode').onchange = () => { saveMicPrefs(); if (M.on()) startMic().then(showCalib); else showCalib(); if (voiceOn() && S.phase !== 'setup') startVoice(); else stopVoice(); };
+
+// ---------- voz: reconocer lo que se canta ----------
+const R = { rec: null, want: false, ok: false, err: '' };
+const voiceOn = () => ['voz', 'ambos'].includes($('claimMode').value);
+function voiceListening() {
+  if (!voiceOn() || $('modal').innerHTML || S.paused) return false;
+  if (S.phase === 'reveal') return true;
+  return (S.phase === 'listen' || S.phase === 'write') && $('micAlways').checked;
+}
+function voiceStatus() { const el = $('voiceStatus'); if (el && voiceOn() && S.phase !== 'setup') el.textContent = R.err || (R.ok ? '🎤 Voz: escuchando' : '🎤 Voz: en espera…'); }
+function startVoice() {
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) { R.err = 'Voz: este navegador no tiene reconocimiento de voz (usa Chrome).'; voiceStatus(); return; }
+  R.want = true;
+  if (R.rec) { try { R.rec.start(); } catch {} return; }
+  const rec = new SR(); R.rec = rec;
+  rec.lang = 'es-ES'; rec.continuous = true; rec.interimResults = true; rec.maxAlternatives = 3;
+  rec.onstart = () => { R.ok = true; R.err = ''; voiceStatus(); };
+  rec.onresult = ev => {
+    if (!voiceListening()) return;
+    for (let i = ev.resultIndex; i < ev.results.length; i++) for (let a = 0; a < ev.results[i].length; a++) {
+      const txt = ev.results[i][a].transcript, k = C.detectClaimVoz(txt);
+      if (k) { voiceClaim(k, txt); return; }
+    }
+  };
+  rec.onerror = e => {
+    if (e.error === 'not-allowed' || e.error === 'service-not-allowed') { R.want = false; R.err = 'Voz: permiso de micrófono denegado.'; }
+    else if (e.error === 'network') R.err = 'Voz: sin conexión (necesita internet).';
+    else if (e.error === 'audio-capture') R.err = 'Voz: el micrófono está ocupado. Si usas timbre y voz a la vez y falla, elige solo uno.';
+    voiceStatus();
+  };
+  rec.onend = () => { R.ok = false; voiceStatus(); if (R.want) setTimeout(() => { if (R.want) try { rec.start(); } catch {} }, 250); };
+  try { rec.start(); } catch {}
+}
+function stopVoice() { R.want = false; if (R.rec) try { R.rec.stop(); } catch {} }
+function voiceClaim(k, txt) {
+  const now = Date.now(); if (now - S.lastBuzz < 1500) return; S.lastBuzz = now;
+  pauseGame(true);
+  openValidator(k === 'premio' ? null : k, txt);
+}
+// volumen de la canción más bajo mientras se espera el canto en el revelado
+setInterval(() => { audio.volume = ((M.active() || (voiceOn() && R.ok)) && S.phase === 'reveal' && !S.paused) ? 0.35 : 1; }, 250);
+$('micSens').oninput = saveMicPrefs;
+showCalib();
+
+// ---------- partida ----------
+function cardsInPlay() {
+  const { desde, hasta } = cfg();
+  if (!(desde > 0) || !(hasta >= desde) || hasta - desde > 200) return [];
+  const out = [];
+  for (let n = desde; n <= hasta; n++) out.push({ cats: C.cardFromNumber(null, n), cells: Array(16).fill('free') });
+  return out;
+}
+function startGame() {
+  if (!S.songs.length) return;
+  if (M.on() && M.calib) startMic().then(showCalib);
+  if (voiceOn()) startVoice();
+  try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); actx.resume(); } catch {}
+  audio.play().catch(() => {}); audio.pause();
+  S.history = []; S.gameWon = {}; S.played = new Set(S.recent); S.overReason = '';
+  nextSong();
+}
+async function nextSong() {
+  clearInterval(S.timer); stopAuto(); S.paused = false; S.rem = null; closeModal();
+  if (S.history.length >= cfg().max) return endGame('Se llegó al máximo de canciones');
+  S.phase = 'loading'; render();
+  const cards = cardsInPlay();
+  let song = null, meta = null;
+  for (let tries = 0; tries < 8 && !meta; tries++) {
+    song = C.pickSong(S.songs, new Set([...S.played, ...S.failed]), cards);
+    if (!song) { S.recent = []; saveRecent(); S.played = new Set(S.history.map(s => s.id)); continue; }
+    try { meta = await resolveSong(song); } catch (e) { console.warn('Sin fragmento:', song.artista, '-', song.titulo); S.failed.add(song.id); }
+  }
+  if (!meta) { S.phase = 'error'; render(); return; }
+  audio.src = meta.preview;
+  try { await new Promise((res, rej) => { audio.oncanplay = res; audio.onerror = rej; audio.load(); }); }
+  catch { S.failed.add(song.id); return nextSong(); }
+  S.song = song; S.meta = meta; S.played.add(song.id); S.recent.push(song.id); saveRecent();
+  S.history.push(song);
+  audio.currentTime = 0; audio.play().catch(e => console.warn('autoplay', e));
+  const c = cfg(); S.t0 = Date.now(); S.tClip = S.t0 + c.clip * 1000; S.tEnd = S.tClip + c.extra * 1000;
+  S.phase = 'listen'; render();
+  S.timer = setInterval(tick, 150);
+}
+function tick() {
+  const now = Date.now();
+  if (S.phase === 'listen' && now >= S.tClip) { audio.pause(); S.phase = 'write'; render(); }
+  if (S.phase === 'write' && now >= S.tEnd) {
+    S.phase = 'pens'; beep(); render();
+    clearInterval(S.timer);
+    setTimeout(() => { if (S.phase === 'pens') { S.phase = 'reveal'; audio.play().catch(() => {}); render(); startAuto(); } }, 2500);
+    return;
+  }
+  const bar = document.querySelector('.timer > div');
+  if (bar) bar.style.width = Math.max(0, 100 * (S.tEnd - now) / (S.tEnd - S.t0)) + '%';
+}
+function endGame(reason) {
+  clearInterval(S.timer); stopAuto(); S.paused = false; S.phase = 'over'; S.overReason = reason || ''; closeModal(); render();
+}
+const matchingCats = song => C.allCategories().filter(c => C.matches(c, song));
+
+// ---------- render principal ----------
+function render() {
+  const st = $('stage'), n = S.history.length;
+  $('headInfo').textContent = S.phase === 'setup' ? '' : `Canción ${n} de ${cfg().max}`;
+  if (S.phase === 'setup') {
+    st.innerHTML = `<div class="big">Preparado</div>
+      <div class="mid mut">Reparte un cartón por jugador y poned 1 ficha en cada bote.</div>
+      <div class="row"><button id="bStart" ${S.songs.length ? '' : 'disabled'}>Empezar partida</button>
+      <a href="imprimir_cartones.html" target="_blank"><button class="sec">Imprimir cartones</button></a></div>`;
+    $('bStart').onclick = startGame;
+  } else if (S.phase === 'loading') {
+    st.innerHTML = `<div class="mid mut">Cargando canción…</div>`;
+  } else if (S.phase === 'error') {
+    st.innerHTML = `<div class="mid">No se pudo cargar ninguna canción. ¿Hay conexión con iTunes?</div><button id="bRetry">Reintentar</button>`;
+    $('bRetry').onclick = nextSong;
+  } else if ((S.phase === 'listen' || S.phase === 'write') && S.paused) {
+    st.innerHTML = `<div class="big">⏸ Pausa</div><div class="num">${n}</div>
+      <div class="row"><button id="bResume">Continuar</button></div>`;
+    $('bResume').onclick = resumeGame;
+  } else if (S.phase === 'listen' || S.phase === 'write') {
+    st.innerHTML = `<div class="mid mut">${S.phase === 'listen' ? 'Escucha y escribe este número en una casilla' : 'Últimos segundos para escribir'}</div>
+      <div class="num">${n}</div><div class="timer"><div></div></div>
+      <div class="row"><button class="sec" id="bPause">⏸ Pausa</button><button class="sec" id="bSkip">Saltar canción</button></div>`;
+    $('bPause').onclick = () => pauseGame(false);
+    $('bSkip').onclick = () => { S.failed.add(S.song.id); S.history.pop(); audio.pause(); nextSong(); };
+    tick();
+  } else if (S.phase === 'pens') {
+    st.innerHTML = `<div class="pens">¡BOLÍGRAFOS ARRIBA!</div><div class="num" style="font-size:60px">${n}</div>`;
+  } else if (S.phase === 'reveal' || S.phase === 'over') {
+    const s = S.song, cats = matchingCats(s);
+    st.innerHTML = `
+      <div class="mut mid">Canción <b style="color:var(--acc)">${n}</b></div>
+      ${S.meta.art ? `<img class="art" src="${esc(S.meta.art)}" alt="">` : ''}
+      <div class="big">${esc(s.titulo)}</div>
+      <div class="mid">${esc(s.artista)} · ${s.anio}</div>
+      <div class="mut">Encaja en:</div>
+      <div class="chips">${cats.map(c => `<span class="chip ${c.dificil ? 'hard' : ''}">${c.dificil ? '▲ ' : ''}${esc(c.label)}</span>`).join('')}</div>
+      ${S.meta.url ? `<a class="small" href="${esc(S.meta.url)}" target="_blank" rel="noopener">Escuchar en Apple Music</a>` : ''}
+      ${S.phase === 'over' ? `<div class="big" style="margin-top:8px">🏁 Fin de la partida</div>
+        <div class="mut">${esc(S.overReason)}${pendingPots().length ? ` · Pasan a la siguiente: ${pendingPots().map(p => C.POT_LABEL[p]).join(', ')}` : ''}</div>` : ''}
+      ${S.phase === 'reveal' ? (S.paused
+        ? `<div class="big" style="color:var(--bad)">🔔 ¡Timbre! Partida en pausa</div><div class="row"><button id="bVal2">Validar premio</button><button class="sec" id="bResume">Reanudar</button></div>`
+        : `<div class="count">${cfg().auto ? `Siguiente canción en <b id="autoLeft">${Math.max(0, Math.ceil((S.autoAt - Date.now()) / 1000)) || cfg().auto}</b> s` : 'Avance manual'}${M.active() && voiceOn() ? ' · 🔔 ¿Premio? ¡Toca el timbre o grítalo!' : M.active() ? ' · 🔔 ¿Premio? ¡Toca el timbre!' : voiceOn() ? ' · 🎤 ¿Premio? ¡Grítalo!' : ''}</div>`) : ''}
+      <div class="row">
+        ${S.phase === 'reveal' ? `<button ${S.paused || !cfg().auto ? '' : 'class="sec"'} id="bNext">Siguiente canción</button>` : `<button id="bNew">Nueva partida</button>`}
+        <button class="sec" id="bVal">Validar premio</button>
+        <button class="sec" id="bHist">Canciones (${n})</button>
+        ${S.phase === 'reveal' ? `<button class="sec" id="bEnd">Terminar</button>` : ''}
+      </div>`;
+    if ($('bNext')) $('bNext').onclick = nextSong;
+    if ($('bResume')) $('bResume').onclick = resumeGame;
+    if ($('bVal2')) $('bVal2').onclick = () => openValidator();
+    if ($('bNew')) $('bNew').onclick = startGame;
+    if ($('bEnd')) $('bEnd').onclick = () => { if (confirmEnd()) endGame('Partida terminada'); };
+    $('bVal').onclick = () => openValidator();
+    $('bHist').onclick = openHistory;
+  }
+  $('pots').innerHTML = C.POTS.map(p => {
+    const w = S.gameWon[p];
+    return `<div class="pot ${w ? 'won' : ''}"><span>${C.POT_LABEL[p]}</span><span class="st">${w ? 'Ganado (canción ' + w + ')' : 'En juego'}</span></div>`;
+  }).join('');
+  $('settings').style.display = (S.phase === 'setup' || S.phase === 'over') ? '' : 'none';
+}
+const pendingPots = () => C.POTS.filter(p => !S.gameWon[p]);
+function confirmEnd() { return S._confirmEnd ? true : (S._confirmEnd = true, setTimeout(() => S._confirmEnd = false, 3000), $('bEnd').textContent = '¿Seguro? Toca otra vez', false); }
+
+// ---------- historial ----------
+function openHistory() {
+  showModal(`<h2>Canciones de esta partida</h2>
+    <table>${S.history.map((s, i) => `<tr><td><b>${i + 1}</b></td><td>${esc(s.titulo)}<br><span class="mut small">${esc(s.artista)} · ${s.anio}</span></td>
+      <td class="small">${matchingCats(s).map(c => (c.dificil ? '▲ ' : '') + esc(c.label)).join(' · ')}</td></tr>`).reverse().join('')}</table>
+    <div class="row" style="margin-top:12px"><button class="sec" id="mClose">Cerrar</button></div>`);
+  $('mClose').onclick = closeModal;
+}
+
+// ---------- validador ----------
+const V = {};
+function openValidator(guess, heard) { if (S.phase === 'reveal' && !S.paused) { stopAuto(); S.paused = true; render(); }
+  Object.assign(V, { step: 'card', num: '', prize: null, guess: typeof guess === 'string' ? guess : null, heard: typeof heard === 'string' ? heard : '', cats: null, assign: {}, picking: null, result: null }); renderV(); }
+function renderV() {
+  const turn = S.history.length;
+  if (V.step === 'card') {
+    showModal(`<h2>Validar premio · 1. Número de cartón</h2>
+      ${V.guess || V.heard ? `<div class="mut" style="text-align:center">${V.guess ? `He oído: <b style="color:var(--acc)">${C.POT_LABEL[V.guess]}</b>` : 'He oído que alguien canta premio'}${V.heard ? ` («${esc(V.heard.trim())}»)` : ''}</div>` : ''}
+      <div class="display">${V.num.padStart(4, '·')}</div>
+      <div class="keypad">${[1, 2, 3, 4, 5, 6, 7, 8, 9].map(d => `<button class="sec" data-d="${d}">${d}</button>`).join('')}
+        <button class="sec" data-d="del">⌫</button><button class="sec" data-d="0">0</button><button data-d="ok" ${+V.num > 0 ? '' : 'disabled'}>OK</button></div>
+      <div class="row"><button class="sec" id="mClose">Cancelar</button></div>`);
+    document.querySelectorAll('.keypad button').forEach(b => b.onclick = () => {
+      const d = b.dataset.d;
+      if (d === 'del') V.num = V.num.slice(0, -1);
+      else if (d === 'ok') { V.cats = C.cardFromNumber(null, +V.num); V.step = 'prize'; }
+      else if (V.num.length < 4) V.num = (V.num + d).replace(/^0+(?=\d)/, '');
+      renderV();
+    });
+  } else if (V.step === 'prize') {
+    showModal(`<h2>Cartón ${V.num.padStart(4, '0')} · 2. ¿Qué premio canta?</h2>
+      <div class="prizes">${C.POTS.map(p => {
+        const w = S.gameWon[p], blocked = w && w !== turn;
+        return `<button class="${blocked ? 'sec' : ''} ${V.guess === p ? 'guess' : ''}" data-p="${p}" ${blocked ? 'disabled' : ''}>${C.POT_LABEL[p]}${w === turn ? '<br><span class="small">(empate)</span>' : blocked ? '<br><span class="small">ya ganado</span>' : ''}</button>`;
+      }).join('')}</div>
+      <div class="row" style="margin-top:14px"><button class="sec" id="mBack">Atrás</button><button class="sec" id="mClose">Cancelar</button></div>`);
+    document.querySelectorAll('.prizes button').forEach(b => b.onclick = () => {
+      V.prize = b.dataset.p; V.assign = {};
+      if (V.prize === 'esquinas') C.CORNERS.forEach(i => V.assign[i] = null);
+      V.step = 'cells'; renderV();
+    });
+    $('mBack').onclick = () => { V.step = 'card'; renderV(); };
+  } else if (V.step === 'cells') {
+    const sel = Object.keys(V.assign).map(Number);
+    const allSet = sel.length && sel.every(i => V.assign[i]);
+    const res = V.result;
+    showModal(`<h2>Cartón ${V.num.padStart(4, '0')} · ${C.POT_LABEL[V.prize]} · 3. Casillas y números</h2>
+      <div class="mut small">${hintFor(V.prize)} Toca una casilla y elige el número de canción que tiene escrito.</div>
+      <div class="card">${V.cats.map((c, i) => {
+        const [a, b] = C.printLines(c), inSel = i in V.assign;
+        const cls = ['cell', c.dificil ? 'hard' : '', inSel ? 'sel' : '', res && res.cells[i] ? (res.cells[i].ok ? 'ok' : 'ko') : ''].join(' ');
+        return `<div class="${cls}" data-i="${i}"><div>${esc(a)}${b ? '<br>' + esc(b) : ''}</div>${inSel && V.assign[i] ? `<b>${V.assign[i]}</b>` : ''}</div>`;
+      }).join('')}</div>
+      ${res ? `<div class="result ${res.ok ? 'ok' : 'ko'}">${res.ok ? '✅ ¡Premio válido!' : '❌ No es válido'}
+        ${res.errors.length ? `<ul>${res.errors.map(e => `<li>${esc(e)}</li>`).join('')}</ul>` : ''}
+        ${res.ok ? '' : '<div class="small mut">Canto falso: pone 1 ficha en cada bote.</div>'}</div>` : ''}
+      <div class="row">
+        ${res && res.ok ? `<button id="mAward">Dar el bote de ${C.POT_LABEL[V.prize]}</button>` : `<button id="mCheck" ${allSet ? '' : 'disabled'}>Comprobar</button>`}
+        <button class="sec" id="mBack">Atrás</button><button class="sec" id="mClose">${res ? 'Cerrar' : 'Cancelar'}</button></div>`);
+    document.querySelectorAll('.card .cell').forEach(el => el.onclick = () => {
+      const i = +el.dataset.i;
+      if (V.prize === 'esquinas' && !(i in V.assign)) return;
+      V.result = null; V.picking = i; renderPicker();
+    });
+    if ($('mCheck')) $('mCheck').onclick = () => {
+      V.result = C.validateClaim(V.cats, V.prize, V.assign, S.history); renderV();
+    };
+    if ($('mAward')) $('mAward').onclick = () => {
+      if (!S.gameWon[V.prize]) S.gameWon[V.prize] = turn;
+      if (V.prize === 'final') endGame('Doble línea del cartón ' + V.num.padStart(4, '0'));
+      else { closeModal(); render(); }
+    };
+    $('mBack').onclick = () => { V.result = null; V.step = 'prize'; renderV(); };
+  }
+  if ($('mClose')) $('mClose').onclick = closeModal;
+}
+function hintFor(p) {
+  return { linea: 'Marca las 4 casillas de la línea.', esquinas: 'Las 4 esquinas ya están marcadas.', cuadrado: 'Marca las 4 casillas del bloque 2×2.',
+    racha: `Marca las ${C.RACHA} casillas con números seguidos.`, experto: `Marca ${C.EXPERTO} casillas difíciles (▲).`, final: 'Marca todas las casillas de las dos líneas.' }[p];
+}
+function renderPicker() {
+  const i = V.picking, c = V.cats[i], turn = S.history.length;
+  showModal(`<h2>${esc(c.label)} · ¿qué número tiene escrito?</h2>
+    <div class="picker">${Array.from({ length: turn }, (_, k) => `<button class="${V.assign[i] === k + 1 ? '' : 'sec'}" data-n="${k + 1}">${k + 1}</button>`).join('')}</div>
+    <div class="row">${i in V.assign && V.prize !== 'esquinas' ? '<button class="bad" id="pDel">Quitar casilla</button>' : ''}<button class="sec" id="pBack">Volver</button></div>`);
+  document.querySelectorAll('.picker button').forEach(b => b.onclick = () => { V.assign[i] = +b.dataset.n; renderV(); });
+  if ($('pDel')) $('pDel').onclick = () => { delete V.assign[i]; renderV(); };
+  $('pBack').onclick = renderV;
+}
+function showModal(html) { $('modal').innerHTML = `<div class="modal"><div class="box">${html}</div></div>`; }
+function closeModal() { const had = !!$('modal').innerHTML; $('modal').innerHTML = ''; if (had && S.phase !== 'loading') render(); }
+
+loadSongs();
+render();
+</script>
+</body>
+</html>

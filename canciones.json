@@ -1,0 +1,7343 @@
+[
+ {
+  "id": 1,
+  "artista": "Queen",
+  "titulo": "Bohemian Rhapsody",
+  "anio": 1975,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 2,
+  "artista": "Queen",
+  "titulo": "We Will Rock You",
+  "anio": 1977,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 3,
+  "artista": "Queen",
+  "titulo": "Don't Stop Me Now",
+  "anio": 1978,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 4,
+  "artista": "ABBA",
+  "titulo": "Dancing Queen",
+  "anio": 1976,
+  "decada": "70s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 5,
+  "artista": "ABBA",
+  "titulo": "Mamma Mia",
+  "anio": 1975,
+  "decada": "70s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 6,
+  "artista": "ABBA",
+  "titulo": "Waterloo",
+  "anio": 1974,
+  "decada": "70s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 7,
+  "artista": "ABBA",
+  "titulo": "Gimme! Gimme! Gimme! (A Man After Midnight)",
+  "anio": 1979,
+  "decada": "70s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 8,
+  "artista": "Bee Gees",
+  "titulo": "Stayin' Alive",
+  "anio": 1977,
+  "decada": "70s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 9,
+  "artista": "Bee Gees",
+  "titulo": "Night Fever",
+  "anio": 1977,
+  "decada": "70s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 10,
+  "artista": "Gloria Gaynor",
+  "titulo": "I Will Survive",
+  "anio": 1978,
+  "decada": "70s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 11,
+  "artista": "Village People",
+  "titulo": "Y.M.C.A.",
+  "anio": 1978,
+  "decada": "70s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 12,
+  "artista": "Eagles",
+  "titulo": "Hotel California",
+  "anio": 1976,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 13,
+  "artista": "Led Zeppelin",
+  "titulo": "Stairway to Heaven",
+  "anio": 1971,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 14,
+  "artista": "Pink Floyd",
+  "titulo": "Another Brick in the Wall (Part 2)",
+  "anio": 1979,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 15,
+  "artista": "AC/DC",
+  "titulo": "Highway to Hell",
+  "anio": 1979,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 16,
+  "artista": "Boney M.",
+  "titulo": "Rasputin",
+  "anio": 1978,
+  "decada": "70s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 17,
+  "artista": "Boney M.",
+  "titulo": "Daddy Cool",
+  "anio": 1976,
+  "decada": "70s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 18,
+  "artista": "Donna Summer",
+  "titulo": "I Feel Love",
+  "anio": 1977,
+  "decada": "70s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 19,
+  "artista": "Chic",
+  "titulo": "Le Freak",
+  "anio": 1978,
+  "decada": "70s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 20,
+  "artista": "Sister Sledge",
+  "titulo": "We Are Family",
+  "anio": 1979,
+  "decada": "70s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 21,
+  "artista": "The Trammps",
+  "titulo": "Disco Inferno",
+  "anio": 1976,
+  "decada": "70s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 22,
+  "artista": "Van McCoy",
+  "titulo": "The Hustle",
+  "anio": 1975,
+  "decada": "70s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 23,
+  "artista": "Silver Convention",
+  "titulo": "Fly, Robin, Fly",
+  "anio": 1975,
+  "decada": "70s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 24,
+  "artista": "Amii Stewart",
+  "titulo": "Knock on Wood",
+  "anio": 1979,
+  "decada": "70s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 25,
+  "artista": "Earth, Wind & Fire",
+  "titulo": "September",
+  "anio": 1978,
+  "decada": "70s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 26,
+  "artista": "Stevie Wonder",
+  "titulo": "Superstition",
+  "anio": 1972,
+  "decada": "70s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 27,
+  "artista": "Stevie Wonder",
+  "titulo": "Sir Duke",
+  "anio": 1976,
+  "decada": "70s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 28,
+  "artista": "Marvin Gaye",
+  "titulo": "Let's Get It On",
+  "anio": 1973,
+  "decada": "70s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 29,
+  "artista": "Bill Withers",
+  "titulo": "Ain't No Sunshine",
+  "anio": 1971,
+  "decada": "70s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 30,
+  "artista": "Al Green",
+  "titulo": "Let's Stay Together",
+  "anio": 1971,
+  "decada": "70s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 31,
+  "artista": "Barry White",
+  "titulo": "You're the First, the Last, My Everything",
+  "anio": 1974,
+  "decada": "70s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 32,
+  "artista": "Commodores",
+  "titulo": "Easy",
+  "anio": 1977,
+  "decada": "70s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 33,
+  "artista": "Isaac Hayes",
+  "titulo": "Theme from Shaft",
+  "anio": 1971,
+  "decada": "70s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 34,
+  "artista": "Curtis Mayfield",
+  "titulo": "Move On Up",
+  "anio": 1970,
+  "decada": "70s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 35,
+  "artista": "James Brown",
+  "titulo": "Get Up Offa That Thing",
+  "anio": 1976,
+  "decada": "70s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 36,
+  "artista": "Wild Cherry",
+  "titulo": "Play That Funky Music",
+  "anio": 1976,
+  "decada": "70s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [
+   "onehit"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 37,
+  "artista": "The Sugarhill Gang",
+  "titulo": "Rapper's Delight",
+  "anio": 1979,
+  "decada": "70s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 38,
+  "artista": "Elton John",
+  "titulo": "Your Song",
+  "anio": 1970,
+  "decada": "70s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 39,
+  "artista": "John Lennon",
+  "titulo": "Imagine",
+  "anio": 1971,
+  "decada": "70s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 40,
+  "artista": "Don McLean",
+  "titulo": "American Pie",
+  "anio": 1971,
+  "decada": "70s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 41,
+  "artista": "Simon & Garfunkel",
+  "titulo": "Bridge over Troubled Water",
+  "anio": 1970,
+  "decada": "70s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 42,
+  "artista": "Billy Joel",
+  "titulo": "Piano Man",
+  "anio": 1973,
+  "decada": "70s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 43,
+  "artista": "Cat Stevens",
+  "titulo": "Wild World",
+  "anio": 1970,
+  "decada": "70s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 44,
+  "artista": "George Harrison",
+  "titulo": "My Sweet Lord",
+  "anio": 1970,
+  "decada": "70s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 45,
+  "artista": "Neil Young",
+  "titulo": "Heart of Gold",
+  "anio": 1972,
+  "decada": "70s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 46,
+  "artista": "Bob Dylan",
+  "titulo": "Knockin' on Heaven's Door",
+  "anio": 1973,
+  "decada": "70s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 47,
+  "artista": "David Bowie",
+  "titulo": "\"Heroes\"",
+  "anio": 1977,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 48,
+  "artista": "The Rolling Stones",
+  "titulo": "Angie",
+  "anio": 1973,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 49,
+  "artista": "Deep Purple",
+  "titulo": "Smoke on the Water",
+  "anio": 1972,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 50,
+  "artista": "Lynyrd Skynyrd",
+  "titulo": "Sweet Home Alabama",
+  "anio": 1974,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 51,
+  "artista": "Kiss",
+  "titulo": "I Was Made for Lovin' You",
+  "anio": 1979,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 52,
+  "artista": "The Clash",
+  "titulo": "London Calling",
+  "anio": 1979,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 53,
+  "artista": "Supertramp",
+  "titulo": "The Logical Song",
+  "anio": 1979,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 54,
+  "artista": "Fleetwood Mac",
+  "titulo": "Dreams",
+  "anio": 1977,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 55,
+  "artista": "Electric Light Orchestra",
+  "titulo": "Mr. Blue Sky",
+  "anio": 1977,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 56,
+  "artista": "The Police",
+  "titulo": "Roxanne",
+  "anio": 1978,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 57,
+  "artista": "Sex Pistols",
+  "titulo": "Anarchy in the U.K.",
+  "anio": 1976,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 58,
+  "artista": "Ramones",
+  "titulo": "Blitzkrieg Bop",
+  "anio": 1976,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 59,
+  "artista": "Bruce Springsteen",
+  "titulo": "Born to Run",
+  "anio": 1975,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 60,
+  "artista": "Lou Reed",
+  "titulo": "Walk on the Wild Side",
+  "anio": 1972,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 61,
+  "artista": "T. Rex",
+  "titulo": "Get It On",
+  "anio": 1971,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 62,
+  "artista": "Thin Lizzy",
+  "titulo": "The Boys Are Back in Town",
+  "anio": 1976,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 63,
+  "artista": "Boston",
+  "titulo": "More Than a Feeling",
+  "anio": 1976,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 64,
+  "artista": "Wings",
+  "titulo": "Live and Let Die",
+  "anio": 1973,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 65,
+  "artista": "The Knack",
+  "titulo": "My Sharona",
+  "anio": 1979,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [
+   "onehit"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 66,
+  "artista": "The Cure",
+  "titulo": "Boys Don't Cry",
+  "anio": 1979,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 67,
+  "artista": "Blondie",
+  "titulo": "Heart of Glass",
+  "anio": 1978,
+  "decada": "70s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 68,
+  "artista": "The Jackson 5",
+  "titulo": "ABC",
+  "anio": 1970,
+  "decada": "70s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 69,
+  "artista": "Carpenters",
+  "titulo": "(They Long to Be) Close to You",
+  "anio": 1970,
+  "decada": "70s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 70,
+  "artista": "Rod Stewart",
+  "titulo": "Da Ya Think I'm Sexy?",
+  "anio": 1978,
+  "decada": "70s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 71,
+  "artista": "Barry Manilow",
+  "titulo": "Copacabana (At the Copa)",
+  "anio": 1978,
+  "decada": "70s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 72,
+  "artista": "Elton John & Kiki Dee",
+  "titulo": "Don't Go Breaking My Heart",
+  "anio": 1976,
+  "decada": "70s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 73,
+  "artista": "John Travolta & Olivia Newton-John",
+  "titulo": "You're the One That I Want",
+  "anio": 1978,
+  "decada": "70s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 74,
+  "artista": "Michael Jackson",
+  "titulo": "Don't Stop 'Til You Get Enough",
+  "anio": 1979,
+  "decada": "70s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 75,
+  "artista": "KC and the Sunshine Band",
+  "titulo": "That's the Way (I Like It)",
+  "anio": 1975,
+  "decada": "70s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 76,
+  "artista": "Hot Chocolate",
+  "titulo": "You Sexy Thing",
+  "anio": 1975,
+  "decada": "70s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 77,
+  "artista": "Carl Douglas",
+  "titulo": "Kung Fu Fighting",
+  "anio": 1974,
+  "decada": "70s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [
+   "onehit"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 78,
+  "artista": "Ottawan",
+  "titulo": "D.I.S.C.O.",
+  "anio": 1979,
+  "decada": "70s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 79,
+  "artista": "Baccara",
+  "titulo": "Yes Sir, I Can Boogie",
+  "anio": 1977,
+  "decada": "70s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 80,
+  "artista": "Patrick Hernandez",
+  "titulo": "Born to Be Alive",
+  "anio": 1979,
+  "decada": "70s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [
+   "onehit"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 81,
+  "artista": "Anita Ward",
+  "titulo": "Ring My Bell",
+  "anio": 1979,
+  "decada": "70s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [
+   "onehit"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 82,
+  "artista": "Camilo Sesto",
+  "titulo": "Vivir así es morir de amor",
+  "anio": 1978,
+  "decada": "70s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 83,
+  "artista": "Camilo Sesto",
+  "titulo": "Algo de mí",
+  "anio": 1972,
+  "decada": "70s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 84,
+  "artista": "Nino Bravo",
+  "titulo": "Libre",
+  "anio": 1972,
+  "decada": "70s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 85,
+  "artista": "Nino Bravo",
+  "titulo": "Un beso y una flor",
+  "anio": 1972,
+  "decada": "70s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 86,
+  "artista": "Julio Iglesias",
+  "titulo": "Soy un truhán, soy un señor",
+  "anio": 1978,
+  "decada": "70s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 87,
+  "artista": "Julio Iglesias",
+  "titulo": "Me olvidé de vivir",
+  "anio": 1978,
+  "decada": "70s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 88,
+  "artista": "Joan Manuel Serrat",
+  "titulo": "Mediterráneo",
+  "anio": 1971,
+  "decada": "70s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 89,
+  "artista": "Mocedades",
+  "titulo": "Eres tú",
+  "anio": 1973,
+  "decada": "70s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 90,
+  "artista": "Cecilia",
+  "titulo": "Un ramito de violetas",
+  "anio": 1975,
+  "decada": "70s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 91,
+  "artista": "Pablo Abraira",
+  "titulo": "Gavilán o paloma",
+  "anio": 1977,
+  "decada": "70s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 92,
+  "artista": "José Luis Perales",
+  "titulo": "Un velero llamado Libertad",
+  "anio": 1979,
+  "decada": "70s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 93,
+  "artista": "Silvio Rodríguez",
+  "titulo": "Ojalá",
+  "anio": 1978,
+  "decada": "70s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 94,
+  "artista": "Rocío Dúrcal",
+  "titulo": "Me gustas mucho",
+  "anio": 1977,
+  "decada": "70s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 95,
+  "artista": "Roberto Carlos",
+  "titulo": "Amigo",
+  "anio": 1977,
+  "decada": "70s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 96,
+  "artista": "José José",
+  "titulo": "El triste",
+  "anio": 1970,
+  "decada": "70s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 97,
+  "artista": "Jeanette",
+  "titulo": "Porque te vas",
+  "anio": 1974,
+  "decada": "70s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 98,
+  "artista": "Miguel Bosé",
+  "titulo": "Linda",
+  "anio": 1977,
+  "decada": "70s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 99,
+  "artista": "Karina",
+  "titulo": "En un mundo nuevo",
+  "anio": 1971,
+  "decada": "70s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 100,
+  "artista": "Raffaella Carrà",
+  "titulo": "Hay que venir al sur",
+  "anio": 1978,
+  "decada": "70s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 101,
+  "artista": "Los Diablos",
+  "titulo": "Un rayo de sol",
+  "anio": 1970,
+  "decada": "70s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [
+   "verano"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 102,
+  "artista": "Fórmula V",
+  "titulo": "Eva María",
+  "anio": 1973,
+  "decada": "70s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [
+   "verano"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 103,
+  "artista": "Georgie Dann",
+  "titulo": "El bimbó",
+  "anio": 1975,
+  "decada": "70s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [
+   "verano"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 104,
+  "artista": "Triana",
+  "titulo": "Abre la puerta",
+  "anio": 1975,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 105,
+  "artista": "Medina Azahara",
+  "titulo": "Paseando por la mezquita",
+  "anio": 1979,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 106,
+  "artista": "Asfalto",
+  "titulo": "Capitán Trueno",
+  "anio": 1978,
+  "decada": "70s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 107,
+  "artista": "Peret",
+  "titulo": "Borriquito",
+  "anio": 1971,
+  "decada": "70s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 108,
+  "artista": "Las Grecas",
+  "titulo": "Te estoy amando locamente",
+  "anio": 1974,
+  "decada": "70s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 109,
+  "artista": "Los Chichos",
+  "titulo": "Quiero ser libre",
+  "anio": 1973,
+  "decada": "70s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 110,
+  "artista": "Santana",
+  "titulo": "Oye cómo va",
+  "anio": 1970,
+  "decada": "70s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 111,
+  "artista": "José Feliciano",
+  "titulo": "Feliz Navidad",
+  "anio": 1970,
+  "decada": "70s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 112,
+  "artista": "Celia Cruz & Johnny Pacheco",
+  "titulo": "Quimbara",
+  "anio": 1974,
+  "decada": "70s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 113,
+  "artista": "Héctor Lavoe",
+  "titulo": "El cantante",
+  "anio": 1978,
+  "decada": "70s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 114,
+  "artista": "Rubén Blades & Willie Colón",
+  "titulo": "Pedro Navaja",
+  "anio": 1978,
+  "decada": "70s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 115,
+  "artista": "Rubén Blades & Willie Colón",
+  "titulo": "Plástico",
+  "anio": 1978,
+  "decada": "70s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 116,
+  "artista": "Oscar D'León",
+  "titulo": "Llorarás",
+  "anio": 1975,
+  "decada": "70s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 117,
+  "artista": "Joe Dassin",
+  "titulo": "L'été indien",
+  "anio": 1975,
+  "decada": "70s",
+  "genero": "pop",
+  "idioma": "otro",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 118,
+  "artista": "Umberto Tozzi",
+  "titulo": "Ti amo",
+  "anio": 1977,
+  "decada": "70s",
+  "genero": "pop",
+  "idioma": "otro",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 119,
+  "artista": "Michael Jackson",
+  "titulo": "Billie Jean",
+  "anio": 1982,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 120,
+  "artista": "Michael Jackson",
+  "titulo": "Thriller",
+  "anio": 1982,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 121,
+  "artista": "Michael Jackson",
+  "titulo": "Bad",
+  "anio": 1987,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 122,
+  "artista": "Madonna",
+  "titulo": "Like a Virgin",
+  "anio": 1984,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 123,
+  "artista": "Madonna",
+  "titulo": "Like a Prayer",
+  "anio": 1989,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 124,
+  "artista": "Prince",
+  "titulo": "Purple Rain",
+  "anio": 1984,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 125,
+  "artista": "Prince",
+  "titulo": "Kiss",
+  "anio": 1986,
+  "decada": "80s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 126,
+  "artista": "Whitney Houston",
+  "titulo": "I Wanna Dance with Somebody (Who Loves Me)",
+  "anio": 1987,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 127,
+  "artista": "Cyndi Lauper",
+  "titulo": "Girls Just Want to Have Fun",
+  "anio": 1983,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 128,
+  "artista": "a-ha",
+  "titulo": "Take On Me",
+  "anio": 1984,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 129,
+  "artista": "Kate Bush",
+  "titulo": "Running Up That Hill (A Deal with God)",
+  "anio": 1985,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 130,
+  "artista": "Europe",
+  "titulo": "The Final Countdown",
+  "anio": 1986,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 131,
+  "artista": "Bon Jovi",
+  "titulo": "Livin' on a Prayer",
+  "anio": 1986,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 132,
+  "artista": "Guns N' Roses",
+  "titulo": "Sweet Child o' Mine",
+  "anio": 1987,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 133,
+  "artista": "AC/DC",
+  "titulo": "Back in Black",
+  "anio": 1980,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 134,
+  "artista": "Queen",
+  "titulo": "Another One Bites the Dust",
+  "anio": 1980,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 135,
+  "artista": "Queen & David Bowie",
+  "titulo": "Under Pressure",
+  "anio": 1981,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 136,
+  "artista": "Queen",
+  "titulo": "Radio Ga Ga",
+  "anio": 1984,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 137,
+  "artista": "Dire Straits",
+  "titulo": "Money for Nothing",
+  "anio": 1985,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 138,
+  "artista": "U2",
+  "titulo": "With or Without You",
+  "anio": 1987,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 139,
+  "artista": "The Police",
+  "titulo": "Every Breath You Take",
+  "anio": 1983,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 140,
+  "artista": "Survivor",
+  "titulo": "Eye of the Tiger",
+  "anio": 1982,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 141,
+  "artista": "Simple Minds",
+  "titulo": "Don't You (Forget About Me)",
+  "anio": 1985,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 142,
+  "artista": "Toto",
+  "titulo": "Africa",
+  "anio": 1982,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 143,
+  "artista": "Van Halen",
+  "titulo": "Jump",
+  "anio": 1983,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 144,
+  "artista": "Phil Collins",
+  "titulo": "In the Air Tonight",
+  "anio": 1981,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 145,
+  "artista": "Billy Idol",
+  "titulo": "White Wedding",
+  "anio": 1982,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 146,
+  "artista": "Joan Jett & the Blackhearts",
+  "titulo": "I Love Rock 'n' Roll",
+  "anio": 1981,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 147,
+  "artista": "Def Leppard",
+  "titulo": "Pour Some Sugar on Me",
+  "anio": 1987,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 148,
+  "artista": "Bruce Springsteen",
+  "titulo": "Born in the U.S.A.",
+  "anio": 1984,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 149,
+  "artista": "Bryan Adams",
+  "titulo": "Summer of '69",
+  "anio": 1984,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 150,
+  "artista": "INXS",
+  "titulo": "Need You Tonight",
+  "anio": 1987,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 151,
+  "artista": "Kenny Loggins",
+  "titulo": "Footloose",
+  "anio": 1984,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 152,
+  "artista": "Berlin",
+  "titulo": "Take My Breath Away",
+  "anio": 1986,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 153,
+  "artista": "Bill Medley & Jennifer Warnes",
+  "titulo": "(I've Had) The Time of My Life",
+  "anio": 1987,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 154,
+  "artista": "Ray Parker Jr.",
+  "titulo": "Ghostbusters",
+  "anio": 1984,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 155,
+  "artista": "Bonnie Tyler",
+  "titulo": "Total Eclipse of the Heart",
+  "anio": 1983,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 156,
+  "artista": "Tears for Fears",
+  "titulo": "Everybody Wants to Rule the World",
+  "anio": 1985,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 157,
+  "artista": "Eurythmics",
+  "titulo": "Sweet Dreams (Are Made of This)",
+  "anio": 1983,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 158,
+  "artista": "Kim Wilde",
+  "titulo": "Kids in America",
+  "anio": 1981,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 159,
+  "artista": "Rick Astley",
+  "titulo": "Never Gonna Give You Up",
+  "anio": 1987,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 160,
+  "artista": "Duran Duran",
+  "titulo": "Hungry Like the Wolf",
+  "anio": 1982,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 161,
+  "artista": "Wham!",
+  "titulo": "Wake Me Up Before You Go-Go",
+  "anio": 1984,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 162,
+  "artista": "Wham!",
+  "titulo": "Last Christmas",
+  "anio": 1984,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 163,
+  "artista": "George Michael",
+  "titulo": "Careless Whisper",
+  "anio": 1984,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 164,
+  "artista": "Culture Club",
+  "titulo": "Karma Chameleon",
+  "anio": 1983,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 165,
+  "artista": "The Bangles",
+  "titulo": "Walk Like an Egyptian",
+  "anio": 1986,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 166,
+  "artista": "Tina Turner",
+  "titulo": "What's Love Got to Do with It",
+  "anio": 1984,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 167,
+  "artista": "Roxette",
+  "titulo": "The Look",
+  "anio": 1989,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 168,
+  "artista": "Bobby McFerrin",
+  "titulo": "Don't Worry, Be Happy",
+  "anio": 1988,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [
+   "onehit"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 169,
+  "artista": "Dexys Midnight Runners",
+  "titulo": "Come On Eileen",
+  "anio": 1982,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [
+   "onehit"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 170,
+  "artista": "Irene Cara",
+  "titulo": "Flashdance... What a Feeling",
+  "anio": 1983,
+  "decada": "80s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 171,
+  "artista": "Depeche Mode",
+  "titulo": "Just Can't Get Enough",
+  "anio": 1981,
+  "decada": "80s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 172,
+  "artista": "New Order",
+  "titulo": "Blue Monday",
+  "anio": 1983,
+  "decada": "80s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 173,
+  "artista": "Soft Cell",
+  "titulo": "Tainted Love",
+  "anio": 1981,
+  "decada": "80s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 174,
+  "artista": "Kool & the Gang",
+  "titulo": "Celebration",
+  "anio": 1980,
+  "decada": "80s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 175,
+  "artista": "Diana Ross",
+  "titulo": "Upside Down",
+  "anio": 1980,
+  "decada": "80s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 176,
+  "artista": "Pet Shop Boys",
+  "titulo": "It's a Sin",
+  "anio": 1987,
+  "decada": "80s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 177,
+  "artista": "Modern Talking",
+  "titulo": "You're My Heart, You're My Soul",
+  "anio": 1984,
+  "decada": "80s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 178,
+  "artista": "Baltimora",
+  "titulo": "Tarzan Boy",
+  "anio": 1985,
+  "decada": "80s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [
+   "onehit"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 179,
+  "artista": "Bananarama",
+  "titulo": "Venus",
+  "anio": 1986,
+  "decada": "80s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 180,
+  "artista": "Dead or Alive",
+  "titulo": "You Spin Me Round (Like a Record)",
+  "anio": 1984,
+  "decada": "80s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 181,
+  "artista": "Technotronic",
+  "titulo": "Pump Up the Jam",
+  "anio": 1989,
+  "decada": "80s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 182,
+  "artista": "Black Box",
+  "titulo": "Ride on Time",
+  "anio": 1989,
+  "decada": "80s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 183,
+  "artista": "MARRS",
+  "titulo": "Pump Up the Volume",
+  "anio": 1987,
+  "decada": "80s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [
+   "onehit"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 184,
+  "artista": "Spagna",
+  "titulo": "Call Me",
+  "anio": 1987,
+  "decada": "80s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 185,
+  "artista": "Sabrina",
+  "titulo": "Boys (Summertime Love)",
+  "anio": 1987,
+  "decada": "80s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [
+   "verano"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 186,
+  "artista": "Laura Branigan",
+  "titulo": "Self Control",
+  "anio": 1984,
+  "decada": "80s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 187,
+  "artista": "Lionel Richie",
+  "titulo": "All Night Long (All Night)",
+  "anio": 1983,
+  "decada": "80s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 188,
+  "artista": "Run-D.M.C.",
+  "titulo": "Walk This Way",
+  "anio": 1986,
+  "decada": "80s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 189,
+  "artista": "Beastie Boys",
+  "titulo": "(You Gotta) Fight for Your Right (To Party!)",
+  "anio": 1986,
+  "decada": "80s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 190,
+  "artista": "Grandmaster Flash and the Furious Five",
+  "titulo": "The Message",
+  "anio": 1982,
+  "decada": "80s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 191,
+  "artista": "Janet Jackson",
+  "titulo": "Rhythm Nation",
+  "anio": 1989,
+  "decada": "80s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 192,
+  "artista": "Bobby Brown",
+  "titulo": "My Prerogative",
+  "anio": 1988,
+  "decada": "80s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 193,
+  "artista": "Salt-N-Pepa",
+  "titulo": "Push It",
+  "anio": 1987,
+  "decada": "80s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 194,
+  "artista": "Public Enemy",
+  "titulo": "Fight the Power",
+  "anio": 1989,
+  "decada": "80s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 195,
+  "artista": "Tone Lōc",
+  "titulo": "Wild Thing",
+  "anio": 1988,
+  "decada": "80s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 196,
+  "artista": "Chaka Khan",
+  "titulo": "I Feel for You",
+  "anio": 1984,
+  "decada": "80s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 197,
+  "artista": "Stevie Wonder",
+  "titulo": "I Just Called to Say I Love You",
+  "anio": 1984,
+  "decada": "80s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 198,
+  "artista": "Lionel Richie",
+  "titulo": "Hello",
+  "anio": 1984,
+  "decada": "80s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 199,
+  "artista": "Tracy Chapman",
+  "titulo": "Fast Car",
+  "anio": 1988,
+  "decada": "80s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 200,
+  "artista": "Suzanne Vega",
+  "titulo": "Tom's Diner",
+  "anio": 1987,
+  "decada": "80s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 201,
+  "artista": "Chris de Burgh",
+  "titulo": "The Lady in Red",
+  "anio": 1986,
+  "decada": "80s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 202,
+  "artista": "Phil Collins",
+  "titulo": "Against All Odds (Take a Look at Me Now)",
+  "anio": 1984,
+  "decada": "80s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 203,
+  "artista": "Joe Cocker & Jennifer Warnes",
+  "titulo": "Up Where We Belong",
+  "anio": 1982,
+  "decada": "80s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 204,
+  "artista": "Mecano",
+  "titulo": "Hijo de la luna",
+  "anio": 1986,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 205,
+  "artista": "Mecano",
+  "titulo": "Me colé en una fiesta",
+  "anio": 1982,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 206,
+  "artista": "Mecano",
+  "titulo": "Cruz de navajas",
+  "anio": 1986,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 207,
+  "artista": "Hombres G",
+  "titulo": "Devuélveme a mi chica",
+  "anio": 1985,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 208,
+  "artista": "Alaska y Dinarama",
+  "titulo": "¿A quién le importa?",
+  "anio": 1986,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 209,
+  "artista": "Duncan Dhu",
+  "titulo": "En algún lugar",
+  "anio": 1987,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 210,
+  "artista": "La Unión",
+  "titulo": "Lobo hombre en París",
+  "anio": 1984,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 211,
+  "artista": "Tino Casal",
+  "titulo": "Embrujada",
+  "anio": 1983,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 212,
+  "artista": "Miguel Bosé",
+  "titulo": "Amante bandido",
+  "anio": 1984,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 213,
+  "artista": "Ana Belén & Víctor Manuel",
+  "titulo": "La puerta de Alcalá",
+  "anio": 1986,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 214,
+  "artista": "Georgie Dann",
+  "titulo": "El chiringuito",
+  "anio": 1988,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [
+   "verano"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 215,
+  "artista": "Radio Futura",
+  "titulo": "Escuela de calor",
+  "anio": 1984,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 216,
+  "artista": "Nacha Pop",
+  "titulo": "La chica de ayer",
+  "anio": 1980,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 217,
+  "artista": "Loquillo y Los Trogloditas",
+  "titulo": "Cadillac solitario",
+  "anio": 1983,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 218,
+  "artista": "Leño",
+  "titulo": "Maneras de vivir",
+  "anio": 1981,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 219,
+  "artista": "Barón Rojo",
+  "titulo": "Los rockeros van al infierno",
+  "anio": 1982,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 220,
+  "artista": "Los Secretos",
+  "titulo": "Déjame",
+  "anio": 1981,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 221,
+  "artista": "El Último de la Fila",
+  "titulo": "Como un burro amarrado en la puerta del baile",
+  "anio": 1985,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 222,
+  "artista": "Gabinete Caligari",
+  "titulo": "Camino Soria",
+  "anio": 1987,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 223,
+  "artista": "Miguel Ríos",
+  "titulo": "Bienvenidos",
+  "anio": 1982,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 224,
+  "artista": "Soda Stereo",
+  "titulo": "Persiana americana",
+  "anio": 1986,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 225,
+  "artista": "Rocío Jurado",
+  "titulo": "Como una ola",
+  "anio": 1981,
+  "decada": "80s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 226,
+  "artista": "Isabel Pantoja",
+  "titulo": "Marinero de luces",
+  "anio": 1985,
+  "decada": "80s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 227,
+  "artista": "Julio Iglesias",
+  "titulo": "Hey",
+  "anio": 1980,
+  "decada": "80s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 228,
+  "artista": "Joan Manuel Serrat",
+  "titulo": "Hoy puede ser un gran día",
+  "anio": 1981,
+  "decada": "80s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 229,
+  "artista": "Juan Gabriel",
+  "titulo": "Querida",
+  "anio": 1984,
+  "decada": "80s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 230,
+  "artista": "Rocío Dúrcal",
+  "titulo": "Amor eterno",
+  "anio": 1984,
+  "decada": "80s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 231,
+  "artista": "Luis Miguel",
+  "titulo": "La incondicional",
+  "anio": 1989,
+  "decada": "80s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 232,
+  "artista": "Raphael",
+  "titulo": "Como yo te amo",
+  "anio": 1980,
+  "decada": "80s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 233,
+  "artista": "Juan Luis Guerra",
+  "titulo": "Ojalá que llueva café",
+  "anio": 1989,
+  "decada": "80s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 234,
+  "artista": "Gipsy Kings",
+  "titulo": "Bamboleo",
+  "anio": 1987,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 235,
+  "artista": "Los Chunguitos",
+  "titulo": "Me quedo contigo",
+  "anio": 1980,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 236,
+  "artista": "Willie Colón",
+  "titulo": "El gran varón",
+  "anio": 1989,
+  "decada": "80s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 237,
+  "artista": "Grupo Niche",
+  "titulo": "Cali pachanguero",
+  "anio": 1984,
+  "decada": "80s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 238,
+  "artista": "Joe Arroyo",
+  "titulo": "La rebelión",
+  "anio": 1986,
+  "decada": "80s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 239,
+  "artista": "Miami Sound Machine",
+  "titulo": "Conga",
+  "anio": 1985,
+  "decada": "80s",
+  "genero": "latino",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 240,
+  "artista": "Gloria Estefan & Miami Sound Machine",
+  "titulo": "Rhythm Is Gonna Get You",
+  "anio": 1987,
+  "decada": "80s",
+  "genero": "latino",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 241,
+  "artista": "Kaoma",
+  "titulo": "Lambada",
+  "anio": 1989,
+  "decada": "80s",
+  "genero": "latino",
+  "idioma": "otro",
+  "especial": [
+   "verano",
+   "onehit"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 242,
+  "artista": "Sopa de Cabra",
+  "titulo": "L'Empordà",
+  "anio": 1989,
+  "decada": "80s",
+  "genero": "rock",
+  "idioma": "ca",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 243,
+  "artista": "Falco",
+  "titulo": "Rock Me Amadeus",
+  "anio": 1985,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "otro",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 244,
+  "artista": "Nena",
+  "titulo": "99 Luftballons",
+  "anio": 1983,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "otro",
+  "especial": [
+   "onehit"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 245,
+  "artista": "Desireless",
+  "titulo": "Voyage, voyage",
+  "anio": 1986,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "otro",
+  "especial": [
+   "onehit"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 246,
+  "artista": "Al Bano & Romina Power",
+  "titulo": "Felicità",
+  "anio": 1982,
+  "decada": "80s",
+  "genero": "pop",
+  "idioma": "otro",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 247,
+  "artista": "Righeira",
+  "titulo": "Vamos a la playa",
+  "anio": 1983,
+  "decada": "80s",
+  "genero": "dance",
+  "idioma": "otro",
+  "especial": [
+   "verano"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 248,
+  "artista": "Nirvana",
+  "titulo": "Smells Like Teen Spirit",
+  "anio": 1991,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 249,
+  "artista": "Oasis",
+  "titulo": "Wonderwall",
+  "anio": 1995,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 250,
+  "artista": "Oasis",
+  "titulo": "Don't Look Back in Anger",
+  "anio": 1996,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 251,
+  "artista": "Blur",
+  "titulo": "Song 2",
+  "anio": 1997,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 252,
+  "artista": "Radiohead",
+  "titulo": "Creep",
+  "anio": 1992,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 253,
+  "artista": "R.E.M.",
+  "titulo": "Losing My Religion",
+  "anio": 1991,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 254,
+  "artista": "The Cranberries",
+  "titulo": "Zombie",
+  "anio": 1994,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 255,
+  "artista": "Red Hot Chili Peppers",
+  "titulo": "Under the Bridge",
+  "anio": 1992,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 256,
+  "artista": "Metallica",
+  "titulo": "Enter Sandman",
+  "anio": 1991,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 257,
+  "artista": "Pearl Jam",
+  "titulo": "Alive",
+  "anio": 1991,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 258,
+  "artista": "Aerosmith",
+  "titulo": "I Don't Want to Miss a Thing",
+  "anio": 1998,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 259,
+  "artista": "Alanis Morissette",
+  "titulo": "Ironic",
+  "anio": 1995,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 260,
+  "artista": "No Doubt",
+  "titulo": "Don't Speak",
+  "anio": 1995,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 261,
+  "artista": "Scorpions",
+  "titulo": "Wind of Change",
+  "anio": 1990,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 262,
+  "artista": "The Cure",
+  "titulo": "Friday I'm in Love",
+  "anio": 1992,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 263,
+  "artista": "Bon Jovi",
+  "titulo": "Always",
+  "anio": 1994,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 264,
+  "artista": "Guns N' Roses",
+  "titulo": "November Rain",
+  "anio": 1992,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 265,
+  "artista": "Foo Fighters",
+  "titulo": "Everlong",
+  "anio": 1997,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 266,
+  "artista": "Green Day",
+  "titulo": "Basket Case",
+  "anio": 1994,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 267,
+  "artista": "The Offspring",
+  "titulo": "Pretty Fly (for a White Guy)",
+  "anio": 1998,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 268,
+  "artista": "Smash Mouth",
+  "titulo": "All Star",
+  "anio": 1999,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 269,
+  "artista": "Lenny Kravitz",
+  "titulo": "Are You Gonna Go My Way",
+  "anio": 1993,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 270,
+  "artista": "4 Non Blondes",
+  "titulo": "What's Up?",
+  "anio": 1992,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [
+   "onehit"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 271,
+  "artista": "Chumbawamba",
+  "titulo": "Tubthumping",
+  "anio": 1997,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [
+   "onehit"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 272,
+  "artista": "Santana feat. Rob Thomas",
+  "titulo": "Smooth",
+  "anio": 1999,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 273,
+  "artista": "Dover",
+  "titulo": "Devil Came to Me",
+  "anio": 1997,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 274,
+  "artista": "Bryan Adams",
+  "titulo": "(Everything I Do) I Do It for You",
+  "anio": 1991,
+  "decada": "90s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 275,
+  "artista": "Céline Dion",
+  "titulo": "My Heart Will Go On",
+  "anio": 1997,
+  "decada": "90s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 276,
+  "artista": "Whitney Houston",
+  "titulo": "I Will Always Love You",
+  "anio": 1992,
+  "decada": "90s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 277,
+  "artista": "Spice Girls",
+  "titulo": "Wannabe",
+  "anio": 1996,
+  "decada": "90s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 278,
+  "artista": "Backstreet Boys",
+  "titulo": "I Want It That Way",
+  "anio": 1999,
+  "decada": "90s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 279,
+  "artista": "Britney Spears",
+  "titulo": "...Baby One More Time",
+  "anio": 1998,
+  "decada": "90s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 280,
+  "artista": "Mariah Carey",
+  "titulo": "All I Want for Christmas Is You",
+  "anio": 1994,
+  "decada": "90s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 281,
+  "artista": "Ace of Base",
+  "titulo": "All That She Wants",
+  "anio": 1992,
+  "decada": "90s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 282,
+  "artista": "Wet Wet Wet",
+  "titulo": "Love Is All Around",
+  "anio": 1994,
+  "decada": "90s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 283,
+  "artista": "Hanson",
+  "titulo": "MMMBop",
+  "anio": 1997,
+  "decada": "90s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 284,
+  "artista": "Take That",
+  "titulo": "Back for Good",
+  "anio": 1995,
+  "decada": "90s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 285,
+  "artista": "Robbie Williams",
+  "titulo": "Angels",
+  "anio": 1997,
+  "decada": "90s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 286,
+  "artista": "Natalie Imbruglia",
+  "titulo": "Torn",
+  "anio": 1997,
+  "decada": "90s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 287,
+  "artista": "TLC",
+  "titulo": "No Scrubs",
+  "anio": 1999,
+  "decada": "90s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 288,
+  "artista": "Coolio feat. L.V.",
+  "titulo": "Gangsta's Paradise",
+  "anio": 1995,
+  "decada": "90s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 289,
+  "artista": "Fugees",
+  "titulo": "Killing Me Softly with His Song",
+  "anio": 1996,
+  "decada": "90s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 290,
+  "artista": "Will Smith",
+  "titulo": "Men in Black",
+  "anio": 1997,
+  "decada": "90s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 291,
+  "artista": "2Pac feat. Dr. Dre",
+  "titulo": "California Love",
+  "anio": 1995,
+  "decada": "90s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 292,
+  "artista": "The Notorious B.I.G.",
+  "titulo": "Juicy",
+  "anio": 1994,
+  "decada": "90s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 293,
+  "artista": "Dr. Dre feat. Snoop Dogg",
+  "titulo": "Still D.R.E.",
+  "anio": 1999,
+  "decada": "90s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 294,
+  "artista": "Eminem",
+  "titulo": "My Name Is",
+  "anio": 1999,
+  "decada": "90s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 295,
+  "artista": "Lauryn Hill",
+  "titulo": "Doo Wop (That Thing)",
+  "anio": 1998,
+  "decada": "90s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 296,
+  "artista": "Toni Braxton",
+  "titulo": "Un-Break My Heart",
+  "anio": 1996,
+  "decada": "90s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 297,
+  "artista": "Boyz II Men",
+  "titulo": "End of the Road",
+  "anio": 1992,
+  "decada": "90s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 298,
+  "artista": "Montell Jordan",
+  "titulo": "This Is How We Do It",
+  "anio": 1995,
+  "decada": "90s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 299,
+  "artista": "House of Pain",
+  "titulo": "Jump Around",
+  "anio": 1992,
+  "decada": "90s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [
+   "onehit"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 300,
+  "artista": "Vanilla Ice",
+  "titulo": "Ice Ice Baby",
+  "anio": 1990,
+  "decada": "90s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 301,
+  "artista": "MC Hammer",
+  "titulo": "U Can't Touch This",
+  "anio": 1990,
+  "decada": "90s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 302,
+  "artista": "Snoop Doggy Dogg",
+  "titulo": "Gin and Juice",
+  "anio": 1994,
+  "decada": "90s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 303,
+  "artista": "Puff Daddy & Faith Evans feat. 112",
+  "titulo": "I'll Be Missing You",
+  "anio": 1997,
+  "decada": "90s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 304,
+  "artista": "Mark Morrison",
+  "titulo": "Return of the Mack",
+  "anio": 1996,
+  "decada": "90s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [
+   "onehit"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 305,
+  "artista": "Haddaway",
+  "titulo": "What Is Love",
+  "anio": 1993,
+  "decada": "90s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 306,
+  "artista": "2 Unlimited",
+  "titulo": "No Limit",
+  "anio": 1993,
+  "decada": "90s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 307,
+  "artista": "Corona",
+  "titulo": "The Rhythm of the Night",
+  "anio": 1993,
+  "decada": "90s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 308,
+  "artista": "Snap!",
+  "titulo": "Rhythm Is a Dancer",
+  "anio": 1992,
+  "decada": "90s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 309,
+  "artista": "Dr. Alban",
+  "titulo": "It's My Life",
+  "anio": 1992,
+  "decada": "90s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 310,
+  "artista": "Eiffel 65",
+  "titulo": "Blue (Da Ba Dee)",
+  "anio": 1998,
+  "decada": "90s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [
+   "onehit"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 311,
+  "artista": "Vengaboys",
+  "titulo": "Boom, Boom, Boom, Boom!!",
+  "anio": 1998,
+  "decada": "90s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 312,
+  "artista": "Aqua",
+  "titulo": "Barbie Girl",
+  "anio": 1997,
+  "decada": "90s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 313,
+  "artista": "Daft Punk",
+  "titulo": "Around the World",
+  "anio": 1997,
+  "decada": "90s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 314,
+  "artista": "The Prodigy",
+  "titulo": "Firestarter",
+  "anio": 1996,
+  "decada": "90s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 315,
+  "artista": "Gala",
+  "titulo": "Freed from Desire",
+  "anio": 1996,
+  "decada": "90s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 316,
+  "artista": "Alice Deejay",
+  "titulo": "Better Off Alone",
+  "anio": 1999,
+  "decada": "90s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 317,
+  "artista": "Fatboy Slim",
+  "titulo": "Praise You",
+  "anio": 1998,
+  "decada": "90s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 318,
+  "artista": "Cher",
+  "titulo": "Believe",
+  "anio": 1998,
+  "decada": "90s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 319,
+  "artista": "Madonna",
+  "titulo": "Vogue",
+  "anio": 1990,
+  "decada": "90s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 320,
+  "artista": "Culture Beat",
+  "titulo": "Mr. Vain",
+  "anio": 1993,
+  "decada": "90s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 321,
+  "artista": "Whigfield",
+  "titulo": "Saturday Night",
+  "anio": 1994,
+  "decada": "90s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [
+   "verano"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 322,
+  "artista": "Mr. President",
+  "titulo": "Coco Jamboo",
+  "anio": 1996,
+  "decada": "90s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [
+   "verano"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 323,
+  "artista": "Scatman John",
+  "titulo": "Scatman (Ski-Ba-Bop-Ba-Dop-Bop)",
+  "anio": 1994,
+  "decada": "90s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [
+   "onehit"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 324,
+  "artista": "Rednex",
+  "titulo": "Cotton Eye Joe",
+  "anio": 1994,
+  "decada": "90s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 325,
+  "artista": "Moby",
+  "titulo": "Why Does My Heart Feel So Bad?",
+  "anio": 1999,
+  "decada": "90s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 326,
+  "artista": "ATB",
+  "titulo": "9 PM (Till I Come)",
+  "anio": 1998,
+  "decada": "90s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 327,
+  "artista": "Stardust",
+  "titulo": "Music Sounds Better with You",
+  "anio": 1998,
+  "decada": "90s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [
+   "onehit"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 328,
+  "artista": "Chimo Bayo",
+  "titulo": "Así me gusta a mí",
+  "anio": 1991,
+  "decada": "90s",
+  "genero": "dance",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 329,
+  "artista": "Eric Clapton",
+  "titulo": "Tears in Heaven",
+  "anio": 1992,
+  "decada": "90s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 330,
+  "artista": "Sinéad O'Connor",
+  "titulo": "Nothing Compares 2 U",
+  "anio": 1990,
+  "decada": "90s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 331,
+  "artista": "Seal",
+  "titulo": "Kiss from a Rose",
+  "anio": 1994,
+  "decada": "90s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 332,
+  "artista": "Elton John",
+  "titulo": "Can You Feel the Love Tonight",
+  "anio": 1994,
+  "decada": "90s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 333,
+  "artista": "Ricky Martin",
+  "titulo": "Livin' la Vida Loca",
+  "anio": 1999,
+  "decada": "90s",
+  "genero": "latino",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 334,
+  "artista": "Ricky Martin",
+  "titulo": "La copa de la vida",
+  "anio": 1998,
+  "decada": "90s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 335,
+  "artista": "Ricky Martin",
+  "titulo": "María",
+  "anio": 1995,
+  "decada": "90s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 336,
+  "artista": "Enrique Iglesias",
+  "titulo": "Bailamos",
+  "anio": 1999,
+  "decada": "90s",
+  "genero": "latino",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 337,
+  "artista": "Lou Bega",
+  "titulo": "Mambo No. 5 (A Little Bit of...)",
+  "anio": 1999,
+  "decada": "90s",
+  "genero": "latino",
+  "idioma": "en",
+  "especial": [
+   "verano",
+   "onehit"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 338,
+  "artista": "Los del Río",
+  "titulo": "Macarena",
+  "anio": 1993,
+  "decada": "90s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [
+   "verano"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 339,
+  "artista": "Shakira",
+  "titulo": "Ojos así",
+  "anio": 1998,
+  "decada": "90s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 340,
+  "artista": "Gloria Estefan",
+  "titulo": "Mi tierra",
+  "anio": 1993,
+  "decada": "90s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 341,
+  "artista": "Juan Luis Guerra",
+  "titulo": "La bilirrubina",
+  "anio": 1990,
+  "decada": "90s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 342,
+  "artista": "Selena",
+  "titulo": "Amor prohibido",
+  "anio": 1994,
+  "decada": "90s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 343,
+  "artista": "Carlos Vives",
+  "titulo": "La gota fría",
+  "anio": 1993,
+  "decada": "90s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 344,
+  "artista": "Azúcar Moreno",
+  "titulo": "Bandido",
+  "anio": 1990,
+  "decada": "90s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 345,
+  "artista": "Elvis Crespo",
+  "titulo": "Suavemente",
+  "anio": 1998,
+  "decada": "90s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 346,
+  "artista": "Celia Cruz",
+  "titulo": "La vida es un carnaval",
+  "anio": 1998,
+  "decada": "90s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 347,
+  "artista": "Shakira",
+  "titulo": "¿Dónde estás corazón?",
+  "anio": 1995,
+  "decada": "90s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 348,
+  "artista": "Ella Baila Sola",
+  "titulo": "Lo echamos a suertes",
+  "anio": 1996,
+  "decada": "90s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 349,
+  "artista": "Alejandro Sanz",
+  "titulo": "Corazón partío",
+  "anio": 1997,
+  "decada": "90s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 350,
+  "artista": "Jarabe de Palo",
+  "titulo": "La flaca",
+  "anio": 1996,
+  "decada": "90s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 351,
+  "artista": "Mecano",
+  "titulo": "Una rosa es una rosa",
+  "anio": 1991,
+  "decada": "90s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 352,
+  "artista": "Presuntos Implicados",
+  "titulo": "Cómo hemos cambiado",
+  "anio": 1991,
+  "decada": "90s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 353,
+  "artista": "Amistades Peligrosas",
+  "titulo": "Me haces tanto bien",
+  "anio": 1995,
+  "decada": "90s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 354,
+  "artista": "Marta Sánchez",
+  "titulo": "Desesperada",
+  "anio": 1993,
+  "decada": "90s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 355,
+  "artista": "Maná",
+  "titulo": "Clavado en un bar",
+  "anio": 1997,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 356,
+  "artista": "Maná",
+  "titulo": "Oye mi amor",
+  "anio": 1992,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 357,
+  "artista": "Héroes del Silencio",
+  "titulo": "Entre dos tierras",
+  "anio": 1990,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 358,
+  "artista": "Extremoduro",
+  "titulo": "So payaso",
+  "anio": 1996,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 359,
+  "artista": "Estopa",
+  "titulo": "La raja de tu falda",
+  "anio": 1999,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 360,
+  "artista": "Estopa",
+  "titulo": "Como Camarón",
+  "anio": 1999,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 361,
+  "artista": "Celtas Cortos",
+  "titulo": "20 de abril",
+  "anio": 1991,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 362,
+  "artista": "Los Rodríguez",
+  "titulo": "Sin documentos",
+  "anio": 1993,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 363,
+  "artista": "Sau",
+  "titulo": "Boig per tu",
+  "anio": 1990,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "ca",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 364,
+  "artista": "Els Pets",
+  "titulo": "Bon dia",
+  "anio": 1997,
+  "decada": "90s",
+  "genero": "rock",
+  "idioma": "ca",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 365,
+  "artista": "Alejandro Sanz",
+  "titulo": "Y, ¿si fuera ella?",
+  "anio": 1997,
+  "decada": "90s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 366,
+  "artista": "Joaquín Sabina",
+  "titulo": "Y nos dieron las diez",
+  "anio": 1992,
+  "decada": "90s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 367,
+  "artista": "Joaquín Sabina",
+  "titulo": "19 días y 500 noches",
+  "anio": 1999,
+  "decada": "90s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 368,
+  "artista": "Rosana",
+  "titulo": "El talismán",
+  "anio": 1996,
+  "decada": "90s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 369,
+  "artista": "Laura Pausini",
+  "titulo": "La soledad",
+  "anio": 1994,
+  "decada": "90s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 370,
+  "artista": "Sergio Dalma",
+  "titulo": "Bailar pegados",
+  "anio": 1991,
+  "decada": "90s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 371,
+  "artista": "Ricardo Arjona",
+  "titulo": "Historia de taxi",
+  "anio": 1993,
+  "decada": "90s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 372,
+  "artista": "Manolo García",
+  "titulo": "Pájaros de barro",
+  "anio": 1996,
+  "decada": "90s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 373,
+  "artista": "Ismael Serrano",
+  "titulo": "Papá cuéntame otra vez",
+  "anio": 1997,
+  "decada": "90s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 374,
+  "artista": "Enrique Iglesias",
+  "titulo": "Experiencia religiosa",
+  "anio": 1995,
+  "decada": "90s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 375,
+  "artista": "Eros Ramazzotti",
+  "titulo": "Cose della vita",
+  "anio": 1993,
+  "decada": "90s",
+  "genero": "pop",
+  "idioma": "otro",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 376,
+  "artista": "Bon Jovi",
+  "titulo": "It's My Life",
+  "anio": 2000,
+  "decada": "00s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 377,
+  "artista": "Linkin Park",
+  "titulo": "In the End",
+  "anio": 2000,
+  "decada": "00s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 378,
+  "artista": "The White Stripes",
+  "titulo": "Seven Nation Army",
+  "anio": 2003,
+  "decada": "00s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 379,
+  "artista": "The Killers",
+  "titulo": "Mr. Brightside",
+  "anio": 2003,
+  "decada": "00s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 380,
+  "artista": "Coldplay",
+  "titulo": "Yellow",
+  "anio": 2000,
+  "decada": "00s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 381,
+  "artista": "Coldplay",
+  "titulo": "Viva la Vida",
+  "anio": 2008,
+  "decada": "00s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 382,
+  "artista": "Franz Ferdinand",
+  "titulo": "Take Me Out",
+  "anio": 2004,
+  "decada": "00s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 383,
+  "artista": "Arctic Monkeys",
+  "titulo": "I Bet You Look Good on the Dancefloor",
+  "anio": 2005,
+  "decada": "00s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 384,
+  "artista": "Muse",
+  "titulo": "Supermassive Black Hole",
+  "anio": 2006,
+  "decada": "00s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 385,
+  "artista": "Green Day",
+  "titulo": "Boulevard of Broken Dreams",
+  "anio": 2004,
+  "decada": "00s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 386,
+  "artista": "Kings of Leon",
+  "titulo": "Sex on Fire",
+  "anio": 2008,
+  "decada": "00s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 387,
+  "artista": "Evanescence",
+  "titulo": "Bring Me to Life",
+  "anio": 2003,
+  "decada": "00s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 388,
+  "artista": "Snow Patrol",
+  "titulo": "Chasing Cars",
+  "anio": 2006,
+  "decada": "00s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 389,
+  "artista": "Keane",
+  "titulo": "Somewhere Only We Know",
+  "anio": 2004,
+  "decada": "00s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 390,
+  "artista": "System of a Down",
+  "titulo": "Chop Suey!",
+  "anio": 2001,
+  "decada": "00s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 391,
+  "artista": "The Strokes",
+  "titulo": "Last Nite",
+  "anio": 2001,
+  "decada": "00s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 392,
+  "artista": "Kaiser Chiefs",
+  "titulo": "Ruby",
+  "anio": 2007,
+  "decada": "00s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 393,
+  "artista": "Avril Lavigne",
+  "titulo": "Complicated",
+  "anio": 2002,
+  "decada": "00s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 394,
+  "artista": "Nelly Furtado",
+  "titulo": "Maneater",
+  "anio": 2006,
+  "decada": "00s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 395,
+  "artista": "Justin Timberlake",
+  "titulo": "SexyBack",
+  "anio": 2006,
+  "decada": "00s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 396,
+  "artista": "Britney Spears",
+  "titulo": "Toxic",
+  "anio": 2003,
+  "decada": "00s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 397,
+  "artista": "Lady Gaga",
+  "titulo": "Poker Face",
+  "anio": 2008,
+  "decada": "00s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 398,
+  "artista": "Lady Gaga",
+  "titulo": "Bad Romance",
+  "anio": 2009,
+  "decada": "00s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 399,
+  "artista": "Katy Perry",
+  "titulo": "I Kissed a Girl",
+  "anio": 2008,
+  "decada": "00s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 400,
+  "artista": "Kelly Clarkson",
+  "titulo": "Since U Been Gone",
+  "anio": 2004,
+  "decada": "00s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 401,
+  "artista": "P!nk",
+  "titulo": "Get the Party Started",
+  "anio": 2001,
+  "decada": "00s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 402,
+  "artista": "Christina Aguilera",
+  "titulo": "Beautiful",
+  "anio": 2002,
+  "decada": "00s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 403,
+  "artista": "Timbaland feat. OneRepublic",
+  "titulo": "Apologize",
+  "anio": 2007,
+  "decada": "00s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 404,
+  "artista": "Mika",
+  "titulo": "Relax, Take It Easy",
+  "anio": 2006,
+  "decada": "00s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 405,
+  "artista": "Duffy",
+  "titulo": "Mercy",
+  "anio": 2008,
+  "decada": "00s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 406,
+  "artista": "Enrique Iglesias",
+  "titulo": "Hero",
+  "anio": 2001,
+  "decada": "00s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 407,
+  "artista": "Amy Winehouse",
+  "titulo": "Rehab",
+  "anio": 2006,
+  "decada": "00s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 408,
+  "artista": "Beyoncé feat. Jay-Z",
+  "titulo": "Crazy in Love",
+  "anio": 2003,
+  "decada": "00s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 409,
+  "artista": "OutKast",
+  "titulo": "Hey Ya!",
+  "anio": 2003,
+  "decada": "00s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 410,
+  "artista": "Eminem",
+  "titulo": "Lose Yourself",
+  "anio": 2002,
+  "decada": "00s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 411,
+  "artista": "50 Cent",
+  "titulo": "In da Club",
+  "anio": 2003,
+  "decada": "00s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 412,
+  "artista": "The Black Eyed Peas",
+  "titulo": "Where Is the Love?",
+  "anio": 2003,
+  "decada": "00s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 413,
+  "artista": "Gnarls Barkley",
+  "titulo": "Crazy",
+  "anio": 2006,
+  "decada": "00s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [
+   "onehit"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 414,
+  "artista": "Rihanna feat. Jay-Z",
+  "titulo": "Umbrella",
+  "anio": 2007,
+  "decada": "00s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 415,
+  "artista": "Usher feat. Lil Jon & Ludacris",
+  "titulo": "Yeah!",
+  "anio": 2004,
+  "decada": "00s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 416,
+  "artista": "Nelly",
+  "titulo": "Hot in Herre",
+  "anio": 2002,
+  "decada": "00s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 417,
+  "artista": "Sean Paul",
+  "titulo": "Get Busy",
+  "anio": 2003,
+  "decada": "00s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 418,
+  "artista": "Alicia Keys",
+  "titulo": "Fallin'",
+  "anio": 2001,
+  "decada": "00s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 419,
+  "artista": "Kanye West",
+  "titulo": "Stronger",
+  "anio": 2007,
+  "decada": "00s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 420,
+  "artista": "Jay-Z feat. Alicia Keys",
+  "titulo": "Empire State of Mind",
+  "anio": 2009,
+  "decada": "00s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 421,
+  "artista": "Missy Elliott",
+  "titulo": "Get Ur Freak On",
+  "anio": 2001,
+  "decada": "00s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 422,
+  "artista": "Mala Rodríguez",
+  "titulo": "Tengo un trato",
+  "anio": 2000,
+  "decada": "00s",
+  "genero": "hiphop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 423,
+  "artista": "The Black Eyed Peas",
+  "titulo": "I Gotta Feeling",
+  "anio": 2009,
+  "decada": "00s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 424,
+  "artista": "Kylie Minogue",
+  "titulo": "Can't Get You Out of My Head",
+  "anio": 2001,
+  "decada": "00s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 425,
+  "artista": "Daft Punk",
+  "titulo": "One More Time",
+  "anio": 2000,
+  "decada": "00s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 426,
+  "artista": "David Guetta feat. Kelly Rowland",
+  "titulo": "When Love Takes Over",
+  "anio": 2009,
+  "decada": "00s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 427,
+  "artista": "Eric Prydz",
+  "titulo": "Call on Me",
+  "anio": 2004,
+  "decada": "00s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 428,
+  "artista": "Benny Benassi",
+  "titulo": "Satisfaction",
+  "anio": 2002,
+  "decada": "00s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 429,
+  "artista": "Modjo",
+  "titulo": "Lady (Hear Me Tonight)",
+  "anio": 2000,
+  "decada": "00s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 430,
+  "artista": "Bob Sinclar",
+  "titulo": "Love Generation",
+  "anio": 2005,
+  "decada": "00s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 431,
+  "artista": "Infernal",
+  "titulo": "From Paris to Berlin",
+  "anio": 2004,
+  "decada": "00s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 432,
+  "artista": "DJ Sammy & Yanou feat. Do",
+  "titulo": "Heaven",
+  "anio": 2001,
+  "decada": "00s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 433,
+  "artista": "O-Zone",
+  "titulo": "Dragostea din tei",
+  "anio": 2003,
+  "decada": "00s",
+  "genero": "dance",
+  "idioma": "otro",
+  "especial": [
+   "verano",
+   "onehit"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 434,
+  "artista": "Stromae",
+  "titulo": "Alors on danse",
+  "anio": 2009,
+  "decada": "00s",
+  "genero": "dance",
+  "idioma": "otro",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 435,
+  "artista": "Basshunter",
+  "titulo": "Boten Anna",
+  "anio": 2006,
+  "decada": "00s",
+  "genero": "dance",
+  "idioma": "otro",
+  "especial": [
+   "onehit"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 436,
+  "artista": "James Blunt",
+  "titulo": "You're Beautiful",
+  "anio": 2004,
+  "decada": "00s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 437,
+  "artista": "Jack Johnson",
+  "titulo": "Better Together",
+  "anio": 2005,
+  "decada": "00s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 438,
+  "artista": "Norah Jones",
+  "titulo": "Don't Know Why",
+  "anio": 2002,
+  "decada": "00s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 439,
+  "artista": "Jason Mraz",
+  "titulo": "I'm Yours",
+  "anio": 2008,
+  "decada": "00s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 440,
+  "artista": "KT Tunstall",
+  "titulo": "Black Horse and the Cherry Tree",
+  "anio": 2004,
+  "decada": "00s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 441,
+  "artista": "Shakira",
+  "titulo": "Hips Don't Lie",
+  "anio": 2006,
+  "decada": "00s",
+  "genero": "latino",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 442,
+  "artista": "Shakira",
+  "titulo": "Whenever, Wherever",
+  "anio": 2001,
+  "decada": "00s",
+  "genero": "latino",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 443,
+  "artista": "Pitbull",
+  "titulo": "I Know You Want Me (Calle Ocho)",
+  "anio": 2009,
+  "decada": "00s",
+  "genero": "latino",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 444,
+  "artista": "Daddy Yankee",
+  "titulo": "Gasolina",
+  "anio": 2004,
+  "decada": "00s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 445,
+  "artista": "Juanes",
+  "titulo": "La camisa negra",
+  "anio": 2004,
+  "decada": "00s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 446,
+  "artista": "Juanes",
+  "titulo": "A Dios le pido",
+  "anio": 2002,
+  "decada": "00s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 447,
+  "artista": "Shakira feat. Alejandro Sanz",
+  "titulo": "La tortura",
+  "anio": 2005,
+  "decada": "00s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 448,
+  "artista": "Calle 13",
+  "titulo": "Atrévete-te-te",
+  "anio": 2005,
+  "decada": "00s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 449,
+  "artista": "Aventura",
+  "titulo": "Obsesión",
+  "anio": 2002,
+  "decada": "00s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 450,
+  "artista": "Chayanne",
+  "titulo": "Torero",
+  "anio": 2002,
+  "decada": "00s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 451,
+  "artista": "Wisin & Yandel",
+  "titulo": "Rakata",
+  "anio": 2005,
+  "decada": "00s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 452,
+  "artista": "Tito El Bambino",
+  "titulo": "El amor",
+  "anio": 2009,
+  "decada": "00s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 453,
+  "artista": "Juan Luis Guerra",
+  "titulo": "La llave de mi corazón",
+  "anio": 2007,
+  "decada": "00s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 454,
+  "artista": "Bacilos",
+  "titulo": "Mi primer millón",
+  "anio": 2002,
+  "decada": "00s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 455,
+  "artista": "King Africa",
+  "titulo": "La bomba",
+  "anio": 2000,
+  "decada": "00s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [
+   "verano"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 456,
+  "artista": "Las Ketchup",
+  "titulo": "Aserejé",
+  "anio": 2002,
+  "decada": "00s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [
+   "verano",
+   "onehit"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 457,
+  "artista": "Paulina Rubio",
+  "titulo": "Y yo sigo aquí",
+  "anio": 2000,
+  "decada": "00s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 458,
+  "artista": "La Oreja de Van Gogh",
+  "titulo": "Rosas",
+  "anio": 2003,
+  "decada": "00s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 459,
+  "artista": "El Canto del Loco",
+  "titulo": "Zapatillas",
+  "anio": 2005,
+  "decada": "00s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 460,
+  "artista": "Melendi",
+  "titulo": "Caminando por la vida",
+  "anio": 2005,
+  "decada": "00s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 461,
+  "artista": "David Bisbal",
+  "titulo": "Ave María",
+  "anio": 2002,
+  "decada": "00s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 462,
+  "artista": "Mónica Naranjo",
+  "titulo": "Sobreviviré",
+  "anio": 2000,
+  "decada": "00s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 463,
+  "artista": "Manu Chao",
+  "titulo": "Me gustas tú",
+  "anio": 2001,
+  "decada": "00s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 464,
+  "artista": "Andy & Lucas",
+  "titulo": "Son de amores",
+  "anio": 2003,
+  "decada": "00s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 465,
+  "artista": "Carlos Baute",
+  "titulo": "Colgando en tus manos",
+  "anio": 2008,
+  "decada": "00s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 466,
+  "artista": "La Quinta Estación",
+  "titulo": "El sol no regresa",
+  "anio": 2004,
+  "decada": "00s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 467,
+  "artista": "Fito & Fitipaldis",
+  "titulo": "Soldadito marinero",
+  "anio": 2003,
+  "decada": "00s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 468,
+  "artista": "Fito & Fitipaldis",
+  "titulo": "Antes de que cuente diez",
+  "anio": 2009,
+  "decada": "00s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 469,
+  "artista": "Amaral",
+  "titulo": "Sin ti no soy nada",
+  "anio": 2002,
+  "decada": "00s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 470,
+  "artista": "Pereza",
+  "titulo": "Lady Madrid",
+  "anio": 2005,
+  "decada": "00s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 471,
+  "artista": "Mägo de Oz",
+  "titulo": "Fiesta pagana",
+  "anio": 2000,
+  "decada": "00s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 472,
+  "artista": "Vetusta Morla",
+  "titulo": "Copenhague",
+  "anio": 2008,
+  "decada": "00s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 473,
+  "artista": "Love of Lesbian",
+  "titulo": "Club de fans de John Boy",
+  "anio": 2009,
+  "decada": "00s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 474,
+  "artista": "Alejandro Sanz",
+  "titulo": "No es lo mismo",
+  "anio": 2003,
+  "decada": "00s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 475,
+  "artista": "Bebe",
+  "titulo": "Malo",
+  "anio": 2004,
+  "decada": "00s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 476,
+  "artista": "Jorge Drexler",
+  "titulo": "Al otro lado del río",
+  "anio": 2004,
+  "decada": "00s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 477,
+  "artista": "Sin Bandera",
+  "titulo": "Entra en mi vida",
+  "anio": 2002,
+  "decada": "00s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 478,
+  "artista": "Luis Fonsi",
+  "titulo": "No me doy por vencido",
+  "anio": 2008,
+  "decada": "00s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 479,
+  "artista": "Manel",
+  "titulo": "Al mar!",
+  "anio": 2008,
+  "decada": "00s",
+  "genero": "pop",
+  "idioma": "ca",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 480,
+  "artista": "Alizée",
+  "titulo": "Moi... Lolita",
+  "anio": 2000,
+  "decada": "00s",
+  "genero": "pop",
+  "idioma": "otro",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 481,
+  "artista": "Tiziano Ferro",
+  "titulo": "Perdono",
+  "anio": 2001,
+  "decada": "00s",
+  "genero": "pop",
+  "idioma": "otro",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 482,
+  "artista": "Adele",
+  "titulo": "Rolling in the Deep",
+  "anio": 2010,
+  "decada": "10s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 483,
+  "artista": "Adele",
+  "titulo": "Someone Like You",
+  "anio": 2011,
+  "decada": "10s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 484,
+  "artista": "Adele",
+  "titulo": "Skyfall",
+  "anio": 2012,
+  "decada": "10s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 485,
+  "artista": "Gotye feat. Kimbra",
+  "titulo": "Somebody That I Used to Know",
+  "anio": 2011,
+  "decada": "10s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [
+   "onehit"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 486,
+  "artista": "Pharrell Williams",
+  "titulo": "Happy",
+  "anio": 2013,
+  "decada": "10s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 487,
+  "artista": "Mark Ronson feat. Bruno Mars",
+  "titulo": "Uptown Funk",
+  "anio": 2014,
+  "decada": "10s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 488,
+  "artista": "Bruno Mars",
+  "titulo": "Just the Way You Are",
+  "anio": 2010,
+  "decada": "10s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 489,
+  "artista": "Ed Sheeran",
+  "titulo": "Shape of You",
+  "anio": 2017,
+  "decada": "10s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 490,
+  "artista": "Ed Sheeran",
+  "titulo": "Perfect",
+  "anio": 2017,
+  "decada": "10s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 491,
+  "artista": "Taylor Swift",
+  "titulo": "Shake It Off",
+  "anio": 2014,
+  "decada": "10s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 492,
+  "artista": "Katy Perry",
+  "titulo": "Roar",
+  "anio": 2013,
+  "decada": "10s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 493,
+  "artista": "Carly Rae Jepsen",
+  "titulo": "Call Me Maybe",
+  "anio": 2011,
+  "decada": "10s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 494,
+  "artista": "Lorde",
+  "titulo": "Royals",
+  "anio": 2013,
+  "decada": "10s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 495,
+  "artista": "Sia",
+  "titulo": "Chandelier",
+  "anio": 2014,
+  "decada": "10s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 496,
+  "artista": "Idina Menzel",
+  "titulo": "Let It Go",
+  "anio": 2013,
+  "decada": "10s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 497,
+  "artista": "Justin Timberlake",
+  "titulo": "Can't Stop the Feeling!",
+  "anio": 2016,
+  "decada": "10s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 498,
+  "artista": "Billie Eilish",
+  "titulo": "Bad Guy",
+  "anio": 2019,
+  "decada": "10s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 499,
+  "artista": "The Weeknd",
+  "titulo": "Blinding Lights",
+  "anio": 2019,
+  "decada": "10s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 500,
+  "artista": "Harry Styles",
+  "titulo": "Watermelon Sugar",
+  "anio": 2019,
+  "decada": "10s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 501,
+  "artista": "Tones and I",
+  "titulo": "Dance Monkey",
+  "anio": 2019,
+  "decada": "10s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [
+   "onehit"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 502,
+  "artista": "Rihanna feat. Calvin Harris",
+  "titulo": "We Found Love",
+  "anio": 2011,
+  "decada": "10s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 503,
+  "artista": "Avicii",
+  "titulo": "Wake Me Up",
+  "anio": 2013,
+  "decada": "10s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 504,
+  "artista": "Avicii",
+  "titulo": "Levels",
+  "anio": 2011,
+  "decada": "10s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 505,
+  "artista": "Calvin Harris",
+  "titulo": "Summer",
+  "anio": 2014,
+  "decada": "10s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 506,
+  "artista": "David Guetta feat. Sia",
+  "titulo": "Titanium",
+  "anio": 2011,
+  "decada": "10s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 507,
+  "artista": "LMFAO",
+  "titulo": "Party Rock Anthem",
+  "anio": 2011,
+  "decada": "10s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 508,
+  "artista": "Daft Punk feat. Pharrell Williams",
+  "titulo": "Get Lucky",
+  "anio": 2013,
+  "decada": "10s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 509,
+  "artista": "Major Lazer & DJ Snake feat. MØ",
+  "titulo": "Lean On",
+  "anio": 2015,
+  "decada": "10s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 510,
+  "artista": "Pitbull feat. Ne-Yo, Afrojack & Nayer",
+  "titulo": "Give Me Everything",
+  "anio": 2011,
+  "decada": "10s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 511,
+  "artista": "Kygo feat. Conrad Sewell",
+  "titulo": "Firestone",
+  "anio": 2014,
+  "decada": "10s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 512,
+  "artista": "Robin Schulz",
+  "titulo": "Prayer in C",
+  "anio": 2014,
+  "decada": "10s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 513,
+  "artista": "Clean Bandit feat. Jess Glynne",
+  "titulo": "Rather Be",
+  "anio": 2014,
+  "decada": "10s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 514,
+  "artista": "Swedish House Mafia feat. John Martin",
+  "titulo": "Don't You Worry Child",
+  "anio": 2012,
+  "decada": "10s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 515,
+  "artista": "The Chainsmokers feat. Halsey",
+  "titulo": "Closer",
+  "anio": 2016,
+  "decada": "10s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 516,
+  "artista": "Dua Lipa",
+  "titulo": "Don't Start Now",
+  "anio": 2019,
+  "decada": "10s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 517,
+  "artista": "Juan Magán",
+  "titulo": "Bailando por ahí",
+  "anio": 2012,
+  "decada": "10s",
+  "genero": "dance",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 518,
+  "artista": "PSY",
+  "titulo": "Gangnam Style",
+  "anio": 2012,
+  "decada": "10s",
+  "genero": "pop",
+  "idioma": "otro",
+  "especial": [
+   "onehit"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 519,
+  "artista": "Imagine Dragons",
+  "titulo": "Radioactive",
+  "anio": 2012,
+  "decada": "10s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 520,
+  "artista": "Imagine Dragons",
+  "titulo": "Believer",
+  "anio": 2017,
+  "decada": "10s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 521,
+  "artista": "Arctic Monkeys",
+  "titulo": "Do I Wanna Know?",
+  "anio": 2013,
+  "decada": "10s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 522,
+  "artista": "Of Monsters and Men",
+  "titulo": "Little Talks",
+  "anio": 2011,
+  "decada": "10s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 523,
+  "artista": "Foster the People",
+  "titulo": "Pumped Up Kicks",
+  "anio": 2010,
+  "decada": "10s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 524,
+  "artista": "Twenty One Pilots",
+  "titulo": "Stressed Out",
+  "anio": 2015,
+  "decada": "10s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 525,
+  "artista": "Izal",
+  "titulo": "Copacabana",
+  "anio": 2015,
+  "decada": "10s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 526,
+  "artista": "Carolina Durante",
+  "titulo": "Cayetano",
+  "anio": 2017,
+  "decada": "10s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 527,
+  "artista": "The Lumineers",
+  "titulo": "Ho Hey",
+  "anio": 2012,
+  "decada": "10s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 528,
+  "artista": "Hozier",
+  "titulo": "Take Me to Church",
+  "anio": 2013,
+  "decada": "10s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 529,
+  "artista": "John Legend",
+  "titulo": "All of Me",
+  "anio": 2013,
+  "decada": "10s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 530,
+  "artista": "Lady Gaga & Bradley Cooper",
+  "titulo": "Shallow",
+  "anio": 2018,
+  "decada": "10s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 531,
+  "artista": "Lewis Capaldi",
+  "titulo": "Someone You Loved",
+  "anio": 2018,
+  "decada": "10s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 532,
+  "artista": "Passenger",
+  "titulo": "Let Her Go",
+  "anio": 2012,
+  "decada": "10s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 533,
+  "artista": "Vance Joy",
+  "titulo": "Riptide",
+  "anio": 2013,
+  "decada": "10s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 534,
+  "artista": "James Arthur",
+  "titulo": "Say You Won't Let Go",
+  "anio": 2016,
+  "decada": "10s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 535,
+  "artista": "Sam Smith",
+  "titulo": "Stay with Me",
+  "anio": 2014,
+  "decada": "10s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 536,
+  "artista": "Pablo Alborán",
+  "titulo": "Solamente tú",
+  "anio": 2011,
+  "decada": "10s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 537,
+  "artista": "Jesse & Joy",
+  "titulo": "¡Corre!",
+  "anio": 2011,
+  "decada": "10s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 538,
+  "artista": "Amaia & Alfred",
+  "titulo": "Tu canción",
+  "anio": 2018,
+  "decada": "10s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 539,
+  "artista": "Wiz Khalifa feat. Charlie Puth",
+  "titulo": "See You Again",
+  "anio": 2015,
+  "decada": "10s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 540,
+  "artista": "Kendrick Lamar",
+  "titulo": "HUMBLE.",
+  "anio": 2017,
+  "decada": "10s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 541,
+  "artista": "Drake",
+  "titulo": "Hotline Bling",
+  "anio": 2015,
+  "decada": "10s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 542,
+  "artista": "Macklemore & Ryan Lewis feat. Wanz",
+  "titulo": "Thrift Shop",
+  "anio": 2012,
+  "decada": "10s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 543,
+  "artista": "Eminem feat. Rihanna",
+  "titulo": "Love the Way You Lie",
+  "anio": 2010,
+  "decada": "10s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 544,
+  "artista": "The Weeknd",
+  "titulo": "Can't Feel My Face",
+  "anio": 2015,
+  "decada": "10s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 545,
+  "artista": "Childish Gambino",
+  "titulo": "This Is America",
+  "anio": 2018,
+  "decada": "10s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 546,
+  "artista": "Lil Nas X",
+  "titulo": "Old Town Road",
+  "anio": 2019,
+  "decada": "10s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 547,
+  "artista": "Post Malone & Swae Lee",
+  "titulo": "Sunflower",
+  "anio": 2018,
+  "decada": "10s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 548,
+  "artista": "Luis Fonsi feat. Daddy Yankee",
+  "titulo": "Despacito",
+  "anio": 2017,
+  "decada": "10s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [
+   "verano"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 549,
+  "artista": "Enrique Iglesias feat. Descemer Bueno & Gente de Zona",
+  "titulo": "Bailando",
+  "anio": 2014,
+  "decada": "10s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [
+   "verano"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 550,
+  "artista": "Enrique Iglesias feat. Wisin",
+  "titulo": "Duele el corazón",
+  "anio": 2016,
+  "decada": "10s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 551,
+  "artista": "J Balvin & Willy William",
+  "titulo": "Mi gente",
+  "anio": 2017,
+  "decada": "10s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 552,
+  "artista": "Shakira feat. Maluma",
+  "titulo": "Chantaje",
+  "anio": 2016,
+  "decada": "10s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 553,
+  "artista": "Marc Anthony",
+  "titulo": "Vivir mi vida",
+  "anio": 2013,
+  "decada": "10s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 554,
+  "artista": "Romeo Santos",
+  "titulo": "Propuesta indecente",
+  "anio": 2013,
+  "decada": "10s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 555,
+  "artista": "Nicky Jam & Enrique Iglesias",
+  "titulo": "El perdón",
+  "anio": 2015,
+  "decada": "10s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 556,
+  "artista": "Maluma",
+  "titulo": "Felices los 4",
+  "anio": 2017,
+  "decada": "10s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 557,
+  "artista": "Daddy Yankee",
+  "titulo": "Dura",
+  "anio": 2018,
+  "decada": "10s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 558,
+  "artista": "Bad Bunny & Drake",
+  "titulo": "Mía",
+  "anio": 2018,
+  "decada": "10s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 559,
+  "artista": "Rosalía & J Balvin",
+  "titulo": "Con altura",
+  "anio": 2019,
+  "decada": "10s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 560,
+  "artista": "Don Omar & Lucenzo",
+  "titulo": "Danza Kuduro",
+  "anio": 2010,
+  "decada": "10s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [
+   "verano"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 561,
+  "artista": "Shakira",
+  "titulo": "Loca",
+  "anio": 2010,
+  "decada": "10s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 562,
+  "artista": "Shakira feat. Freshlyground",
+  "titulo": "Waka Waka (This Time for Africa)",
+  "anio": 2010,
+  "decada": "10s",
+  "genero": "latino",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 563,
+  "artista": "Pedro Capó & Farruko",
+  "titulo": "Calma (Remix)",
+  "anio": 2018,
+  "decada": "10s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [
+   "verano"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 564,
+  "artista": "Rosalía",
+  "titulo": "Malamente",
+  "anio": 2018,
+  "decada": "10s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 565,
+  "artista": "Álvaro Soler",
+  "titulo": "El mismo sol",
+  "anio": 2015,
+  "decada": "10s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [
+   "verano"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 566,
+  "artista": "Álvaro Soler",
+  "titulo": "Sofia",
+  "anio": 2016,
+  "decada": "10s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [
+   "verano"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 567,
+  "artista": "Aitana & Ana Guerra",
+  "titulo": "Lo malo",
+  "anio": 2018,
+  "decada": "10s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 568,
+  "artista": "Morat",
+  "titulo": "Cómo te atreves",
+  "anio": 2015,
+  "decada": "10s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 569,
+  "artista": "Els Catarres",
+  "titulo": "Jenifer",
+  "anio": 2011,
+  "decada": "10s",
+  "genero": "pop",
+  "idioma": "ca",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 570,
+  "artista": "Manel",
+  "titulo": "Teresa Rampell",
+  "anio": 2016,
+  "decada": "10s",
+  "genero": "pop",
+  "idioma": "ca",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 571,
+  "artista": "Dua Lipa",
+  "titulo": "Levitating",
+  "anio": 2020,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 572,
+  "artista": "Harry Styles",
+  "titulo": "As It Was",
+  "anio": 2022,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 573,
+  "artista": "Miley Cyrus",
+  "titulo": "Flowers",
+  "anio": 2023,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 574,
+  "artista": "Olivia Rodrigo",
+  "titulo": "drivers license",
+  "anio": 2021,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 575,
+  "artista": "Glass Animals",
+  "titulo": "Heat Waves",
+  "anio": 2020,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 576,
+  "artista": "Taylor Swift",
+  "titulo": "Anti-Hero",
+  "anio": 2022,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 577,
+  "artista": "Sabrina Carpenter",
+  "titulo": "Espresso",
+  "anio": 2024,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 578,
+  "artista": "Chappell Roan",
+  "titulo": "Good Luck, Babe!",
+  "anio": 2024,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 579,
+  "artista": "Billie Eilish",
+  "titulo": "Birds of a Feather",
+  "anio": 2024,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 580,
+  "artista": "Lady Gaga & Bruno Mars",
+  "titulo": "Die with a Smile",
+  "anio": 2024,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 581,
+  "artista": "ROSÉ & Bruno Mars",
+  "titulo": "APT.",
+  "anio": 2024,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 582,
+  "artista": "Ava Max",
+  "titulo": "Kings & Queens",
+  "anio": 2020,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 583,
+  "artista": "Lizzo",
+  "titulo": "About Damn Time",
+  "anio": 2022,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 584,
+  "artista": "Coldplay x BTS",
+  "titulo": "My Universe",
+  "anio": 2021,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 585,
+  "artista": "BTS",
+  "titulo": "Dynamite",
+  "anio": 2020,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 586,
+  "artista": "Ed Sheeran",
+  "titulo": "Bad Habits",
+  "anio": 2021,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 587,
+  "artista": "Tate McRae",
+  "titulo": "greedy",
+  "anio": 2023,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 588,
+  "artista": "Shaboozey",
+  "titulo": "A Bar Song (Tipsy)",
+  "anio": 2024,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 589,
+  "artista": "Reparto de Encanto",
+  "titulo": "We Don't Talk About Bruno",
+  "anio": 2021,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 590,
+  "artista": "Olivia Rodrigo",
+  "titulo": "good 4 u",
+  "anio": 2021,
+  "decada": "20s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 591,
+  "artista": "GAYLE",
+  "titulo": "abcdefu",
+  "anio": 2021,
+  "decada": "20s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 592,
+  "artista": "Imagine Dragons",
+  "titulo": "Enemy",
+  "anio": 2021,
+  "decada": "20s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 593,
+  "artista": "Måneskin",
+  "titulo": "I Wanna Be Your Slave",
+  "anio": 2021,
+  "decada": "20s",
+  "genero": "rock",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 594,
+  "artista": "Måneskin",
+  "titulo": "Zitti e buoni",
+  "anio": 2021,
+  "decada": "20s",
+  "genero": "rock",
+  "idioma": "otro",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 595,
+  "artista": "Arde Bogotá",
+  "titulo": "Los perros",
+  "anio": 2023,
+  "decada": "20s",
+  "genero": "rock",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 596,
+  "artista": "Lil Nas X",
+  "titulo": "Montero (Call Me by Your Name)",
+  "anio": 2021,
+  "decada": "20s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 597,
+  "artista": "Doja Cat",
+  "titulo": "Paint the Town Red",
+  "anio": 2023,
+  "decada": "20s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 598,
+  "artista": "Cardi B feat. Megan Thee Stallion",
+  "titulo": "WAP",
+  "anio": 2020,
+  "decada": "20s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 599,
+  "artista": "Jack Harlow",
+  "titulo": "First Class",
+  "anio": 2022,
+  "decada": "20s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 600,
+  "artista": "Kendrick Lamar",
+  "titulo": "Not Like Us",
+  "anio": 2024,
+  "decada": "20s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 601,
+  "artista": "SZA",
+  "titulo": "Kill Bill",
+  "anio": 2022,
+  "decada": "20s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 602,
+  "artista": "Silk Sonic",
+  "titulo": "Leave the Door Open",
+  "anio": 2021,
+  "decada": "20s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 603,
+  "artista": "RAYE feat. 070 Shake",
+  "titulo": "Escapism.",
+  "anio": 2022,
+  "decada": "20s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 604,
+  "artista": "Steve Lacy",
+  "titulo": "Bad Habit",
+  "anio": 2022,
+  "decada": "20s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 605,
+  "artista": "Central Cee & Dave",
+  "titulo": "Sprinter",
+  "anio": 2023,
+  "decada": "20s",
+  "genero": "hiphop",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 606,
+  "artista": "Beyoncé",
+  "titulo": "Break My Soul",
+  "anio": 2022,
+  "decada": "20s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 607,
+  "artista": "Elton John & Dua Lipa",
+  "titulo": "Cold Heart (PNAU Remix)",
+  "anio": 2021,
+  "decada": "20s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 608,
+  "artista": "Joel Corry feat. MNEK",
+  "titulo": "Head & Heart",
+  "anio": 2020,
+  "decada": "20s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 609,
+  "artista": "Tiësto",
+  "titulo": "The Business",
+  "anio": 2020,
+  "decada": "20s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 610,
+  "artista": "David Guetta & Bebe Rexha",
+  "titulo": "I'm Good (Blue)",
+  "anio": 2022,
+  "decada": "20s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 611,
+  "artista": "Dua Lipa",
+  "titulo": "Houdini",
+  "anio": 2023,
+  "decada": "20s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 612,
+  "artista": "Kylie Minogue",
+  "titulo": "Padam Padam",
+  "anio": 2023,
+  "decada": "20s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 613,
+  "artista": "Tyla",
+  "titulo": "Water",
+  "anio": 2023,
+  "decada": "20s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 614,
+  "artista": "Calvin Harris & Ellie Goulding",
+  "titulo": "Miracle",
+  "anio": 2023,
+  "decada": "20s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 615,
+  "artista": "Purple Disco Machine",
+  "titulo": "Hypnotized",
+  "anio": 2020,
+  "decada": "20s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 616,
+  "artista": "Peggy Gou",
+  "titulo": "(It Goes Like) Nanana",
+  "anio": 2023,
+  "decada": "20s",
+  "genero": "dance",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 617,
+  "artista": "Billie Eilish",
+  "titulo": "What Was I Made For?",
+  "anio": 2023,
+  "decada": "20s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 618,
+  "artista": "Benson Boone",
+  "titulo": "Beautiful Things",
+  "anio": 2024,
+  "decada": "20s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 619,
+  "artista": "Hozier",
+  "titulo": "Too Sweet",
+  "anio": 2024,
+  "decada": "20s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 620,
+  "artista": "Noah Kahan",
+  "titulo": "Stick Season",
+  "anio": 2022,
+  "decada": "20s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 621,
+  "artista": "Teddy Swims",
+  "titulo": "Lose Control",
+  "anio": 2023,
+  "decada": "20s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 622,
+  "artista": "Myles Smith",
+  "titulo": "Stargazing",
+  "anio": 2024,
+  "decada": "20s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 623,
+  "artista": "Lewis Capaldi",
+  "titulo": "Wish You the Best",
+  "anio": 2023,
+  "decada": "20s",
+  "genero": "cantautor",
+  "idioma": "en",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 624,
+  "artista": "Sebastián Yatra",
+  "titulo": "Dos oruguitas",
+  "anio": 2021,
+  "decada": "20s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [
+   "bso"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 625,
+  "artista": "Shakira",
+  "titulo": "Acróstico",
+  "anio": 2023,
+  "decada": "20s",
+  "genero": "cantautor",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 626,
+  "artista": "Shakira & Bizarrap",
+  "titulo": "Bzrp Music Sessions, Vol. 53",
+  "anio": 2023,
+  "decada": "20s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 627,
+  "artista": "Bizarrap & Quevedo",
+  "titulo": "Bzrp Music Sessions, Vol. 52",
+  "anio": 2022,
+  "decada": "20s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [
+   "verano"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 628,
+  "artista": "Bad Bunny",
+  "titulo": "Tití me preguntó",
+  "anio": 2022,
+  "decada": "20s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 629,
+  "artista": "Bad Bunny feat. Chencho Corleone",
+  "titulo": "Me porto bonito",
+  "anio": 2022,
+  "decada": "20s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 630,
+  "artista": "Bad Bunny & Jhay Cortez",
+  "titulo": "Dákiti",
+  "anio": 2020,
+  "decada": "20s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 631,
+  "artista": "Karol G & Shakira",
+  "titulo": "TQG",
+  "anio": 2023,
+  "decada": "20s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 632,
+  "artista": "Karol G",
+  "titulo": "Provenza",
+  "anio": 2022,
+  "decada": "20s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 633,
+  "artista": "Karol G",
+  "titulo": "Si antes te hubiera conocido",
+  "anio": 2024,
+  "decada": "20s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [
+   "verano"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 634,
+  "artista": "Rauw Alejandro",
+  "titulo": "Todo de ti",
+  "anio": 2021,
+  "decada": "20s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 635,
+  "artista": "Rosalía",
+  "titulo": "Despechá",
+  "anio": 2022,
+  "decada": "20s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [
+   "verano"
+  ],
+  "itunesId": null
+ },
+ {
+  "id": 636,
+  "artista": "C. Tangana feat. Niño de Elche & La Húngara",
+  "titulo": "Tú me dejaste de querer",
+  "anio": 2020,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 637,
+  "artista": "Quevedo",
+  "titulo": "Columbia",
+  "anio": 2023,
+  "decada": "20s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 638,
+  "artista": "Myke Towers",
+  "titulo": "LALA",
+  "anio": 2023,
+  "decada": "20s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 639,
+  "artista": "Eslabon Armado & Peso Pluma",
+  "titulo": "Ella baila sola",
+  "anio": 2023,
+  "decada": "20s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 640,
+  "artista": "Manuel Turizo",
+  "titulo": "La Bachata",
+  "anio": 2022,
+  "decada": "20s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 641,
+  "artista": "Grupo Frontera & Bad Bunny",
+  "titulo": "Un x100to",
+  "anio": 2023,
+  "decada": "20s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 642,
+  "artista": "Shakira",
+  "titulo": "Te felicito",
+  "anio": 2022,
+  "decada": "20s",
+  "genero": "latino",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 643,
+  "artista": "Chanel",
+  "titulo": "SloMo",
+  "anio": 2022,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 644,
+  "artista": "Nebulossa",
+  "titulo": "Zorra",
+  "anio": 2024,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 645,
+  "artista": "Rigoberta Bandini",
+  "titulo": "Ay mamá",
+  "anio": 2022,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 646,
+  "artista": "Sebastián Yatra",
+  "titulo": "Tacones rojos",
+  "anio": 2021,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 647,
+  "artista": "Camilo",
+  "titulo": "Vida de rico",
+  "anio": 2020,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 648,
+  "artista": "Blanca Paloma",
+  "titulo": "Eaea",
+  "anio": 2023,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "es",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 649,
+  "artista": "Rosalía",
+  "titulo": "Milionària",
+  "anio": 2023,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "ca",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 650,
+  "artista": "Stromae",
+  "titulo": "Santé",
+  "anio": 2021,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "otro",
+  "especial": [],
+  "itunesId": null
+ },
+ {
+  "id": 651,
+  "artista": "Tanxugueiras",
+  "titulo": "Terra",
+  "anio": 2022,
+  "decada": "20s",
+  "genero": "pop",
+  "idioma": "otro",
+  "especial": [],
+  "itunesId": null
+ }
+]
