@@ -246,6 +246,7 @@ function startGame() {
   audio.play().catch(() => {}); audio.pause();          // desbloquea audio con el clic
   S.gameWon = {}; S.turn = 0; S.played = new Set(S.history); S.reveal = null;
   for (const p of S.players.values()) {
+    if (!p.online) { p.inGame = false; continue; }
     dealCard(p);
     for (const pot of C.POTS) if (p.fichas > 0) { p.fichas--; S.pots[pot]++; }
   }
@@ -360,8 +361,12 @@ function render() {
       <div class="mid"><b>${esc(playerUrl)}</b></div>
       <div class="big">${players.length} jugador${players.length === 1 ? '' : 'es'}</div>
       <div class="chips">${players.map(p => `<span class="chip ${p.online ? '' : 'off'}">${esc(p.name)}</span>`).join('')}</div>
-      <button id="btnStart" ${players.length && S.songs.length ? '' : 'disabled'}>Empezar partida</button>`;
+      <div class="row"><button id="btnStart" ${players.some(p => p.online) && S.songs.length ? '' : 'disabled'}>Empezar partida</button>
+        ${players.some(p => !p.online) ? '<button class="sec" id="btnPurge">Quitar desconectados</button>' : ''}
+        <button class="sec" id="btnNewRoom">Sala nueva</button></div>`;
     $('btnStart').onclick = startGame;
+    if ($('btnPurge')) $('btnPurge').onclick = () => { for (const [k, p] of S.players) if (!p.online) S.players.delete(k); render(); };
+    $('btnNewRoom').onclick = () => { for (const p of S.players.values()) { try { p.conn && p.conn.close(); } catch {} } S.players.clear(); try { S.peer.destroy(); } catch {} startPeer(); render(); };
   } else if (S.phase === 'clip') {
     const ing = players.filter(p => p.inGame);
     st.innerHTML = `
