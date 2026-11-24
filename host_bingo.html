@@ -6,6 +6,7 @@
 <title>Musikino · Host</title>
 <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <script src="bingo-core.js"></script>
+<script src="qrcode.js"></script>
 <style>
   :root { --bg:#14111f; --panel:#1f1a30; --line:#342c4f; --txt:#f1eefb; --mut:#a59fc0; --acc:#ffcf3f; --ok:#3fd18b; --bad:#ff5d6c; --hard:#b48cff; }
   * { box-sizing:border-box; }
@@ -36,6 +37,10 @@
   input[type=number] { width:80px; background:#0d0b16; color:var(--txt); border:1px solid var(--line); border-radius:8px; padding:6px; font-size:16px; }
   .err { color:var(--bad); } .small { font-size:13px; } a { color:var(--mut); }
   .marked { color:var(--ok); }
+  .qr { background:#fff; padding:14px; border-radius:14px; line-height:0; }
+  .qr svg { width:260px; height:260px; display:block; }
+  .qrsmall { display:flex; gap:12px; align-items:center; margin-top:14px; font-size:14px; color:var(--mut); }
+  .qrsmall .qr { padding:6px; border-radius:8px; } .qrsmall .qr svg { width:96px; height:96px; }
 </style>
 </head>
 <body>
@@ -49,6 +54,7 @@
     <div class="panel">
       <div class="pots" id="pots"></div>
       <table id="board"></table>
+      <div class="qrsmall" id="lateQr"></div>
     </div>
     <div class="panel" style="margin-top:16px" id="settings">
       <b>Ajustes</b>
@@ -331,6 +337,14 @@ function endGame(reason) {
   broadcast(); render();
 }
 
+// ---------------- QR ----------------
+function qrSvg(text) {
+  try {
+    const q = qrcode(0, 'M'); q.addData(text); q.make();
+    return q.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+  } catch (e) { console.warn('QR', e); return ''; }
+}
+
 // ---------------- UI ----------------
 function stageMsg(html) { $('stage').innerHTML = `<div class="mid">${html}</div>`; }
 function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
@@ -341,7 +355,8 @@ function render() {
   const playerUrl = location.href.replace(/host_bingo\.html.*$/, 'player_bingo.html') + (S.code ? '?code=' + S.code : '');
   if (S.phase === 'lobby') {
     st.innerHTML = `
-      <div class="mut mid">Entrad desde el móvil en</div>
+      <div class="mut mid">Escanead el QR o entrad desde el móvil en</div>
+      ${S.code ? `<div class="qr">${qrSvg(playerUrl)}</div>` : ''}
       <div class="mid"><b>${esc(playerUrl)}</b></div>
       <div class="big">${players.length} jugador${players.length === 1 ? '' : 'es'}</div>
       <div class="chips">${players.map(p => `<span class="chip ${p.online ? '' : 'off'}">${esc(p.name)}</span>`).join('')}</div>
@@ -384,6 +399,7 @@ function render() {
   $('board').innerHTML = publicBoard().map(b => `<tr class="${b.online ? '' : 'off'}"><td>${esc(b.name)}${b.lines ? ` <span class="mut small">· ${b.lines} lín.</span>` : ''}</td><td class="n">${b.fichas}</td></tr>`).join('')
     || '<tr><td class="mut">Sin jugadores todavía</td></tr>';
   $('settings').style.display = S.phase === 'lobby' || S.phase === 'over' ? '' : 'none';
+  $('lateQr').innerHTML = S.phase !== 'lobby' && S.code ? `<div class="qr">${qrSvg(playerUrl)}</div><div>¿Llegas tarde?<br>Escanea para unirte<br><b style="color:var(--acc)">${S.code}</b></div>` : '';
 }
 
 loadSongs();
