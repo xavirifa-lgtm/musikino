@@ -69,7 +69,7 @@
   </div>
   <div id="game" style="display:none">
     <div class="banner" id="banner">Reconectando…</div>
-    <div class="top"><span id="who"></span><span>Fichas <b id="fichas">0</b></span></div>
+    <div class="top"><span id="who"></span><span>Fichas <b id="fichas">0</b> <a href="#" id="btnLeave" style="color:var(--mut);font-size:13px;margin-left:10px">Salir</a></span></div>
     <div class="timer"><div id="bar"></div></div>
     <div class="status" id="status"></div>
     <div class="grid" id="grid"></div>
@@ -117,13 +117,13 @@ $('inCode').value = (params.get('code') || localStorage.getItem('bm_code') || ''
 $('inName').value = localStorage.getItem('bm_name') || '';
 
 let peer = null, conn = null, code = null, name = null, st = null, wakeLock = null;
-let localMark = null, deadlineAt = 0, totalMs = 1, lastTurnRendered = -1, retryTimer = null, wantConnected = false;
+let localMark = null, deadlineAt = 0, totalMs = 1, lastTurnRendered = -1, retryTimer = null, wantConnected = false, fails = 0;
 
 $('btnJoin').onclick = () => {
   code = $('inCode').value.trim().toUpperCase(); name = $('inName').value.trim();
   if (code.length !== 4 || !name) { $('joinMsg').textContent = 'Pon el código de 4 letras y tu nombre.'; return; }
   localStorage.setItem('bm_code', code); localStorage.setItem('bm_name', name);
-  wantConnected = true; $('joinMsg').textContent = 'Conectando…';
+  wantConnected = true; fails = 0; $('joinMsg').textContent = 'Conectando…';
   connect(); requestWakeLock();
 };
 
@@ -132,18 +132,30 @@ function connect() {
   if (!peer || peer.destroyed) {
     peer = new Peer();
     peer.on('open', openConn);
-    peer.on('error', e => { console.warn(e.type); if (e.type === 'peer-unavailable') $('joinMsg').textContent = 'No encuentro esa sala. ¿Código correcto?'; scheduleRetry(); });
+    peer.on('error', e => { console.warn(e.type); if (e.type === 'peer-unavailable') { fails++; $('joinMsg').textContent = 'No encuentro esa sala. ¿Código correcto?'; if (fails >= 5) return roomGone(); } scheduleRetry(); });
     peer.on('disconnected', () => { try { peer.reconnect(); } catch {} });
   } else if (peer.open) openConn();
 }
 function openConn() {
   if (conn && conn.open) return;
   conn = peer.connect(PREFIX + code, { reliable: true });
-  conn.on('open', () => { $('banner').style.display = 'none'; conn.send({ t: 'join', pid, name }); });
+  conn.on('open', () => { fails = 0; $('banner').style.display = 'none'; conn.send({ t: 'join', pid, name }); });
   conn.on('data', onState);
   conn.on('close', () => { $('banner').style.display = 'block'; scheduleRetry(); });
   conn.on('error', scheduleRetry);
 }
+// Volver a la pantalla de entrada y olvidar la sala (botón Salir o sala que ya no existe)
+function leave(msg) {
+  wantConnected = false; clearTimeout(retryTimer);
+  try { if (conn) conn.close(); } catch {} try { if (peer) peer.destroy(); } catch {}
+  conn = null; peer = null; st = null; fails = 0;
+  localStorage.removeItem('bm_code');
+  if (location.search) history.replaceState(null, '', location.pathname);
+  $('inCode').value = ''; $('game').style.display = 'none'; $('join').style.display = '';
+  $('joinMsg').textContent = msg || '';
+}
+function roomGone() { leave(`La sala ${code} ya no existe (¿el host ha cerrado o recargado la página?). Escanea el QR nuevo o escribe el código nuevo.`); }
+$('btnLeave').onclick = e => { e.preventDefault(); leave('Has salido de la partida.'); };
 function scheduleRetry() { if (!wantConnected) return; clearTimeout(retryTimer); retryTimer = setTimeout(connect, 3000); }
 
 document.addEventListener('visibilitychange', () => {
