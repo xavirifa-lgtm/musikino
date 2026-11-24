@@ -7,15 +7,24 @@
 <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <script src="bingo-core.js"></script>
 <script src="qrcode.js"></script>
+<script src="mk-theme.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root { --bg:#14111f; --panel:#1f1a30; --line:#342c4f; --txt:#f1eefb; --mut:#a59fc0; --acc:#ffcf3f; --ok:#3fd18b; --bad:#ff5d6c; --hard:#b48cff; }
   * { box-sizing:border-box; }
-  body { margin:0; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; background:var(--bg); color:var(--txt); }
+  body { margin:0; font-family:"Fredoka",system-ui,-apple-system,"Segoe UI",sans-serif; background:var(--bg) url(img_mk/mk_fondo.jpg) center/cover fixed; color:var(--txt); min-height:100vh; }
+  button { font-family:inherit; }
+  h1 { display:flex; align-items:center; gap:10px; } h1 img.logo { height:52px; filter:drop-shadow(0 3px 8px #0008); }
+  .mascot { height:210px; } .mascot.sm { height:120px; }
+  .lobbyrow { display:flex; align-items:center; gap:28px; justify-content:center; flex-wrap:wrap; }
+  .awards li { display:flex; align-items:center; gap:10px; justify-content:center; } .awards img { width:44px; height:44px; }
+  .pot img { width:26px; height:26px; vertical-align:middle; margin-right:6px; }
+  .medal { font-size:22px; margin-right:6px; }
   header { display:flex; align-items:center; justify-content:space-between; padding:14px 24px; border-bottom:1px solid var(--line); }
   h1 { font-size:22px; margin:0; letter-spacing:.5px; } h1 span { color:var(--acc); }
   .code { font-size:20px; color:var(--mut); } .code b { color:var(--acc); font-size:34px; letter-spacing:6px; margin-left:8px; }
   main { display:grid; grid-template-columns: 1fr 340px; gap:20px; padding:20px 24px; }
-  .panel { background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:18px; }
+  .panel { background:#1f1a30e6; border:1px solid var(--line); border-radius:18px; padding:18px; backdrop-filter:blur(4px); box-shadow:0 10px 30px #0006; }
   .stage { min-height:420px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:14px; }
   .big { font-size:44px; font-weight:800; } .mid { font-size:24px; } .mut { color:var(--mut); }
   .timer { width:100%; max-width:640px; height:14px; background:#0d0b16; border-radius:8px; overflow:hidden; }
@@ -41,11 +50,13 @@
   .qr svg { width:260px; height:260px; display:block; }
   .qrsmall { display:flex; gap:12px; align-items:center; margin-top:14px; font-size:14px; color:var(--mut); }
   .qrsmall .qr { padding:6px; border-radius:8px; } .qrsmall .qr svg { width:96px; height:96px; }
+  h1 .ttl { color:var(--txt); } h1 em { color:var(--acc); font-style:normal; }
+  .pot { display:flex; align-items:center; gap:4px; white-space:nowrap; } .pot b { margin-left:auto; float:none; }
 </style>
 </head>
 <body>
 <header>
-  <h1>🎵 Musi<span>kino</span></h1>
+  <h1><img class="logo" src="img_mk/mk_logo.png" alt=""><span class="ttl">Musi<em>kino</em></span></h1>
   <div class="code" id="codeBox">Conectando…</div>
 </header>
 <main>
@@ -230,7 +241,7 @@ function sendState(p) {
     card: p.cats ? p.cats.map(c => ({ label: c.label, hard: !!c.dificil })) : null,
     cells: p.cells, mark: p.mark ? p.mark.idx : null, fichas: p.fichas, streak: p.streak, hard: p.hard, rachaMax: C.RACHA, expertoMax: C.EXPERTO,
     pots: S.pots, won: S.gameWon, board: publicBoard(),
-    reveal: showReveal ? { ...S.reveal.pub, me: S.reveal.results[p.pid] || { res: 'none' } } : null,
+    reveal: showReveal ? { ...S.reveal.pub, me: { ...(S.reveal.results[p.pid] || { res: 'none' }), pots: (S.reveal.wonBy && S.reveal.wonBy[p.pid]) || [] } } : null,
   };
   try { p.conn.send(msg); } catch {}
 }
@@ -300,31 +311,35 @@ function doReveal() {
   const inGame = [...S.players.values()].filter(p => p.inGame).map(p => Object.assign(p, { id: p.pid }));
   const r = C.evaluateTurn(inGame, S.song, S.gameWon);
   const nameOf = id => S.players.get(id).name;
-  const awards = [];
+  const awards = [], wonBy = {}, wonList = [];
   if (r.speedWinner) { S.players.get(r.speedWinner).fichas += 1; awards.push({ txt: `⚡ ${nameOf(r.speedWinner)} fue el más rápido (+1)` }); }
   for (const pot of C.POTS) {
     const ids = r.awards[pot]; if (!ids) continue;
     const { each, rest } = C.splitPot(S.pots[pot], ids.length);
     ids.forEach(id => S.players.get(id).fichas += each);
     S.pots[pot] = rest; S.gameWon[pot] = true;
-    awards.push({ txt: `🏆 ${C.POT_LABEL[pot]}: ${ids.map(nameOf).join(', ')} (+${each})` });
+    awards.push({ txt: `🏆 ${C.POT_LABEL[pot]}: ${ids.map(nameOf).join(', ')} (+${each})`, pot });
+    ids.forEach(id => (wonBy[id] = wonBy[id] || []).push({ pot, each }));
+    wonList.push({ pot, names: ids.map(nameOf), each });
   }
   const s = S.song;
   S.reveal = {
-    results: r.results,
+    results: r.results, wonBy,
     pub: {
+      won: wonList,
       titulo: s.titulo, artista: s.artista, anio: s.anio,
       tags: [
         C.makeCat('decada', s.decada).label, C.makeCat('genero', s.genero).label,
         s.idioma === 'ca' ? 'En catalán' : C.makeCat('idioma', s.idioma).label,
         ...(s.especial || []).map(e => C.makeCat('especial', e).label),
       ],
-      art: S.meta.art, url: S.meta.url, awards: awards.map(a => a.txt),
+      art: S.meta.art, url: S.meta.url, awards: awards.map(a => a.txt), awardPots: awards.map(a => a.pot || null),
       hits: Object.values(r.results).filter(x => x.res === 'hit').length,
       misses: Object.values(r.results).filter(x => x.res === 'miss').length,
     },
   };
   audio.play().catch(() => {});                 // que siga sonando mientras se revela
+  if (wonList.length) MK.celebrate(wonList.map(w => ({ pot: w.pot, title: '¡' + C.POT_LABEL[w.pot] + '!', subtitle: esc(w.names.join(', ')) + ' · +' + w.each + ' fichas' })));
   if (r.gameOver) return endGame(null);
   S.phase = 'reveal';
   if (S.turn >= cfg().max) return endGame('Se alcanzó el máximo de canciones');
@@ -357,7 +372,7 @@ function render() {
   if (S.phase === 'lobby') {
     st.innerHTML = `
       <div class="mut mid">Escanead el QR o entrad desde el móvil en</div>
-      ${S.code ? `<div class="qr">${qrSvg(playerUrl)}</div>` : ''}
+      <div class="lobbyrow"><img class="mascot mk-bob" src="img_mk/mk_mascota_escucha.png" alt="">${S.code ? `<div class="qr">${qrSvg(playerUrl)}</div>` : ''}</div>
       <div class="mid"><b>${esc(playerUrl)}</b></div>
       <div class="big">${players.length} jugador${players.length === 1 ? '' : 'es'}</div>
       <div class="chips">${players.map(p => `<span class="chip ${p.online ? '' : 'off'}">${esc(p.name)}</span>`).join('')}</div>
@@ -371,7 +386,9 @@ function render() {
     const ing = players.filter(p => p.inGame);
     st.innerHTML = `
       <div class="mut mid">Canción ${S.turn} de ${cfg().max}</div>
-      <div class="big">🎧 ¿Qué suena?</div>
+      <img class="mascot mk-bob" src="img_mk/mk_mascota_escucha.png" alt="">
+      <div class="big">¿Qué suena?</div>
+      ${MK.eq(9)}
       <div class="timer"><div></div></div>
       <div class="mid"><span class="marked">${ing.filter(p => p.mark).length}</span> / ${ing.length} han marcado</div>
       <div class="row"><button class="sec" id="btnSkip">Saltar canción</button></div>`;
@@ -386,12 +403,13 @@ function render() {
       <div class="mid">${esc(R.artista)} · ${R.anio}</div>
       <div class="chips">${R.tags.map((t, i) => `<span class="chip ${i > 2 ? 'hard' : ''}">${esc(t)}</span>`).join('')}</div>
       <div class="mut">✅ ${R.hits} aciertos · ❌ ${R.misses} fallos</div>
-      <ul class="awards">${R.awards.map(a => `<li>${esc(a)}</li>`).join('')}</ul>
+      <ul class="awards">${R.awards.map((a, i) => `<li class="mk-pop">${R.awardPots && R.awardPots[i] ? `<img src="${MK.prize(R.awardPots[i])}" alt="">` : ''}${esc(a)}</li>`).join('')}</ul>
       ${R.url ? `<a class="small" href="${esc(R.url)}" target="_blank" rel="noopener">Escuchar en Apple Music</a>` : ''}` : '') +
       (S.phase === 'over' ? `
-      <div class="big" style="margin-top:10px">🏁 Fin de la partida</div>
+      <img class="mascot mk-bob" src="img_mk/mk_mascota_celebra.png" alt="" style="margin-top:6px">
+      <div class="big">Fin de la partida</div>
       ${S.overReason ? `<div class="mut">${esc(S.overReason)} · el bote de Doble línea pasa a la siguiente</div>` : ''}
-      <table style="max-width:420px">${ranking.map((p, i) => `<tr><td>${i + 1}. ${esc(p.name)}</td><td class="n">${p.fichas}</td></tr>`).join('')}</table>
+      <table style="max-width:420px">${ranking.map((p, i) => `<tr><td><span class="medal">${['🥇', '🥈', '🥉'][i] || (i + 1) + '.'}</span>${esc(p.name)}</td><td class="n">${p.fichas}</td></tr>`).join('')}</table>
       <div class="row"><button id="btnNew">Nueva partida</button><button class="sec" id="btnLobby">Volver a la sala</button></div>` : `
       <div class="row"><button id="btnNext">Siguiente canción${cfg().auto > 0 ? ` (auto ${cfg().auto}s)` : ''}</button><button class="sec" id="btnEnd">Terminar</button></div>`);
     if ($('btnNext')) $('btnNext').onclick = nextTurn;
@@ -400,13 +418,14 @@ function render() {
     if ($('btnLobby')) $('btnLobby').onclick = () => { audio.pause(); S.phase = 'lobby'; S.reveal = null; for (const p of S.players.values()) p.inGame = false; broadcast(); render(); };
   }
   // Botes y marcador
-  $('pots').innerHTML = C.POTS.map(p => `<div class="pot ${S.gameWon[p] && S.phase !== 'lobby' ? 'won' : ''}">${C.POT_LABEL[p]} <b>${S.pots[p]}</b></div>`).join('');
+  $('pots').innerHTML = C.POTS.map(p => `<div class="pot ${S.gameWon[p] && S.phase !== 'lobby' ? 'won' : ''}"><img src="${MK.prize(p)}" alt="">${C.POT_LABEL[p]} <b>${S.pots[p]}</b></div>`).join('');
   $('board').innerHTML = publicBoard().map(b => `<tr class="${b.online ? '' : 'off'}"><td>${esc(b.name)}${b.lines ? ` <span class="mut small">· ${b.lines} lín.</span>` : ''}</td><td class="n">${b.fichas}</td></tr>`).join('')
     || '<tr><td class="mut">Sin jugadores todavía</td></tr>';
   $('settings').style.display = S.phase === 'lobby' || S.phase === 'over' ? '' : 'none';
   $('lateQr').innerHTML = S.phase !== 'lobby' && S.code ? `<div class="qr">${qrSvg(playerUrl)}</div><div>¿Llegas tarde?<br>Escanea para unirte<br><b style="color:var(--acc)">${S.code}</b></div>` : '';
 }
 
+MK.injectStyles(); MK.preload();
 loadSongs();
 startPeer();
 render();

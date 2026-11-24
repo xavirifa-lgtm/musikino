@@ -5,11 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="theme-color" content="#14111f">
 <title>Musikino</title>
+<script src="mk-theme.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <style>
   :root { --bg:#14111f; --panel:#1f1a30; --line:#342c4f; --txt:#f1eefb; --mut:#a59fc0; --acc:#ffcf3f; --ok:#3fd18b; --bad:#ff5d6c; --hard:#b48cff; }
   * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-  body { margin:0; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; background:var(--bg); color:var(--txt); min-height:100vh; }
+  body { margin:0; font-family:"Fredoka",system-ui,-apple-system,"Segoe UI",sans-serif; background:var(--bg) url(img_mk/mk_fondo.jpg) center/cover fixed; color:var(--txt); min-height:100vh; }
+  button, input { font-family:inherit; }
+  h1 { display:flex; align-items:center; justify-content:center; gap:8px; } h1 img { height:64px; }
+  .joinmascot { display:block; margin:0 auto 6px; height:170px; }
+  .revrow { display:flex; align-items:center; gap:10px; text-align:left; } .revrow img.m { width:84px; flex:none; }
+  .awards li img { width:26px; height:26px; vertical-align:middle; margin-right:6px; }
+  .pot img { width:20px; height:20px; vertical-align:-5px; margin-right:4px; }
+  .rule b img { width:22px; height:22px; vertical-align:-5px; margin-right:6px; }
+  .status .mk-eq { height:22px; vertical-align:middle; margin-right:8px; } .status .mk-eq i { width:5px; }
   .wrap { max-width:520px; margin:0 auto; padding:12px; }
   .top { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; font-size:15px; }
   .top b { color:var(--acc); font-size:20px; }
@@ -29,7 +39,7 @@
   .cell.flash-hit { animation:fh .9s; } .cell.flash-miss { animation:fm .9s; }
   @keyframes fh { 0%{transform:scale(1.15)} 100%{transform:scale(1)} }
   @keyframes fm { 0%,50%{transform:translateX(-4px)} 25%,75%{transform:translateX(4px)} 100%{transform:none} }
-  .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:12px; margin-top:12px; }
+  .card { background:#1f1a30e8; border:1px solid var(--line); border-radius:16px; padding:12px; margin-top:12px; backdrop-filter:blur(3px); }
   .reveal { text-align:center; } .reveal .t { font-size:20px; font-weight:800; } .reveal .a { color:var(--mut); margin:2px 0 8px; }
   .chips { display:flex; gap:6px; flex-wrap:wrap; justify-content:center; margin:6px 0; }
   .chip { background:#2c2545; border:1px solid var(--line); padding:4px 10px; border-radius:16px; font-size:13px; }
@@ -56,12 +66,15 @@
   .mini i { background:#3a3356; border-radius:2px; } .mini i.on { background:var(--ok); } .mini i.alt { background:#2f7d58; } .mini i.hd { box-shadow:0 0 0 1.5px var(--hard) inset; }
   .icon { width:64px; text-align:center; font-size:22px; color:var(--ok); letter-spacing:-2px; }
   .banner { background:#3d1a20; color:#ffd0d5; padding:8px; border-radius:10px; text-align:center; margin-bottom:8px; display:none; }
+  h1 .ttl { color:var(--txt); } h1 em { color:var(--acc); font-style:normal; }
+  .pot { display:flex; align-items:center; gap:4px; white-space:nowrap; } .pot b { margin-left:auto; float:none; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <div id="join">
-    <h1>🎵 Musi<span>kino</span></h1>
+    <h1><img src="img_mk/mk_logo.png" alt=""><span class="ttl">Musi<em>kino</em></span></h1>
+    <img class="joinmascot mk-bob" src="img_mk/mk_mascota_escucha.png" alt="">
     <input id="inCode" class="code" maxlength="4" placeholder="CÓDIGO" autocomplete="off">
     <input id="inName" maxlength="16" placeholder="Tu nombre" autocomplete="off">
     <button id="btnJoin">Entrar</button>
@@ -104,7 +117,8 @@ function rulesHtml(rmax, emax) {
     ['Experto', mini([1, 6, 12], [], [1, 6, 12, 9, 15, 2]), `${emax} aciertos en casillas difíciles (borde morado), donde sea.`],
     ['Doble línea', mini([0, 1, 2, 3, 7, 11, 15]), 'Dos líneas completas. Es el bote grande y termina la partida.'],
   ];
-  return R.map(([t, g, d]) => `<div class="rule">${g}<div><b>${t}</b><span>${d}</span></div></div>`).join('');
+  const keys = ['linea', 'esquinas', 'cuadrado', 'racha', 'experto', 'final'];
+  return R.map(([t, g, d], i) => `<div class="rule">${g}<div><b><img src="${MK.prize(keys[i])}" alt="">${t}</b><span>${d}</span></div></div>`).join('');
 }
 const PREFIX = 'bingomusical-';
 const POT_LABEL = { linea: 'Línea', esquinas: 'Esquinas', cuadrado: 'Cuadrado', racha: 'Racha', experto: 'Experto', final: 'Doble línea' };
@@ -117,6 +131,7 @@ $('inCode').value = (params.get('code') || localStorage.getItem('bm_code') || ''
 $('inName').value = localStorage.getItem('bm_name') || '';
 
 let peer = null, conn = null, code = null, name = null, st = null, wakeLock = null;
+let lastCelebrated = -1;
 let localMark = null, deadlineAt = 0, totalMs = 1, lastTurnRendered = -1, retryTimer = null, wantConnected = false, fails = 0;
 
 $('btnJoin').onclick = () => {
@@ -183,7 +198,7 @@ function render() {
   const status = $('status');
   if (m.phase === 'lobby') status.textContent = 'Esperando a que el host empiece…';
   else if (!m.inGame) status.textContent = 'Entrarás en la próxima partida';
-  else if (m.phase === 'clip') status.textContent = localMark == null ? '🎧 Escucha y marca una casilla' : '👍 Marcada (puedes cambiarla)';
+  else if (m.phase === 'clip') status.innerHTML = MK.eq(5) + (localMark == null ? 'Escucha y marca una casilla' : '👍 Marcada (puedes cambiarla)');
   else if (m.phase === 'over') status.textContent = '🏁 Fin de la partida';
   else status.textContent = 'Siguiente canción en breve…';
 
@@ -214,13 +229,20 @@ function render() {
     const r = m.reveal, me = r.me;
     const resTxt = me.res === 'hit' ? '✅ ¡Acierto!' : me.res === 'miss' ? '❌ Fallo: casilla bloqueada' : '— No marcaste';
     rv.style.display = '';
-    rv.innerHTML = `<div class="t">${esc(r.titulo)}</div><div class="a">${esc(r.artista)} · ${r.anio}</div>
+    const pose = (me.pots && me.pots.length) || me.res === 'hit' ? 'celebra' : me.res === 'miss' ? 'fallo' : 'escucha';
+    rv.innerHTML = `<div class="revrow"><img class="m mk-pop" src="${MK.mascot(pose)}" alt=""><div style="flex:1">
+      <div class="t">${esc(r.titulo)}</div><div class="a">${esc(r.artista)} · ${r.anio}</div>
+      <div class="res ${me.res}">${resTxt}</div></div></div>
       <div class="chips">${r.tags.map(t => `<span class="chip">${esc(t)}</span>`).join('')}</div>
-      <div class="res ${me.res}">${resTxt}</div>
-      <ul class="awards">${r.awards.map(a => `<li>${esc(a)}</li>`).join('')}</ul>`;
+      <ul class="awards">${r.awards.map((a, i) => `<li>${r.awardPots && r.awardPots[i] ? `<img src="${MK.prize(r.awardPots[i])}" alt="">` : ''}${esc(a)}</li>`).join('')}</ul>`;
+    if (m.turn !== lastCelebrated) {
+      lastCelebrated = m.turn;
+      if (me.pots && me.pots.length) MK.celebrate(me.pots.map(x => ({ pot: x.pot, title: '¡' + POT_LABEL[x.pot] + '!', subtitle: '+' + x.each + ' fichas para ti' })));
+      else if (me.res === 'hit') MK.ding(); else if (me.res === 'miss') MK.boing();
+    }
   } else rv.style.display = 'none';
 
-  $('pots').innerHTML = Object.keys(POT_LABEL).map(p => `<div class="pot ${m.won && m.won[p] && m.phase !== 'lobby' ? 'won' : ''}">${POT_LABEL[p]} <b>${m.pots[p]}</b></div>`).join('');
+  $('pots').innerHTML = Object.keys(POT_LABEL).map(p => `<div class="pot ${m.won && m.won[p] && m.phase !== 'lobby' ? 'won' : ''}"><img src="${MK.prize(p)}" alt="">${POT_LABEL[p]} <b>${m.pots[p]}</b></div>`).join('');
   $('board').innerHTML = m.board.map(b => `<tr class="${b.online ? '' : 'off'}"><td>${esc(b.name)}${b.lines ? ` <span class="mut small">· ${b.lines} lín.</span>` : ''}</td><td class="n">${b.fichas}</td></tr>`).join('');
 }
 
@@ -243,6 +265,7 @@ setInterval(() => {
   else bar.style.width = '0';
 }, 150);
 
+MK.injectStyles(); MK.preload();
 if ($('inCode').value && $('inName').value && params.get('code')) $('btnJoin').click();
 </script>
 </body>
