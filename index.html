@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Musikino</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="mk-theme.js"></script>
+<style>
+  * { box-sizing:border-box; }
+  body { margin:0; min-height:100vh; font-family:"Fredoka",system-ui,sans-serif; color:#f1eefb; background:#14111f url(img_mk/mk_fondo.jpg) center/cover fixed;
+         display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px; text-align:center; }
+  h1 { display:flex; align-items:center; gap:12px; font-size:48px; margin:0 0 6px; } h1 img { height:90px; } h1 em { color:#ffcf3f; font-style:normal; }
+  .sub { color:#a59fc0; font-size:18px; margin-bottom:22px; }
+  .mascot { height:170px; margin-bottom:10px; }
+  .modes { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:16px; width:min(900px, 100%); }
+  a.mode { display:block; text-decoration:none; color:inherit; background:#1f1a30e8; border:1px solid #342c4f; border-radius:18px; padding:20px; transition:transform .15s, border-color .15s; }
+  a.mode:hover { transform:translateY(-3px); border-color:#ffcf3f; }
+  a.mode b { display:block; font-size:22px; color:#ffcf3f; margin-bottom:6px; }
+  a.mode span { color:#c9c3e0; font-size:15px; line-height:1.35; }
+  .foot { margin-top:18px; color:#a59fc0; font-size:14px; }
+  .foot a { color:#a59fc0; }
+</style>
+</head>
+<body>
+  <img class="mascot mk-bob" src="img_mk/mk_mascota_escucha.png" alt="">
+  <h1><img src="img_mk/mk_logo.png" alt="">Musi<em>kino</em></h1>
+  <div class="sub">El bingo musical. ¿Cómo jugáis hoy?</div>
+  <div class="modes">
+    <a class="mode" href="host_bingo.html"><b>📱 Online</b><span>La tele o la tablet pone la música y cada uno juega en su móvil. Los premios se detectan solos. No hay que imprimir nada.</span></a>
+    <a class="mode" href="mesa_musikino.html"><b>📝 De mesa</b><span>Cartones de papel y bolígrafo. La tablet pone la música y valida los premios que se cantan (voz o timbre).</span></a>
+    <a class="mode" href="imprimir_cartones.html"><b>🖨️ Imprimir cartones</b><span>Para la versión de mesa: 4 cartones numerados por folio.</span></a>
+  </div>
+  <div class="foot">Los jugadores de la versión online entran escaneando el QR que sale en la pantalla del host.</div>
+<script>MK.injectStyles();</script>
+</body>
+</html>

@@ -418,8 +418,9 @@ function render() {
   const st = $('stage'), n = S.history.length;
   $('headInfo').textContent = S.phase === 'setup' ? '' : `Canción ${n} de ${cfg().max}`;
   if (S.phase === 'setup') {
-    st.innerHTML = `<div class="big">Preparado</div>
-      <div class="mid mut">Reparte un cartón por jugador y poned 1 ficha en cada bote.</div>
+    st.innerHTML = `<div class="mut mid">Versión de mesa (cartones de papel)</div><div class="big">Listos para empezar</div>
+      <div class="mid mut">Reparte un cartón impreso por jugador y poned 1 ficha en cada bote.</div>
+      <div class="small mut">¿Queríais jugar con el móvil? Usad la <a href="host_bingo.html">versión online</a>.</div>
       <div class="row"><button id="bStart" ${S.songs.length ? '' : 'disabled'}>Empezar partida</button>
       <a href="imprimir_cartones.html" target="_blank"><button class="sec">Imprimir cartones</button></a></div>`;
     $('bStart').onclick = startGame;
