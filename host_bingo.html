@@ -228,7 +228,7 @@ function sendState(p) {
     totalMs: (cfg().clip + cfg().extra) * 1000,
     inGame: p.inGame,
     card: p.cats ? p.cats.map(c => ({ label: c.label, hard: !!c.dificil })) : null,
-    cells: p.cells, mark: p.mark ? p.mark.idx : null, fichas: p.fichas, streak: p.streak, hard: p.hard,
+    cells: p.cells, mark: p.mark ? p.mark.idx : null, fichas: p.fichas, streak: p.streak, hard: p.hard, rachaMax: C.RACHA, expertoMax: C.EXPERTO,
     pots: S.pots, won: S.gameWon, board: publicBoard(),
     reveal: showReveal ? { ...S.reveal.pub, me: S.reveal.results[p.pid] || { res: 'none' } } : null,
   };

@@ -44,6 +44,17 @@
   button { width:100%; background:var(--acc); color:#1b1500; border:0; border-radius:12px; padding:14px; font-size:18px; font-weight:800; margin-top:8px; }
   h1 { text-align:center; } h1 span { color:var(--acc); }
   .mut { color:var(--mut); } .small { font-size:13px; } .center { text-align:center; }
+  .prog { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; font-size:14px; color:var(--mut); margin:8px 0 2px; }
+  .prog b { color:var(--acc); }
+  .helpbtn { background:#2c2545; color:var(--txt); border:1px solid var(--line); font-size:15px; padding:10px; margin-top:10px; }
+  .help { position:fixed; inset:0; background:#000c; display:flex; align-items:flex-start; justify-content:center; overflow:auto; z-index:20; padding:14px; }
+  .help .in { background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:16px; max-width:480px; width:100%; }
+  .help h2 { margin:0 0 6px; font-size:20px; }
+  .rule { display:grid; grid-template-columns:64px 1fr; gap:12px; align-items:center; padding:9px 0; border-bottom:1px solid var(--line); }
+  .rule b { color:var(--acc); } .rule span { display:block; font-size:14px; color:var(--mut); line-height:1.3; }
+  .mini { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; width:64px; height:64px; }
+  .mini i { background:#3a3356; border-radius:2px; } .mini i.on { background:var(--ok); } .mini i.alt { background:#2f7d58; } .mini i.hd { box-shadow:0 0 0 1.5px var(--hard) inset; }
+  .icon { width:64px; text-align:center; font-size:22px; color:var(--ok); letter-spacing:-2px; }
   .banner { background:#3d1a20; color:#ffd0d5; padding:8px; border-radius:10px; text-align:center; margin-bottom:8px; display:none; }
 </style>
 </head>
@@ -62,15 +73,39 @@
     <div class="timer"><div id="bar"></div></div>
     <div class="status" id="status"></div>
     <div class="grid" id="grid"></div>
+    <div class="prog" id="prog"></div>
+    <button class="helpbtn" id="btnHelp">¿Cómo se gana?</button>
     <div class="card reveal" id="reveal" style="display:none"></div>
     <div class="card"><div class="pots" id="pots"></div></div>
     <div class="card"><table id="board"></table></div>
     <p class="mut small center">Marca una casilla por canción. Si fallas, se bloquea.</p>
   </div>
 </div>
+<div class="help" id="help" style="display:none"><div class="in">
+  <h2>¿Cómo se gana?</h2>
+  <div class="mut small">Los premios se dan solos al revelar cada canción: solo cuentan las casillas acertadas (en verde).</div>
+  <div id="rules"></div>
+  <p class="mut small">Las casillas con borde morado son difíciles (combinadas o especiales) y cuentan para Experto.</p>
+  <button id="btnHelpClose">Cerrar</button>
+</div></div>
 <script>
 'use strict';
 const $ = id => document.getElementById(id);
+const LINES4 = [[0,1,2,3],[4,5,6,7],[8,9,10,11],[12,13,14,15],[0,4,8,12],[1,5,9,13],[2,6,10,14],[3,7,11,15],[0,5,10,15],[3,6,9,12]];
+function mini(on, alt = [], hd = []) {
+  return '<div class="mini">' + Array.from({ length: 16 }, (_, i) => `<i class="${on.includes(i) ? 'on' : alt.includes(i) ? 'alt' : ''} ${hd.includes(i) ? 'hd' : ''}"></i>`).join('') + '</div>';
+}
+function rulesHtml(rmax, emax) {
+  const R = [
+    ['Línea', mini([4, 5, 6, 7], [2, 10, 14]), 'Una fila, columna o diagonal de 4 entera. (Oscuro: ejemplo · claro: una columna, que también vale.)'],
+    ['Esquinas', mini([0, 3, 12, 15]), 'Las 4 esquinas del cartón.'],
+    ['Cuadrado', mini([0, 1, 4, 5], [10, 11, 14, 15]), 'Cualquier bloque de 2×2, en cualquier sitio.'],
+    ['Racha', `<div class="icon">${'✓'.repeat(rmax)}</div>`, `Acertar ${rmax} canciones seguidas. Fallar o no marcar en un turno la corta.`],
+    ['Experto', mini([1, 6, 12], [], [1, 6, 12, 9, 15, 2]), `${emax} aciertos en casillas difíciles (borde morado), donde sea.`],
+    ['Doble línea', mini([0, 1, 2, 3, 7, 11, 15]), 'Dos líneas completas. Es el bote grande y termina la partida.'],
+  ];
+  return R.map(([t, g, d]) => `<div class="rule">${g}<div><b>${t}</b><span>${d}</span></div></div>`).join('');
+}
 const PREFIX = 'bingomusical-';
 const POT_LABEL = { linea: 'Línea', esquinas: 'Esquinas', cuadrado: 'Cuadrado', racha: 'Racha', experto: 'Experto', final: 'Doble línea' };
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -154,6 +189,13 @@ function render() {
     grid.querySelectorAll('.cell').forEach(el => el.onclick = () => tap(+el.dataset.i));
   } else grid.innerHTML = '';
 
+  // progreso hacia los premios
+  if (m.cells && m.inGame) {
+    const lines = LINES4.filter(l => l.every(i => m.cells[i] === 'hit')).length;
+    const corners = [0, 3, 12, 15].filter(i => m.cells[i] === 'hit').length;
+    $('prog').innerHTML = `<span>Líneas <b>${lines}</b>/2</span><span>Esquinas <b>${corners}</b>/4</span><span>Racha <b>${m.streak || 0}</b>/${m.rachaMax || 4}</span><span>Experto <b>${Math.min(m.hard || 0, m.expertoMax || 3)}</b>/${m.expertoMax || 3}</span>`;
+  } else $('prog').innerHTML = '';
+
   // revelado
   const rv = $('reveal');
   if (m.reveal) {
@@ -169,6 +211,10 @@ function render() {
   $('pots').innerHTML = Object.keys(POT_LABEL).map(p => `<div class="pot ${m.won && m.won[p] && m.phase !== 'lobby' ? 'won' : ''}">${POT_LABEL[p]} <b>${m.pots[p]}</b></div>`).join('');
   $('board').innerHTML = m.board.map(b => `<tr class="${b.online ? '' : 'off'}"><td>${esc(b.name)}${b.lines ? ` <span class="mut small">· ${b.lines} lín.</span>` : ''}</td><td class="n">${b.fichas}</td></tr>`).join('');
 }
+
+$('btnHelp').onclick = () => { $('rules').innerHTML = rulesHtml((st && st.rachaMax) || 4, (st && st.expertoMax) || 3); $('help').style.display = 'flex'; };
+$('btnHelpClose').onclick = () => { $('help').style.display = 'none'; };
+$('help').onclick = e => { if (e.target.id === 'help') $('help').style.display = 'none'; };
 
 function tap(i) {
   if (!st || st.phase !== 'clip' || !st.inGame || Date.now() > deadlineAt) return;
