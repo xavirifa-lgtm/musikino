@@ -92,7 +92,7 @@ const $ = id => document.getElementById(id);
 const audio = $('audio');
 const PREFIX = 'bingomusical-';
 const HIST_KEY = 'bingomusical_historial';
-const HIST_MAX = 400;
+const HIST_MAX = 5000;   // no se repite ninguna canción hasta agotar la lista
 
 // ---------------- Estado ----------------
 const S = {
@@ -157,11 +157,11 @@ async function resolveSong(song) {
   if (metaCache.has(song.id)) return metaCache.get(song.id);
   let best = null;
   if (song.itunesId) {
-    const d = await jsonp(`https://itunes.apple.com/lookup?id=${song.itunesId}&country=es&entity=song`);
+    const d = await jsonp(`https://itunes.apple.com/lookup?id=${song.itunesId}&country=${song.itunesPais || 'es'}&entity=song&explicit=Yes`);
     best = d.results && d.results.find(r => r.previewUrl);
   } else {
     const term = encodeURIComponent(song.artista.split(/\s+(?:feat\.?|ft\.?)\s+/)[0] + ' ' + song.titulo.replace(/\(.*?\)/g, ''));
-    const d = await jsonp(`https://itunes.apple.com/search?term=${term}&entity=song&limit=15&country=es`);
+    const d = await jsonp(`https://itunes.apple.com/search?term=${term}&entity=song&explicit=Yes&limit=15&country=es`);
     let bestScore = -1;
     const t = norm(song.titulo), a = mainArtist(song.artista);
     for (const r of (d.results || [])) {
@@ -268,7 +268,7 @@ function dealCard(p) {
 function startGame() {
   if (!S.songs.length || !S.players.size) return;
   audio.play().catch(() => {}); audio.pause();          // desbloquea audio con el clic
-  S.gameWon = {}; S.turn = 0; S.played = new Set(S.history); S.reveal = null;
+  S.gameWon = {}; S.turn = 0; S.played = new Set(S.history); S.reveal = null; S.roundSongs = [];
   for (const p of S.players.values()) {
     if (!p.online) { p.inGame = false; continue; }
     dealCard(p);
@@ -316,7 +316,7 @@ async function nextTurn() {
   const cards = [...S.players.values()].filter(p => p.inGame).map(p => ({ cats: p.cats, cells: p.cells }));
   let song = null, meta = null;
   for (let tries = 0; tries < 8 && !meta; tries++) {
-    song = C.pickSong(S.songs, new Set([...S.played, ...S.failed]), cards);
+    song = C.pickSong(S.songs, S.played, cards, Math.random, S.roundSongs || [], S.failed, S.history);
     if (!song) { // historial agotado: lo vaciamos
       S.history = []; saveHistory(); S.played = new Set(); continue;
     }
@@ -325,12 +325,12 @@ async function nextTurn() {
   if (!meta) { stageMsg('No se pudo cargar ninguna canción. ¿Hay conexión con iTunes?'); return; }
 
   S.turn++; S.song = song; S.meta = meta; S.played.add(song.id);
-  S.history.push(song.id); saveHistory();
+  S.history.push(song.id); saveHistory(); (S.roundSongs = S.roundSongs || []).push(song);
   for (const p of S.players.values()) p.mark = null;
 
   audio.src = meta.preview;
   try { await new Promise((res, rej) => { audio.oncanplay = res; audio.onerror = rej; audio.load(); }); }
-  catch { S.failed.add(song.id); S.turn--; return nextTurn(); }
+  catch { S.failed.add(song.id); S.turn--; S.roundSongs.pop(); return nextTurn(); }
   audio.currentTime = 0;
   audio.play().catch(e => console.warn('autoplay', e));
 
@@ -375,7 +375,7 @@ function doReveal() {
       titulo: s.titulo, artista: s.artista, anio: s.anio,
       tags: [
         C.makeCat('decada', s.decada).label, C.makeCat('genero', s.genero).label,
-        s.idioma === 'ca' ? 'En catalán' : C.makeCat('idioma', s.idioma).label,
+        C.makeCat('idioma', s.idioma).label,
         ...(s.especial || []).map(e => C.makeCat('especial', e).label),
       ],
       art: S.meta.art, url: S.meta.url, awards: awards.map(a => a.txt), awardPots: awards.map(a => a.pot || null),
@@ -388,6 +388,8 @@ function doReveal() {
   if (r.gameOver) return endGame(null);
   S.phase = 'reveal';
   if (S.turn >= cfg().max) return endGame('Se alcanzó el máximo de canciones de la ronda');
+  // si ningún jugador tiene casillas libres, no tiene sentido seguir poniendo canciones
+  if (!inGame.some(p => p.online && p.cells.includes('free'))) return endGame('Nadie puede marcar más casillas');
   if (cfg().auto > 0) S.autoId = setTimeout(nextTurn, cfg().auto * 1000);
   broadcast(); render();
 }
@@ -456,7 +458,7 @@ function render() {
       <div class="timer"><div></div></div>
       <div class="mid"><span class="marked">${ing.filter(p => p.mark).length}</span> / ${ing.length} han marcado</div>
       <div class="row"><button class="sec" id="btnSkip">Saltar canción</button></div>`;
-    $('btnSkip').onclick = () => { S.failed.add(S.song.id); S.turn--; audio.pause(); nextTurn(); };
+    $('btnSkip').onclick = () => { S.failed.add(S.song.id); S.turn--; S.roundSongs.pop(); audio.pause(); nextTurn(); };
     tick();
   } else if (S.phase === 'reveal' || S.phase === 'over') {
     const R = S.reveal ? S.reveal.pub : null;

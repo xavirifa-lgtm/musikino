@@ -7,12 +7,12 @@
   'use strict';
 
   const GAME_NAME = 'Musikino';   // nombre del juego (cartones y pantallas)
-  const DECADAS = ['70s', '80s', '90s', '00s', '10s', '20s'];
-  const DECADA_LABEL = { '70s': 'Años 70', '80s': 'Años 80', '90s': 'Años 90', '00s': 'Años 2000', '10s': 'Años 2010', '20s': 'Años 2020' };
+  const DECADAS = ['50s', '60s', '70s', '80s', '90s', '00s', '10s', '20s'];   // '50s' = 1940-1959
+  const DECADA_LABEL = { '50s': 'Años 40 y 50', '60s': 'Años 60', '70s': 'Años 70', '80s': 'Años 80', '90s': 'Años 90', '00s': 'Años 2000', '10s': 'Años 2010', '20s': 'Años 2020' };
   const GENEROS = ['pop', 'rock', 'dance', 'latino', 'hiphop', 'cantautor'];
   const GENERO_LABEL = { pop: 'Pop', rock: 'Rock', dance: 'Dance / Electrónica', latino: 'Latino', hiphop: 'Hip-hop / R&B', cantautor: 'Cantautor / Balada' };
   const IDIOMAS = ['es', 'en', 'otro'];
-  const IDIOMA_LABEL = { es: 'En castellano', en: 'En inglés', otro: 'Otro idioma', ca: 'En catalán' };
+  const IDIOMA_LABEL = { es: 'En castellano', en: 'En inglés', otro: 'Otro idioma', ca: 'En catalán', inst: 'Instrumental' };   // ca e inst no tienen casilla
   const ESPECIALES = ['bso', 'onehit', 'verano'];
   const ESPECIAL_LABEL = { bso: 'Banda sonora', onehit: 'One-hit wonder', verano: 'Canción del verano' };
 
@@ -73,8 +73,10 @@
   }
 
   // Catálogo FIJO: los cartones dependen solo de su número, no de canciones.json.
-  // (Mismo orden que se calculaba antes, para que los cartones ya impresos sigan valiendo.)
+  // (v2, nov 2026: se añadieron años 40-50 y 60; los cartones impresos con la v1 ya no coinciden.)
   const COMBOS_DG = {
+    '50s': ['pop', 'rock', 'latino'],
+    '60s': ['pop', 'rock', 'cantautor'],
     '70s': ['pop', 'rock', 'dance', 'hiphop', 'cantautor'],
     '80s': ['pop', 'rock', 'dance', 'hiphop', 'cantautor'],
     '90s': ['pop', 'rock', 'dance', 'latino', 'hiphop', 'cantautor'],
@@ -141,21 +143,53 @@
   const hasSquare = cells => SQUARES.some(q => allHit(cells, q));
 
   // ---------- Selección de canción ----------
-  /** Elige la siguiente canción. cards = [{cats, cells}] de los jugadores activos.
-      Prioriza canciones que encajan en casillas libres de la mesa, con algo de azar. */
-  function pickSong(songs, excludeIds, cards, rng = Math.random) {
-    const cand = songs.filter(s => !excludeIds.has(s.id));
+  /** Elige la siguiente canción, equilibrando la ronda.
+      songs: lista completa · excludeIds: ya sonadas (historial entre partidas) o fallidas
+      cards: [{cats, cells}] de los jugadores activos · roundSongs: canciones ya sonadas en ESTA ronda
+      hardExclude: canciones que nunca deben salir (sin fragmento) · historyOrder: ids sonados, del más antiguo al más reciente.
+      1) Elige década: todas pesan igual (no según cuántas canciones haya de cada una), se penaliza
+         la década que ya ha salido en la ronda y se favorece la que encaja en casillas libres.
+      2) Dentro de la década elige canción: se penaliza el género ya repetido en la ronda
+         y se favorece la que encaja en casillas libres. */
+  function pickSong(songs, excludeIds, cards, rng = Math.random, roundSongs = [], hardExclude = new Set(), historyOrder = []) {
+    // Si una década ya no tiene canciones sin sonar, se recicla (salvo las de esta ronda),
+    // para que las décadas con menos canciones no desaparezcan de la partida.
+    const inRound = new Set(roundSongs.map(s => s.id));
+    const usable = songs.filter(s => !hardExclude.has(s.id) && !inRound.has(s.id));
+    const fresh = usable.filter(s => !excludeIds.has(s.id));
+    const freshD = new Set(fresh.map(s => s.decada));
+    // En las décadas recicladas solo entra la mitad que sonó hace más tiempo
+    const last = new Map(); historyOrder.forEach((id, i) => last.set(id, i));
+    const recyc = {};
+    for (const s of usable) if (excludeIds.has(s.id) && !freshD.has(s.decada)) (recyc[s.decada] = recyc[s.decada] || []).push(s);
+    const old = Object.values(recyc).flatMap(arr => {
+      arr.sort((a, b) => (last.has(a.id) ? last.get(a.id) : -1) - (last.has(b.id) ? last.get(b.id) : -1));
+      return arr.slice(0, Math.max(1, Math.ceil(arr.length / 2)));
+    });
+    const cand = fresh.concat(old);
     if (!cand.length) return null;
-    // Sesgo suave: peso = 1 + nº de casillas libres de la mesa que cumple (para que no siempre encaje)
-    const weights = cand.map(s => {
+    const nCards = Math.max(1, cards.length);
+    const fit = s => {               // 1 + casillas libres de la mesa que cumple (media por cartón)
       let n = 0;
       for (const cd of cards) cd.cats.forEach((c, i) => { if (cd.cells[i] === 'free' && matches(c, s)) n++; });
-      return 1 + n / Math.max(1, cards.length);
+      return 1 + n / nCards;
+    };
+    const cntD = {}, cntG = {};
+    for (const s of roundSongs) { cntD[s.decada] = (cntD[s.decada] || 0) + 1; cntG[s.genero] = (cntG[s.genero] || 0) + 1; }
+    const pickW = (items, w) => {
+      const ws = items.map(w), tot = ws.reduce((a, b) => a + b, 0);
+      let r = rng() * tot;
+      for (let i = 0; i < items.length; i++) { r -= ws[i]; if (r <= 0) return items[i]; }
+      return items[items.length - 1];
+    };
+    const byD = {};
+    for (const s of cand) (byD[s.decada] = byD[s.decada] || []).push({ s, f: fit(s) });
+    const decs = Object.keys(byD);
+    const d = pickW(decs, k => {
+      const avgFit = byD[k].reduce((a, x) => a + x.f, 0) / byD[k].length;
+      return avgFit / Math.pow(1 + (cntD[k] || 0), 2);
     });
-    const total = weights.reduce((a, b) => a + b, 0);
-    let r = rng() * total;
-    for (let i = 0; i < cand.length; i++) { r -= weights[i]; if (r <= 0) return cand[i]; }
-    return cand[cand.length - 1];
+    return pickW(byD[d], x => x.f / Math.pow(1 + (cntG[x.s.genero] || 0), 1.5)).s;
   }
 
   // ---------- Evaluación de un turno ----------
@@ -202,7 +236,7 @@
 
   // ---------- Etiquetas cortas para el cartón impreso (máx. 2 líneas) ----------
   const GEN_CORTO = { pop: 'Pop', rock: 'Rock', dance: 'Dance', latino: 'Latino', hiphop: 'Hip-hop / R&B', cantautor: 'Cantautor' };
-  const DEC_CORTO = { '70s': 'años 70', '80s': 'años 80', '90s': 'años 90', '00s': 'años 2000', '10s': 'años 2010', '20s': 'años 2020' };
+  const DEC_CORTO = { '50s': 'años 40-50', '60s': 'años 60', '70s': 'años 70', '80s': 'años 80', '90s': 'años 90', '00s': 'años 2000', '10s': 'años 2010', '20s': 'años 2020' };
   function printLines(c) {
     switch (c.type) {
       case 'decada': return ['Años ' + DEC_CORTO[c.key].slice(5)];

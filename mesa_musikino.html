@@ -100,7 +100,7 @@
 const C = window.BingoCore;
 const $ = id => document.getElementById(id);
 const audio = $('audio');
-const HIST_KEY = 'musikino_historial', HIST_MAX = 400;
+const HIST_KEY = 'musikino_historial', HIST_MAX = 5000;
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 document.title = C.GAME_NAME + ' · Mesa';
 $('title').innerHTML = '🎵 ' + esc(C.GAME_NAME.slice(0, 4)) + '<span>' + esc(C.GAME_NAME.slice(4)) + '</span>';
@@ -155,11 +155,11 @@ async function resolveSong(song) {
   if (metaCache.has(song.id)) return metaCache.get(song.id);
   let best = null;
   if (song.itunesId) {
-    const d = await jsonp(`https://itunes.apple.com/lookup?id=${song.itunesId}&country=es&entity=song`);
+    const d = await jsonp(`https://itunes.apple.com/lookup?id=${song.itunesId}&country=${song.itunesPais || 'es'}&entity=song&explicit=Yes`);
     best = d.results && d.results.find(r => r.previewUrl);
   } else {
     const term = encodeURIComponent(song.artista.split(/\s+(?:feat\.?|ft\.?)\s+/)[0] + ' ' + song.titulo.replace(/\(.*?\)/g, ''));
-    const d = await jsonp(`https://itunes.apple.com/search?term=${term}&entity=song&limit=15&country=es`);
+    const d = await jsonp(`https://itunes.apple.com/search?term=${term}&entity=song&explicit=Yes&limit=15&country=es`);
     let bs = -1; const t = norm(song.titulo), a = mainArtist(song.artista);
     for (const r of (d.results || [])) {
       if (!r.previewUrl) continue;
@@ -381,7 +381,7 @@ async function nextSong() {
   const cards = cardsInPlay();
   let song = null, meta = null;
   for (let tries = 0; tries < 8 && !meta; tries++) {
-    song = C.pickSong(S.songs, new Set([...S.played, ...S.failed]), cards);
+    song = C.pickSong(S.songs, S.played, cards, Math.random, S.history, S.failed, S.recent);
     if (!song) { S.recent = []; saveRecent(); S.played = new Set(S.history.map(s => s.id)); continue; }
     try { meta = await resolveSong(song); } catch (e) { console.warn('Sin fragmento:', song.artista, '-', song.titulo); S.failed.add(song.id); }
   }
