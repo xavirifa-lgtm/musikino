@@ -6,6 +6,7 @@
 <meta name="theme-color" content="#14111f">
 <title>Musikino</title>
 <script src="mk-theme.js"></script>
+<script src="peer-config.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <style>
@@ -26,7 +27,7 @@
   .status { text-align:center; font-size:18px; min-height:26px; margin:6px 0; }
   .timer { height:8px; background:#0d0b16; border-radius:6px; overflow:hidden; margin-bottom:10px; }
   .timer > div { height:100%; width:0; background:var(--acc); }
-  .grid { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; }
+  .grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:6px; }
   .cell { aspect-ratio:1/1; border-radius:10px; border:2px solid var(--line); background:var(--panel); color:var(--txt);
           display:flex; align-items:center; justify-content:center; text-align:center; font-size:12.5px; line-height:1.15; padding:4px;
           font-weight:600; user-select:none; position:relative; }
@@ -68,6 +69,22 @@
   .banner { background:#3d1a20; color:#ffd0d5; padding:8px; border-radius:10px; text-align:center; margin-bottom:8px; display:none; }
   h1 .ttl { color:var(--txt); } h1 em { color:var(--acc); font-style:normal; }
   .pot { display:flex; align-items:center; gap:4px; white-space:nowrap; } .pot b { margin-left:auto; float:none; }
+  /* texto de las casillas más grande */
+  .cell { font-size: clamp(14px, 3.9vw, 19px) !important; line-height:1.12 !important; padding:5px !important; }
+  /* móvil girado: cartón grande a la izquierda, información a la derecha */
+  @media (orientation: landscape) and (max-height: 600px), (orientation: landscape) and (min-width: 900px) {
+    .wrap { max-width: none; padding: 6px 12px; }
+    #game:not([style*="none"]) { display: grid !important; grid-template-columns: 60vw 1fr; gap: 12px; align-items: start; }
+    .colA .top { font-size: 13px; margin: 0 0 2px; } .colA .top b { font-size: 16px; }
+    .colA .timer { height: 5px; margin-bottom: 3px; }
+    .colA .status { font-size: 14px; margin: 0 0 4px; min-height: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .colA .grid { gap: 5px; grid-template-rows: repeat(4, calc((100vh - 70px) / 4)); }
+    .colA .cell { aspect-ratio: auto; font-size: clamp(13px, min(2.2vw, 4.4vh), 24px) !important; }
+    .colA .prog { display: none; }
+    .colB { max-height: calc(100vh - 12px); overflow: auto; }
+    .colB .helpbtn { margin-top: 0; }
+    .colB .pots { grid-template-columns: repeat(2, 1fr); }
+  }
 </style>
 </head>
 <body>
@@ -82,27 +99,32 @@
   </div>
   <div id="game" style="display:none">
     <div class="banner" id="banner">Reconectando…</div>
-    <div class="top"><span id="who"></span><span>Fichas <b id="fichas">0</b> <a href="#" id="btnLeave" style="color:var(--mut);font-size:13px;margin-left:10px">Salir</a></span></div>
-    <div class="timer"><div id="bar"></div></div>
-    <div class="status" id="status"></div>
-    <div class="grid" id="grid"></div>
-    <div class="prog" id="prog"></div>
-    <button class="helpbtn" id="btnHelp">¿Cómo se gana?</button>
-    <div class="card reveal" id="reveal" style="display:none"></div>
-    <div class="card"><div class="pots" id="pots"></div></div>
-    <div class="card"><table id="board"></table></div>
-    <p class="mut small center">Marca una casilla por canción. Si fallas, se bloquea.</p>
+    <div class="colA">
+      <div class="top"><span id="who"></span><span>Fichas <b id="fichas">0</b> <a href="#" id="btnLeave" style="color:var(--mut);font-size:13px;margin-left:10px">Salir</a></span></div>
+      <div class="timer"><div id="bar"></div></div>
+      <div class="status" id="status"></div>
+      <div class="grid" id="grid"></div>
+      <div class="prog" id="prog"></div>
+    </div>
+    <div class="colB">
+      <button class="helpbtn" id="btnHelp">¿Cómo se gana?</button>
+      <div class="card reveal" id="reveal" style="display:none"></div>
+      <div class="card"><div class="pots" id="pots"></div></div>
+      <div class="card"><table id="board"></table></div>
+      <p class="mut small center">Marca una casilla por canción. Si fallas, se bloquea.</p>
+    </div>
   </div>
 </div>
 <div class="help" id="help" style="display:none"><div class="in">
   <h2>¿Cómo se gana?</h2>
-  <div class="mut small">Los premios se dan solos al revelar cada canción: solo cuentan las casillas acertadas (en verde).</div>
+  <div class="mut small">Los premios se dan solos al revelar cada canción: solo cuentan las casillas acertadas (en verde). Una partida tiene varias rondas; los botes que nadie gana pasan a la ronda siguiente y al final de la partida se reparte lo que quede.</div>
   <div id="rules"></div>
   <p class="mut small">Las casillas con borde morado son difíciles (combinadas o especiales) y cuentan para Experto.</p>
   <button id="btnHelpClose">Cerrar</button>
 </div></div>
 <script>
 'use strict';
+const yJoin = a => a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' y ' + a[a.length - 1];
 const $ = id => document.getElementById(id);
 const LINES4 = [[0,1,2,3],[4,5,6,7],[8,9,10,11],[12,13,14,15],[0,4,8,12],[1,5,9,13],[2,6,10,14],[3,7,11,15],[0,5,10,15],[3,6,9,12]];
 function mini(on, alt = [], hd = []) {
@@ -115,7 +137,7 @@ function rulesHtml(rmax, emax) {
     ['Cuadrado', mini([0, 1, 4, 5], [10, 11, 14, 15]), 'Cualquier bloque de 2×2, en cualquier sitio.'],
     ['Racha', `<div class="icon">${'✓'.repeat(rmax)}</div>`, `Acertar ${rmax} canciones seguidas. Fallar o no marcar en un turno la corta.`],
     ['Experto', mini([1, 6, 12], [], [1, 6, 12, 9, 15, 2]), `${emax} aciertos en casillas difíciles (borde morado), donde sea.`],
-    ['Doble línea', mini([0, 1, 2, 3, 7, 11, 15]), 'Dos líneas completas. Es el bote grande y termina la partida.'],
+    ['Doble línea', mini([0, 1, 2, 3, 7, 11, 15]), 'Dos líneas completas. Es el bote grande y termina la ronda.'],
   ];
   const keys = ['linea', 'esquinas', 'cuadrado', 'racha', 'experto', 'final'];
   return R.map(([t, g, d], i) => `<div class="rule">${g}<div><b><img src="${MK.prize(keys[i])}" alt="">${t}</b><span>${d}</span></div></div>`).join('');
@@ -145,7 +167,7 @@ $('btnJoin').onclick = () => {
 function connect() {
   clearTimeout(retryTimer);
   if (!peer || peer.destroyed) {
-    peer = new Peer();
+    peer = new Peer(window.MK_PEER_OPTIONS || {});
     peer.on('open', openConn);
     peer.on('error', e => { console.warn(e.type); if (e.type === 'peer-unavailable') { fails++; $('joinMsg').textContent = 'No encuentro esa sala. ¿Código correcto?'; if (fails >= 5) return roomGone(); } scheduleRetry(); });
     peer.on('disconnected', () => { try { peer.reconnect(); } catch {} });
@@ -153,7 +175,7 @@ function connect() {
 }
 function openConn() {
   if (conn && conn.open) return;
-  conn = peer.connect(PREFIX + code, { reliable: true });
+  conn = peer.connect(PREFIX + code, window.MK_CONN_OPTIONS || { reliable: true });
   conn.on('open', () => { fails = 0; $('banner').style.display = 'none'; conn.send({ t: 'join', pid, name }); });
   conn.on('data', onState);
   conn.on('close', () => { $('banner').style.display = 'block'; scheduleRetry(); });
@@ -186,7 +208,7 @@ function onState(m) {
   if (!m || m.t !== 'state') return;
   st = m;
   $('join').style.display = 'none'; $('game').style.display = '';
-  if (m.phase === 'clip') { deadlineAt = Date.now() + m.remainingMs; totalMs = m.totalMs; localMark = m.mark; }
+  if (m.phase === 'clip' || m.phase === 'ready') { deadlineAt = Date.now() + m.remainingMs; totalMs = m.totalMs; localMark = m.phase === 'clip' ? m.mark : null; }
   else localMark = null;
   render();
 }
@@ -197,9 +219,11 @@ function render() {
   $('fichas').textContent = m.fichas;
   const status = $('status');
   if (m.phase === 'lobby') status.textContent = 'Esperando a que el host empiece…';
-  else if (!m.inGame) status.textContent = 'Entrarás en la próxima partida';
+  else if (m.phase === 'ready') status.innerHTML = `👀 Lee tu cartón · empieza en <b id="readyLeft">${Math.max(0, Math.ceil((deadlineAt - Date.now()) / 1000))}</b> s`;
+  else if (m.phase === 'final') status.textContent = '🏁 Fin de la partida';
+  else if (!m.inGame) status.textContent = 'Entrarás en la próxima ronda';
   else if (m.phase === 'clip') status.innerHTML = MK.eq(5) + (localMark == null ? 'Escucha y marca una casilla' : '👍 Marcada (puedes cambiarla)');
-  else if (m.phase === 'over') status.textContent = '🏁 Fin de la partida';
+  else if (m.phase === 'over') status.textContent = `🏁 Fin de la ronda ${m.gameNo} de ${m.games}` + (m.carry && m.carry.length ? ` · pasan: ${m.carry.join(', ')}` : '');
   else status.textContent = 'Siguiente canción en breve…';
 
   // cartón
@@ -210,7 +234,7 @@ function render() {
       const cls = ['cell', c.hard ? 'hard' : '', m.cells[i] === 'hit' ? 'hit' : '', m.cells[i] === 'blocked' ? 'blocked' : '',
         m.phase === 'clip' && localMark === i ? 'sel' : '',
         newTurnReveal && m.reveal.me.idx === i ? (m.reveal.me.res === 'hit' ? 'flash-hit' : 'flash-miss') : ''].join(' ');
-      return `<div class="${cls}" data-i="${i}">${esc(c.label)}</div>`;
+      return `<div class="${cls}" data-i="${i}">${c.lines ? c.lines.map(esc).join('<br>') : esc(c.label)}</div>`;
     }).join('');
     if (m.reveal) lastTurnRendered = m.turn;
     grid.querySelectorAll('.cell').forEach(el => el.onclick = () => tap(+el.dataset.i));
@@ -223,6 +247,18 @@ function render() {
     $('prog').innerHTML = `<span>Líneas <b>${lines}</b>/2</span><span>Esquinas <b>${corners}</b>/4</span><span>Racha <b>${m.streak || 0}</b>/${m.rachaMax || 4}</span><span>Experto <b>${Math.min(m.hard || 0, m.expertoMax || 3)}</b>/${m.expertoMax || 3}</span>`;
   } else $('prog').innerHTML = '';
 
+  // final de la sesión
+  if (m.final) {
+    const f = m.final;
+    $('grid').innerHTML = ''; $('prog').innerHTML = '';
+    $('reveal').style.display = '';
+    $('reveal').innerHTML = `<img class="m mk-pop" src="${MK.mascot(f.youWin ? 'celebra' : 'escucha')}" alt="" style="width:120px">
+      <div class="t">${f.youWin ? (f.tie ? '¡Empate en cabeza!' : '¡Has ganado la partida!') : 'Has quedado ' + f.pos + 'º'}</div>
+      <div class="a">${f.tie ? 'Empate entre ' + esc(yJoin(f.winners)) : esc(f.ranking[0].name) + ' gana'} con ${f.ranking[0].fichas} fichas</div>
+      <table style="margin-top:8px">${f.ranking.map((r, i) => `<tr><td>${['🥇', '🥈', '🥉'][i] || (i + 1) + '.'} ${esc(r.name)}</td><td class="n">${r.fichas}</td></tr>`).join('')}</table>`;
+    if (lastCelebrated !== 'final') { lastCelebrated = 'final'; if (f.youWin) MK.celebrate({ pot: 'final', title: '¡Campeón!', subtitle: 'Has ganado la partida' }, { ms: 3500 }); }
+    $('pots').innerHTML = ''; return;
+  }
   // revelado
   const rv = $('reveal');
   if (m.reveal) {
@@ -261,7 +297,8 @@ function tap(i) {
 
 setInterval(() => {
   const bar = $('bar');
-  if (st && st.phase === 'clip') bar.style.width = Math.max(0, 100 * (deadlineAt - Date.now()) / totalMs) + '%';
+  if (st && (st.phase === 'clip' || st.phase === 'ready')) bar.style.width = Math.max(0, 100 * (deadlineAt - Date.now()) / totalMs) + '%';
+  const rl = document.getElementById('readyLeft'); if (rl && st && st.phase === 'ready') rl.textContent = Math.max(0, Math.ceil((deadlineAt - Date.now()) / 1000));
   else bar.style.width = '0';
 }, 150);
 

@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Musikino · Host</title>
 <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<script src="peer-config.js"></script>
 <script src="bingo-core.js"></script>
 <script src="qrcode.js"></script>
 <script src="mk-theme.js"></script>
@@ -74,6 +75,8 @@
       <label>Avance automático (s, 0 = manual) <input type="number" id="cfgAuto" value="10" min="0" max="60"></label>
       <label>Máximo de canciones <input type="number" id="cfgMax" value="30" min="10" max="60"></label>
       <label>Fichas iniciales <input type="number" id="cfgFichas" value="20" min="6" max="100"></label>
+      <label>Segundos para leer el cartón <input type="number" id="cfgRead" value="20" min="0" max="90"></label>
+      <label>Rondas por partida <input type="number" id="cfgGames" value="3" min="1" max="20"></label>
       <div class="small mut" id="dbInfo"></div>
       <input type="file" id="fileIn" accept=".json" style="display:none">
     </div>
@@ -83,6 +86,7 @@
 
 <script>
 'use strict';
+const yJoin = a => a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' y ' + a[a.length - 1];
 const C = window.BingoCore;
 const $ = id => document.getElementById(id);
 const audio = $('audio');
@@ -105,6 +109,7 @@ const S = {
 const cfg = () => ({
   clip: +$('cfgClip').value, extra: +$('cfgExtra').value, auto: +$('cfgAuto').value,
   max: +$('cfgMax').value, fichas: +$('cfgFichas').value,
+  read: Math.max(0, +$('cfgRead').value || 0), games: Math.max(1, +$('cfgGames').value || 1),
 });
 
 function loadHistory() { try { return JSON.parse(localStorage.getItem(HIST_KEY) || '[]'); } catch { return []; } }
@@ -179,7 +184,7 @@ async function resolveSong(song) {
 function newCode() { const A = 'ABCDEFGHJKLMNPQRSTUVWXYZ'; return Array.from({ length: 4 }, () => A[Math.floor(Math.random() * A.length)]).join(''); }
 function startPeer() {
   S.code = newCode();
-  const peer = new Peer(PREFIX + S.code);
+  const peer = new Peer(PREFIX + S.code, window.MK_PEER_OPTIONS || {});
   S.peer = peer;
   peer.on('open', () => { $('codeBox').innerHTML = `Código <b>${S.code}</b>`; render(); });
   peer.on('error', e => {
@@ -235,15 +240,23 @@ function sendState(p) {
   const showReveal = (S.phase === 'reveal' || S.phase === 'over') && S.reveal;
   const msg = {
     t: 'state', phase: S.phase, code: S.code, name: p.name, turn: S.turn, maxTurns: cfg().max,
-    remainingMs: S.phase === 'clip' ? Math.max(0, S.deadline - Date.now()) : 0,
-    totalMs: (cfg().clip + cfg().extra) * 1000,
+    remainingMs: (S.phase === 'clip' || S.phase === 'ready') ? Math.max(0, S.deadline - Date.now()) : 0,
+    totalMs: S.phase === 'ready' ? cfg().read * 1000 : (cfg().clip + cfg().extra) * 1000,
+    gameNo: S.gameNo || 0, games: cfg().games, carry: pendingPots().map(k => C.POT_LABEL[k]),
+    final: S.phase === 'final' ? finalFor(p) : null,
     inGame: p.inGame,
-    card: p.cats ? p.cats.map(c => ({ label: c.label, hard: !!c.dificil })) : null,
+    card: p.cats ? p.cats.map(c => ({ label: c.label, lines: C.printLines(c), hard: !!c.dificil })) : null,
     cells: p.cells, mark: p.mark ? p.mark.idx : null, fichas: p.fichas, streak: p.streak, hard: p.hard, rachaMax: C.RACHA, expertoMax: C.EXPERTO,
     pots: S.pots, won: S.gameWon, board: publicBoard(),
     reveal: showReveal ? { ...S.reveal.pub, me: { ...(S.reveal.results[p.pid] || { res: 'none' }), pots: (S.reveal.wonBy && S.reveal.wonBy[p.pid]) || [] } } : null,
   };
   try { p.conn.send(msg); } catch {}
+}
+const pendingPots = () => C.POTS.filter(k => !S.gameWon[k] && S.pots[k] > 0);
+function finalFor(p) {
+  const rk = [...S.players.values()].sort((a, b) => b.fichas - a.fichas);
+  const top = rk.length ? rk[0].fichas : 0, winners = rk.filter(x => x.fichas === top);
+  return { ranking: rk.map(x => ({ name: x.name, fichas: x.fichas })), pos: rk.filter(x => x.fichas > p.fichas).length + 1, youWin: winners.includes(p), tie: winners.length > 1, winners: winners.map(x => x.name), leftover: S.leftover };
 }
 const broadcast = () => { for (const p of S.players.values()) sendState(p); };
 
@@ -261,13 +274,45 @@ function startGame() {
     dealCard(p);
     for (const pot of C.POTS) if (p.fichas > 0) { p.fichas--; S.pots[pot]++; }
   }
-  nextTurn();
+  S.gameNo = (S.gameNo || 0) + 1;
+  const ms = cfg().read * 1000;
+  if (!ms) return nextTurn();
+  S.phase = 'ready'; S.deadline = Date.now() + ms;
+  clearTimeout(S.readyId); S.readyId = setTimeout(nextTurn, ms);
+  clearInterval(S.timerId); S.timerId = setInterval(() => { const el = $('readyLeft'); if (el) el.textContent = Math.max(0, Math.ceil((S.deadline - Date.now()) / 1000)); }, 250);
+  broadcast(); render();
+}
+
+// Fin de la sesión: el bote que quede se reparte a partes iguales entre los que juegan (el resto, al primero)
+function endSession() {
+  clearTimeout(S.autoId); clearTimeout(S.readyId); clearInterval(S.timerId); audio.pause();
+  const act = [...S.players.values()].filter(p => p.inGame || p.online);
+  const total = C.POTS.reduce((a, p) => a + S.pots[p], 0);
+  S.leftover = { total, each: 0 };
+  if (act.length && total) {
+    const each = Math.floor(total / act.length), rest = total - each * act.length;
+    act.forEach(p => p.fichas += each);
+    act.sort((a, b) => b.fichas - a.fichas)[0].fichas += rest;
+    S.leftover.each = each;
+  }
+  C.POTS.forEach(p => S.pots[p] = 0);
+  S.phase = 'final'; S.reveal = null;
+  const rk = [...S.players.values()].sort((a, b) => b.fichas - a.fichas);
+  const wn = rk.filter(x => rk.length && x.fichas === rk[0].fichas);
+  if (rk.length) MK.celebrate({ pot: 'final', title: wn.length > 1 ? '¡Empate!' : '¡Gana ' + esc(rk[0].name) + '!', subtitle: (wn.length > 1 ? esc(yJoin(wn.map(x => x.name))) + ' · ' : '') + rk[0].fichas + ' fichas' }, { ms: 4000 });
+  broadcast(); render();
+}
+function newSession() {
+  for (const p of S.players.values()) { p.fichas = cfg().fichas; p.inGame = false; p.cats = null; p.cells = null; }
+  C.POTS.forEach(p => S.pots[p] = 0);
+  S.gameNo = 0; S.phase = 'lobby'; S.reveal = null; S.leftover = null;
+  broadcast(); render();
 }
 
 async function nextTurn() {
-  clearTimeout(S.autoId); clearInterval(S.timerId);
+  clearTimeout(S.autoId); clearTimeout(S.readyId); clearInterval(S.timerId);
   const c = cfg();
-  if (S.turn >= c.max) return endGame('Se alcanzó el máximo de canciones');
+  if (S.turn >= c.max) return endGame('Se alcanzó el máximo de canciones de la ronda');
   const cards = [...S.players.values()].filter(p => p.inGame).map(p => ({ cats: p.cats, cells: p.cells }));
   let song = null, meta = null;
   for (let tries = 0; tries < 8 && !meta; tries++) {
@@ -342,13 +387,13 @@ function doReveal() {
   if (wonList.length) MK.celebrate(wonList.map(w => ({ pot: w.pot, title: '¡' + C.POT_LABEL[w.pot] + '!', subtitle: esc(w.names.join(', ')) + ' · +' + w.each + ' fichas' })));
   if (r.gameOver) return endGame(null);
   S.phase = 'reveal';
-  if (S.turn >= cfg().max) return endGame('Se alcanzó el máximo de canciones');
+  if (S.turn >= cfg().max) return endGame('Se alcanzó el máximo de canciones de la ronda');
   if (cfg().auto > 0) S.autoId = setTimeout(nextTurn, cfg().auto * 1000);
   broadcast(); render();
 }
 
 function endGame(reason) {
-  clearTimeout(S.autoId); clearInterval(S.timerId);
+  clearTimeout(S.autoId); clearTimeout(S.readyId); clearInterval(S.timerId);
   S.phase = 'over'; S.overReason = reason;
   broadcast(); render();
 }
@@ -382,6 +427,25 @@ function render() {
     $('btnStart').onclick = startGame;
     if ($('btnPurge')) $('btnPurge').onclick = () => { for (const [k, p] of S.players) if (!p.online) S.players.delete(k); render(); };
     $('btnNewRoom').onclick = () => { for (const p of S.players.values()) { try { p.conn && p.conn.close(); } catch {} } S.players.clear(); try { S.peer.destroy(); } catch {} startPeer(); render(); };
+  } else if (S.phase === 'ready') {
+    st.innerHTML = `
+      <div class="mut mid">Ronda ${S.gameNo} de ${cfg().games}</div>
+      <img class="mascot mk-bob" src="img_mk/mk_mascota_escucha.png" alt="">
+      <div class="big">¡Mirad vuestro cartón!</div>
+      <div class="mid mut">Leed las casillas antes de que empiece la música</div>
+      <div class="big" style="color:var(--acc);font-size:72px" id="readyLeft">${Math.max(0, Math.ceil((S.deadline - Date.now()) / 1000))}</div>
+      <div class="row"><button id="btnGo">¡Empezar ya!</button></div>`;
+    $('btnGo').onclick = () => nextTurn();
+  } else if (S.phase === 'final') {
+    const rk = players.slice().sort((a, b) => b.fichas - a.fichas);
+    const L = S.leftover || { total: 0, each: 0 };
+    st.innerHTML = `
+      <img class="mascot mk-bob" src="img_mk/mk_mascota_celebra.png" alt="">
+      ${(() => { const w = rk.filter(x => rk.length && x.fichas === rk[0].fichas); return `<div class="big">🏆 ${w.length > 1 ? 'Empate: ' + esc(yJoin(w.map(x => x.name))) : (rk[0] ? esc(rk[0].name) + ' gana la partida' : '')}</div>`; })()}
+      ${L.total ? `<div class="mut">Quedaban ${L.total} fichas en los botes: se han repartido ${L.each} a cada jugador.</div>` : ''}
+      <table style="max-width:460px;font-size:20px">${rk.map((p, i) => `<tr><td><span class="medal">${['🥇', '🥈', '🥉'][i] || (i + 1) + '.'}</span>${esc(p.name)}</td><td class="n">${p.fichas}</td></tr>`).join('')}</table>
+      <div class="row"><button id="btnNewSession">Nueva partida</button></div>`;
+    $('btnNewSession').onclick = newSession;
   } else if (S.phase === 'clip') {
     const ing = players.filter(p => p.inGame);
     st.innerHTML = `
@@ -407,21 +471,25 @@ function render() {
       ${R.url ? `<a class="small" href="${esc(R.url)}" target="_blank" rel="noopener">Escuchar en Apple Music</a>` : ''}` : '') +
       (S.phase === 'over' ? `
       <img class="mascot mk-bob" src="img_mk/mk_mascota_celebra.png" alt="" style="margin-top:6px">
-      <div class="big">Fin de la partida</div>
-      ${S.overReason ? `<div class="mut">${esc(S.overReason)} · el bote de Doble línea pasa a la siguiente</div>` : ''}
+      <div class="big">Fin de la ronda</div>
+      <div class="mut">Ronda ${S.gameNo} de ${cfg().games}${S.overReason ? ' · ' + esc(S.overReason) : ''}</div>
+      ${pendingPots().length ? `<div class="mut">Pasan a la siguiente ronda: ${pendingPots().map(k => C.POT_LABEL[k] + ' (' + S.pots[k] + ')').join(', ')}</div>` : ''}
       <table style="max-width:420px">${ranking.map((p, i) => `<tr><td><span class="medal">${['🥇', '🥈', '🥉'][i] || (i + 1) + '.'}</span>${esc(p.name)}</td><td class="n">${p.fichas}</td></tr>`).join('')}</table>
-      <div class="row"><button id="btnNew">Nueva partida</button><button class="sec" id="btnLobby">Volver a la sala</button></div>` : `
+      <div class="row">${(S.gameNo || 0) < cfg().games
+        ? `<button id="btnNew">Siguiente ronda (${(S.gameNo || 0) + 1} de ${cfg().games})</button><button class="sec" id="btnFinal">Terminar partida</button>`
+        : `<button id="btnFinal">Ver resultado final</button>`}<button class="sec" id="btnLobby">Volver a la sala</button></div>` : `
       <div class="row"><button id="btnNext">Siguiente canción${cfg().auto > 0 ? ` (auto ${cfg().auto}s)` : ''}</button><button class="sec" id="btnEnd">Terminar</button></div>`);
     if ($('btnNext')) $('btnNext').onclick = nextTurn;
-    if ($('btnEnd')) $('btnEnd').onclick = () => endGame('Partida terminada por el host');
+    if ($('btnEnd')) $('btnEnd').onclick = () => endGame('Ronda terminada por el host');
     if ($('btnNew')) $('btnNew').onclick = startGame;
+    if ($('btnFinal')) $('btnFinal').onclick = endSession;
     if ($('btnLobby')) $('btnLobby').onclick = () => { audio.pause(); S.phase = 'lobby'; S.reveal = null; for (const p of S.players.values()) p.inGame = false; broadcast(); render(); };
   }
   // Botes y marcador
   $('pots').innerHTML = C.POTS.map(p => `<div class="pot ${S.gameWon[p] && S.phase !== 'lobby' ? 'won' : ''}"><img src="${MK.prize(p)}" alt="">${C.POT_LABEL[p]} <b>${S.pots[p]}</b></div>`).join('');
   $('board').innerHTML = publicBoard().map(b => `<tr class="${b.online ? '' : 'off'}"><td>${esc(b.name)}${b.lines ? ` <span class="mut small">· ${b.lines} lín.</span>` : ''}</td><td class="n">${b.fichas}</td></tr>`).join('')
     || '<tr><td class="mut">Sin jugadores todavía</td></tr>';
-  $('settings').style.display = S.phase === 'lobby' || S.phase === 'over' ? '' : 'none';
+  $('settings').style.display = ['lobby', 'over', 'final'].includes(S.phase) ? '' : 'none';
   $('lateQr').innerHTML = S.phase !== 'lobby' && S.code ? `<div class="qr">${qrSvg(playerUrl)}</div><div>¿Llegas tarde?<br>Escanea para unirte<br><b style="color:var(--acc)">${S.code}</b></div>` : '';
 }
 
