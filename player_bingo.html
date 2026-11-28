@@ -46,7 +46,7 @@
   .chip { background:#2c2545; border:1px solid var(--line); padding:4px 10px; border-radius:16px; font-size:13px; }
   .res { font-size:18px; font-weight:700; margin:6px 0; } .res.hit { color:var(--ok); } .res.miss { color:var(--bad); }
   .awards { list-style:none; padding:0; margin:6px 0 0; font-size:14px; }
-  .pots { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; font-size:12.5px; }
+  .pots { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; font-size:13.5px; }
   .pot { background:#2c2545; border-radius:8px; padding:5px 7px; } .pot b { color:var(--acc); float:right; } .pot.won { opacity:.4; text-decoration:line-through; }
   table { width:100%; border-collapse:collapse; font-size:14px; } td { padding:4px; border-bottom:1px solid var(--line); } td.n { text-align:right; font-weight:700; }
   .off { opacity:.45; }
@@ -57,6 +57,11 @@
   .mut { color:var(--mut); } .small { font-size:13px; } .center { text-align:center; }
   .prog { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; font-size:14px; color:var(--mut); margin:8px 0 2px; }
   .prog b { color:var(--acc); }
+  .prev { font-size:14px; text-align:left; } .prev .res { font-size:15px; margin-left:4px; }
+  .hurry { color:var(--acc); font-size:16px; }
+  .passbtn { background:#2c2545; color:var(--txt); border:1px solid var(--line); font-size:16px; padding:11px; margin-top:8px; }
+  .passbtn.on { background:#4a3a12; border-color:var(--acc); color:var(--acc); }
+  .pot small { display:block; color:var(--mut); font-size:11px; line-height:1.25; margin-top:2px; }
   .helpbtn { background:#2c2545; color:var(--txt); border:1px solid var(--line); font-size:15px; padding:10px; margin-top:10px; }
   .help { position:fixed; inset:0; background:#000c; display:flex; align-items:flex-start; justify-content:center; overflow:auto; z-index:20; padding:14px; }
   .help .in { background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:16px; max-width:480px; width:100%; }
@@ -68,7 +73,8 @@
   .icon { width:64px; text-align:center; font-size:22px; color:var(--ok); letter-spacing:-2px; }
   .banner { background:#3d1a20; color:#ffd0d5; padding:8px; border-radius:10px; text-align:center; margin-bottom:8px; display:none; }
   h1 .ttl { color:var(--txt); } h1 em { color:var(--acc); font-style:normal; }
-  .pot { display:flex; align-items:center; gap:4px; white-space:nowrap; } .pot b { margin-left:auto; float:none; }
+  .pot { display:flex; flex-wrap:wrap; align-items:center; gap:2px 4px; white-space:nowrap; min-width:0; } .pot b { margin-left:auto; float:none; }
+  .pot small { flex-basis:100%; white-space:normal; }
   /* texto de las casillas más grande */
   .cell { font-size: clamp(14px, 3.9vw, 19px) !important; line-height:1.12 !important; padding:5px !important; }
   /* móvil girado: cartón grande a la izquierda, información a la derecha */
@@ -84,6 +90,8 @@
     .colB { max-height: calc(100vh - 12px); overflow: auto; }
     .colB .helpbtn { margin-top: 0; }
     .colB .pots { grid-template-columns: repeat(2, 1fr); }
+    /* el botón de pasar, abajo a la derecha (debajo del cartón no cabe) */
+    .passbtn { position: fixed; right: 12px; bottom: 10px; width: calc(40vw - 36px); margin: 0; z-index: 5; box-shadow: 0 6px 18px #000a; }
   }
 </style>
 </head>
@@ -104,6 +112,7 @@
       <div class="timer"><div id="bar"></div></div>
       <div class="status" id="status"></div>
       <div class="grid" id="grid"></div>
+      <button class="passbtn" id="btnPass" style="display:none">🙅 Paso: no tengo dónde ponerla</button>
       <div class="prog" id="prog"></div>
     </div>
     <div class="colB">
@@ -204,10 +213,13 @@ async function requestWakeLock() { try { if ('wakeLock' in navigator) wakeLock =
 
 function send(msg) { if (conn && conn.open) conn.send(msg); }
 
+let hurried = false;
 function onState(m) {
   if (!m || m.t !== 'state') return;
   st = m;
   $('join').style.display = 'none'; $('game').style.display = '';
+  if (m.hurry && !hurried) { hurried = true; if (navigator.vibrate) navigator.vibrate([120, 80, 120, 80, 250]); MK.ding(); }
+  if (!m.hurry) hurried = false;
   if (m.phase === 'clip' || m.phase === 'ready') { deadlineAt = Date.now() + m.remainingMs; totalMs = m.totalMs; localMark = m.phase === 'clip' ? m.mark : null; }
   else localMark = null;
   render();
@@ -222,7 +234,12 @@ function render() {
   else if (m.phase === 'ready') status.innerHTML = `👀 Lee tu cartón · empieza en <b id="readyLeft">${Math.max(0, Math.ceil((deadlineAt - Date.now()) / 1000))}</b> s`;
   else if (m.phase === 'final') status.textContent = '🏁 Fin de la partida';
   else if (!m.inGame) status.textContent = 'Entrarás en la próxima ronda';
-  else if (m.phase === 'clip') status.innerHTML = MK.eq(5) + (localMark == null ? 'Escucha y marca una casilla' : '👍 Marcada (puedes cambiarla)');
+  else if (m.phase === 'clip') {
+    const a = m.answered || { done: 0, total: 0 }, faltan = Math.max(0, a.total - a.done);
+    const wait = faltan ? ` · faltan ${faltan}` : ' · ¡todos listos!';
+    if (m.hurry) status.innerHTML = `<b class="hurry">⏱️ ¡Solo faltas tú! Marca o pasa ya</b>`;
+    else status.innerHTML = MK.eq(5) + (localMark != null ? '👍 Marcada (puedes cambiarla)' + wait : m.passed ? '🙅 Has pasado' + wait : 'Escucha y marca una casilla, o pasa');
+  }
   else if (m.phase === 'over') status.textContent = `🏁 Fin de la ronda ${m.gameNo} de ${m.games}` + (m.carry && m.carry.length ? ` · pasan: ${m.carry.join(', ')}` : '');
   else status.textContent = 'Siguiente canción en breve…';
 
@@ -239,6 +256,13 @@ function render() {
     if (m.reveal) lastTurnRendered = m.turn;
     grid.querySelectorAll('.cell').forEach(el => el.onclick = () => tap(+el.dataset.i));
   } else grid.innerHTML = '';
+
+  // botón de pasar: solo mientras suena la canción
+  const pb = $('btnPass');
+  const canPass = m.phase === 'clip' && m.inGame && m.cells && m.cells.includes('free');
+  pb.style.display = canPass ? '' : 'none';
+  pb.className = 'passbtn' + (m.passed && localMark == null ? ' on' : '');
+  pb.textContent = m.passed && localMark == null ? '↩️ He pasado (toca para deshacer)' : '🙅 Paso: no tengo dónde ponerla';
 
   // progreso hacia los premios
   if (m.cells && m.inGame) {
@@ -276,9 +300,16 @@ function render() {
       if (me.pots && me.pots.length) MK.celebrate(me.pots.map(x => ({ pot: x.pot, title: '¡' + POT_LABEL[x.pot] + '!', subtitle: '+' + x.each + ' fichas para ti' })));
       else if (me.res === 'hit') MK.ding(); else if (me.res === 'miss') MK.boing();
     }
+  } else if (m.prev) {
+    // la canción anterior sigue a la vista mientras suena la siguiente
+    rv.style.display = '';
+    rv.innerHTML = `<div class="prev"><span class="mut">Era:</span> <b>${esc(m.prev.titulo)}</b> · ${esc(m.prev.artista)} · ${m.prev.anio}
+      <span class="res ${m.prev.res}">${m.prev.res === 'hit' ? '✅' : m.prev.res === 'miss' ? '❌' : '—'}</span></div>`;
   } else rv.style.display = 'none';
 
-  $('pots').innerHTML = Object.keys(POT_LABEL).map(p => `<div class="pot ${m.won && m.won[p] && m.phase !== 'lobby' ? 'won' : ''}"><img src="${MK.prize(p)}" alt="">${POT_LABEL[p]} <b>${m.pots[p]}</b></div>`).join('');
+  const POT_DESC = { linea: 'Fila, columna o diagonal de 4', esquinas: 'Las 4 esquinas', cuadrado: 'Un bloque de 2×2',
+    racha: `${m.rachaMax || 4} aciertos seguidos (pasar o fallar la corta)`, experto: `${m.expertoMax || 3} aciertos en casillas moradas`, final: '2 líneas · acaba la ronda' };
+  $('pots').innerHTML = Object.keys(POT_LABEL).map(p => `<div class="pot ${m.won && m.won[p] && m.phase !== 'lobby' ? 'won' : ''}"><img src="${MK.prize(p)}" alt="">${POT_LABEL[p]} <b>${m.pots[p]}</b><small>${POT_DESC[p]}</small></div>`).join('');
   $('board').innerHTML = m.board.map(b => `<tr class="${b.online ? '' : 'off'}"><td>${esc(b.name)}${b.lines ? ` <span class="mut small">· ${b.lines} lín.</span>` : ''}</td><td class="n">${b.fichas}</td></tr>`).join('');
 }
 
@@ -286,10 +317,19 @@ $('btnHelp').onclick = () => { $('rules').innerHTML = rulesHtml((st && st.rachaM
 $('btnHelpClose').onclick = () => { $('help').style.display = 'none'; };
 $('help').onclick = e => { if (e.target.id === 'help') $('help').style.display = 'none'; };
 
+$('btnPass').onclick = () => {
+  if (!st || st.phase !== 'clip' || !st.inGame || Date.now() > deadlineAt) return;
+  const on = !(st.passed && localMark == null);
+  localMark = null; st.passed = on;
+  send({ t: 'pass', on });
+  if (navigator.vibrate) navigator.vibrate(15);
+  render();
+};
 function tap(i) {
   if (!st || st.phase !== 'clip' || !st.inGame || Date.now() > deadlineAt) return;
   if (st.cells[i] !== 'free') return;
   localMark = localMark === i ? null : i;
+  if (localMark != null) st.passed = false;
   send({ t: 'mark', idx: localMark });
   if (navigator.vibrate) navigator.vibrate(15);
   render();
